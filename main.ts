@@ -66,10 +66,10 @@ ${data.fields.map(e => ` * @param {${e.types.map(e => parseType(e)).join(' | ')}
  * @returns {Promise<${returns}>}
  */
 async function ${name}(
-${fields.join(', \n')}
+${fields.join(',\n')}
 ): Promise<${returns}> {
     return await get('${name}', {
-${data.fields.map(e => `        ${e.name}`).join(', \n')}
+${data.fields.map(e => `        ${e.name}`).join(',\n')}
     })
 }`.replaceAll('\n\n', '').replaceAll(', {    }', '')
 })
