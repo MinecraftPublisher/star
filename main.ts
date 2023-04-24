@@ -28,7 +28,7 @@ async function get(url: string, args: { [key: string]: any } = {}): Promise<any>
     return await fetch(\`\${BASE}\${url}?\` + keys?.join('&')).then((res) => res.json())
 }
 
-async function load(token: string): Promise<void> {
+async function login(token: string): Promise<void> {
     BASE += \`\${token}/\`
 }`
 
@@ -77,7 +77,6 @@ ${data.fields.map(e => `        ${e.name}`).join(',\n')}
 console.log('methods passed')
 
 let types = Object.keys(json.types).map((j, i) => {
-    console.log(i)
     let name = j
     let data = json.types[j]
     if(!data.fields) data.fields = []
