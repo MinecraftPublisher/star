@@ -3261,15 +3261,15 @@ interface GameHighScore {
  * @returns {Promise<Array<Array<Update>>>}
  */
 async function getUpdates(
-    offset?: Array<number>,
-    limit?: Array<number>,
-    timeout?: Array<number>,
+    offset?: Array<number>, 
+    limit?: Array<number>, 
+    timeout?: Array<number>, 
     allowed_updates?: Array<Array<string>>
 ): Promise<Array<Array<Update>>> {
     return await get('getUpdates', {
-        offset,
-        limit,
-        timeout,
+        offset, 
+        limit, 
+        timeout, 
         allowed_updates
     })
 }
@@ -3290,21 +3290,21 @@ async function getUpdates(
  * @returns {Promise<Array<boolean>>}
  */
 async function setWebhook(
-    url: Array<string>,
-    certificate?: Array<InputFile>,
-    ip_address?: Array<string>,
-    max_connections?: Array<number>,
-    allowed_updates?: Array<Array<string>>,
-    drop_pending_updates?: Array<boolean>,
+    url: Array<string>, 
+    certificate?: Array<InputFile>, 
+    ip_address?: Array<string>, 
+    max_connections?: Array<number>, 
+    allowed_updates?: Array<Array<string>>, 
+    drop_pending_updates?: Array<boolean>, 
     secret_token?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setWebhook', {
-        url,
-        certificate,
-        ip_address,
-        max_connections,
-        allowed_updates,
-        drop_pending_updates,
+        url, 
+        certificate, 
+        ip_address, 
+        max_connections, 
+        allowed_updates, 
+        drop_pending_updates, 
         secret_token
     })
 }
@@ -3384,29 +3384,29 @@ async function close(): Promise<Array<boolean>> {
  * @returns {Promise<Array<Message>>}
  */
 async function sendMessage(
-    chat_id: Array<number> | Array<string>,
-    text: Array<string>,
-    message_thread_id?: Array<number>,
-    parse_mode?: Array<string>,
-    entities?: Array<Array<MessageEntity>>,
-    disable_web_page_preview?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    text: Array<string>, 
+    message_thread_id?: Array<number>, 
+    parse_mode?: Array<string>, 
+    entities?: Array<Array<MessageEntity>>, 
+    disable_web_page_preview?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendMessage', {
-        chat_id,
-        text,
-        message_thread_id,
-        parse_mode,
-        entities,
-        disable_web_page_preview,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        text, 
+        message_thread_id, 
+        parse_mode, 
+        entities, 
+        disable_web_page_preview, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3425,19 +3425,19 @@ async function sendMessage(
  * @returns {Promise<Array<Message>>}
  */
 async function forwardMessage(
-    chat_id: Array<number> | Array<string>,
-    from_chat_id: Array<number> | Array<string>,
-    message_id: Array<number>,
-    message_thread_id?: Array<number>,
-    disable_notification?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    from_chat_id: Array<number> | Array<string>, 
+    message_id: Array<number>, 
+    message_thread_id?: Array<number>, 
+    disable_notification?: Array<boolean>, 
     protect_content?: Array<boolean>
 ): Promise<Array<Message>> {
     return await get('forwardMessage', {
-        chat_id,
-        from_chat_id,
-        message_id,
-        message_thread_id,
-        disable_notification,
+        chat_id, 
+        from_chat_id, 
+        message_id, 
+        message_thread_id, 
+        disable_notification, 
         protect_content
     })
 }
@@ -3462,31 +3462,31 @@ async function forwardMessage(
  * @returns {Promise<Array<MessageId>>}
  */
 async function copyMessage(
-    chat_id: Array<number> | Array<string>,
-    from_chat_id: Array<number> | Array<string>,
-    message_id: Array<number>,
-    message_thread_id?: Array<number>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    from_chat_id: Array<number> | Array<string>, 
+    message_id: Array<number>, 
+    message_thread_id?: Array<number>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<MessageId>> {
     return await get('copyMessage', {
-        chat_id,
-        from_chat_id,
-        message_id,
-        message_thread_id,
-        caption,
-        parse_mode,
-        caption_entities,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        from_chat_id, 
+        message_id, 
+        message_thread_id, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3511,31 +3511,31 @@ async function copyMessage(
  * @returns {Promise<Array<Message>>}
  */
 async function sendPhoto(
-    chat_id: Array<number> | Array<string>,
-    photo: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    has_spoiler?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    photo: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    has_spoiler?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendPhoto', {
-        chat_id,
-        photo,
-        message_thread_id,
-        caption,
-        parse_mode,
-        caption_entities,
-        has_spoiler,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        photo, 
+        message_thread_id, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        has_spoiler, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3564,37 +3564,37 @@ async function sendPhoto(
  * @returns {Promise<Array<Message>>}
  */
 async function sendAudio(
-    chat_id: Array<number> | Array<string>,
-    audio: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    duration?: Array<number>,
-    performer?: Array<string>,
-    title?: Array<string>,
-    thumbnail?: Array<InputFile> | Array<string>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    audio: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    duration?: Array<number>, 
+    performer?: Array<string>, 
+    title?: Array<string>, 
+    thumbnail?: Array<InputFile> | Array<string>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendAudio', {
-        chat_id,
-        audio,
-        message_thread_id,
-        caption,
-        parse_mode,
-        caption_entities,
-        duration,
-        performer,
-        title,
-        thumbnail,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        audio, 
+        message_thread_id, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        duration, 
+        performer, 
+        title, 
+        thumbnail, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3620,33 +3620,33 @@ async function sendAudio(
  * @returns {Promise<Array<Message>>}
  */
 async function sendDocument(
-    chat_id: Array<number> | Array<string>,
-    document: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    thumbnail?: Array<InputFile> | Array<string>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    disable_content_type_detection?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    document: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    thumbnail?: Array<InputFile> | Array<string>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    disable_content_type_detection?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendDocument', {
-        chat_id,
-        document,
-        message_thread_id,
-        thumbnail,
-        caption,
-        parse_mode,
-        caption_entities,
-        disable_content_type_detection,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        document, 
+        message_thread_id, 
+        thumbnail, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        disable_content_type_detection, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3676,41 +3676,41 @@ async function sendDocument(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVideo(
-    chat_id: Array<number> | Array<string>,
-    video: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    duration?: Array<number>,
-    width?: Array<number>,
-    height?: Array<number>,
-    thumbnail?: Array<InputFile> | Array<string>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    has_spoiler?: Array<boolean>,
-    supports_streaming?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    video: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    duration?: Array<number>, 
+    width?: Array<number>, 
+    height?: Array<number>, 
+    thumbnail?: Array<InputFile> | Array<string>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    has_spoiler?: Array<boolean>, 
+    supports_streaming?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVideo', {
-        chat_id,
-        video,
-        message_thread_id,
-        duration,
-        width,
-        height,
-        thumbnail,
-        caption,
-        parse_mode,
-        caption_entities,
-        has_spoiler,
-        supports_streaming,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        video, 
+        message_thread_id, 
+        duration, 
+        width, 
+        height, 
+        thumbnail, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        has_spoiler, 
+        supports_streaming, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3739,39 +3739,39 @@ async function sendVideo(
  * @returns {Promise<Array<Message>>}
  */
 async function sendAnimation(
-    chat_id: Array<number> | Array<string>,
-    animation: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    duration?: Array<number>,
-    width?: Array<number>,
-    height?: Array<number>,
-    thumbnail?: Array<InputFile> | Array<string>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    has_spoiler?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    animation: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    duration?: Array<number>, 
+    width?: Array<number>, 
+    height?: Array<number>, 
+    thumbnail?: Array<InputFile> | Array<string>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    has_spoiler?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendAnimation', {
-        chat_id,
-        animation,
-        message_thread_id,
-        duration,
-        width,
-        height,
-        thumbnail,
-        caption,
-        parse_mode,
-        caption_entities,
-        has_spoiler,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        animation, 
+        message_thread_id, 
+        duration, 
+        width, 
+        height, 
+        thumbnail, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        has_spoiler, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3796,31 +3796,31 @@ async function sendAnimation(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVoice(
-    chat_id: Array<number> | Array<string>,
-    voice: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
-    duration?: Array<number>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    voice: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
+    duration?: Array<number>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVoice', {
-        chat_id,
-        voice,
-        message_thread_id,
-        caption,
-        parse_mode,
-        caption_entities,
-        duration,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        voice, 
+        message_thread_id, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
+        duration, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3844,29 +3844,29 @@ async function sendVoice(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVideoNote(
-    chat_id: Array<number> | Array<string>,
-    video_note: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    duration?: Array<number>,
-    length?: Array<number>,
-    thumbnail?: Array<InputFile> | Array<string>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    video_note: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    duration?: Array<number>, 
+    length?: Array<number>, 
+    thumbnail?: Array<InputFile> | Array<string>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVideoNote', {
-        chat_id,
-        video_note,
-        message_thread_id,
-        duration,
-        length,
-        thumbnail,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        video_note, 
+        message_thread_id, 
+        duration, 
+        length, 
+        thumbnail, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3886,21 +3886,21 @@ async function sendVideoNote(
  * @returns {Promise<Array<Array<Message>>>}
  */
 async function sendMediaGroup(
-    chat_id: Array<number> | Array<string>,
-    media: Array<Array<InputMediaAudio>> | Array<Array<InputMediaDocument>> | Array<Array<InputMediaPhoto>> | Array<Array<InputMediaVideo>>,
-    message_thread_id?: Array<number>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    media: Array<Array<InputMediaAudio>> | Array<Array<InputMediaDocument>> | Array<Array<InputMediaPhoto>> | Array<Array<InputMediaVideo>>, 
+    message_thread_id?: Array<number>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
     allow_sending_without_reply?: Array<boolean>
 ): Promise<Array<Array<Message>>> {
     return await get('sendMediaGroup', {
-        chat_id,
-        media,
-        message_thread_id,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
+        chat_id, 
+        media, 
+        message_thread_id, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
         allow_sending_without_reply
     })
 }
@@ -3926,33 +3926,33 @@ async function sendMediaGroup(
  * @returns {Promise<Array<Message>>}
  */
 async function sendLocation(
-    chat_id: Array<number> | Array<string>,
-    latitude: Array<number>,
-    longitude: Array<number>,
-    message_thread_id?: Array<number>,
-    horizontal_accuracy?: Array<number>,
-    live_period?: Array<number>,
-    heading?: Array<number>,
-    proximity_alert_radius?: Array<number>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    latitude: Array<number>, 
+    longitude: Array<number>, 
+    message_thread_id?: Array<number>, 
+    horizontal_accuracy?: Array<number>, 
+    live_period?: Array<number>, 
+    heading?: Array<number>, 
+    proximity_alert_radius?: Array<number>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendLocation', {
-        chat_id,
-        latitude,
-        longitude,
-        message_thread_id,
-        horizontal_accuracy,
-        live_period,
-        heading,
-        proximity_alert_radius,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        latitude, 
+        longitude, 
+        message_thread_id, 
+        horizontal_accuracy, 
+        live_period, 
+        heading, 
+        proximity_alert_radius, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -3980,37 +3980,37 @@ async function sendLocation(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVenue(
-    chat_id: Array<number> | Array<string>,
-    latitude: Array<number>,
-    longitude: Array<number>,
-    title: Array<string>,
-    address: Array<string>,
-    message_thread_id?: Array<number>,
-    foursquare_id?: Array<string>,
-    foursquare_type?: Array<string>,
-    google_place_id?: Array<string>,
-    google_place_type?: Array<string>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    latitude: Array<number>, 
+    longitude: Array<number>, 
+    title: Array<string>, 
+    address: Array<string>, 
+    message_thread_id?: Array<number>, 
+    foursquare_id?: Array<string>, 
+    foursquare_type?: Array<string>, 
+    google_place_id?: Array<string>, 
+    google_place_type?: Array<string>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVenue', {
-        chat_id,
-        latitude,
-        longitude,
-        title,
-        address,
-        message_thread_id,
-        foursquare_id,
-        foursquare_type,
-        google_place_id,
-        google_place_type,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        latitude, 
+        longitude, 
+        title, 
+        address, 
+        message_thread_id, 
+        foursquare_id, 
+        foursquare_type, 
+        google_place_id, 
+        google_place_type, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -4034,29 +4034,29 @@ async function sendVenue(
  * @returns {Promise<Array<Message>>}
  */
 async function sendContact(
-    chat_id: Array<number> | Array<string>,
-    phone_number: Array<string>,
-    first_name: Array<string>,
-    message_thread_id?: Array<number>,
-    last_name?: Array<string>,
-    vcard?: Array<string>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    phone_number: Array<string>, 
+    first_name: Array<string>, 
+    message_thread_id?: Array<number>, 
+    last_name?: Array<string>, 
+    vcard?: Array<string>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendContact', {
-        chat_id,
-        phone_number,
-        first_name,
-        message_thread_id,
-        last_name,
-        vcard,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        phone_number, 
+        first_name, 
+        message_thread_id, 
+        last_name, 
+        vcard, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -4088,45 +4088,45 @@ async function sendContact(
  * @returns {Promise<Array<Message>>}
  */
 async function sendPoll(
-    chat_id: Array<number> | Array<string>,
-    question: Array<string>,
-    options: Array<Array<string>>,
-    message_thread_id?: Array<number>,
-    is_anonymous?: Array<boolean>,
-    type?: Array<string>,
-    allows_multiple_answers?: Array<boolean>,
-    correct_option_id?: Array<number>,
-    explanation?: Array<string>,
-    explanation_parse_mode?: Array<string>,
-    explanation_entities?: Array<Array<MessageEntity>>,
-    open_period?: Array<number>,
-    close_date?: Array<number>,
-    is_closed?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    question: Array<string>, 
+    options: Array<Array<string>>, 
+    message_thread_id?: Array<number>, 
+    is_anonymous?: Array<boolean>, 
+    type?: Array<string>, 
+    allows_multiple_answers?: Array<boolean>, 
+    correct_option_id?: Array<number>, 
+    explanation?: Array<string>, 
+    explanation_parse_mode?: Array<string>, 
+    explanation_entities?: Array<Array<MessageEntity>>, 
+    open_period?: Array<number>, 
+    close_date?: Array<number>, 
+    is_closed?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendPoll', {
-        chat_id,
-        question,
-        options,
-        message_thread_id,
-        is_anonymous,
-        type,
-        allows_multiple_answers,
-        correct_option_id,
-        explanation,
-        explanation_parse_mode,
-        explanation_entities,
-        open_period,
-        close_date,
-        is_closed,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        question, 
+        options, 
+        message_thread_id, 
+        is_anonymous, 
+        type, 
+        allows_multiple_answers, 
+        correct_option_id, 
+        explanation, 
+        explanation_parse_mode, 
+        explanation_entities, 
+        open_period, 
+        close_date, 
+        is_closed, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -4147,23 +4147,23 @@ async function sendPoll(
  * @returns {Promise<Array<Message>>}
  */
 async function sendDice(
-    chat_id: Array<number> | Array<string>,
-    message_thread_id?: Array<number>,
-    emoji?: Array<string>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    emoji?: Array<string>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendDice', {
-        chat_id,
-        message_thread_id,
-        emoji,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        message_thread_id, 
+        emoji, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -4180,13 +4180,13 @@ async function sendDice(
  * @returns {Promise<Array<boolean>>}
  */
 async function sendChatAction(
-    chat_id: Array<number> | Array<string>,
-    action: Array<string>,
+    chat_id: Array<number> | Array<string>, 
+    action: Array<string>, 
     message_thread_id?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('sendChatAction', {
-        chat_id,
-        action,
+        chat_id, 
+        action, 
         message_thread_id
     })
 }
@@ -4202,13 +4202,13 @@ async function sendChatAction(
  * @returns {Promise<Array<UserProfilePhotos>>}
  */
 async function getUserProfilePhotos(
-    user_id: Array<number>,
-    offset?: Array<number>,
+    user_id: Array<number>, 
+    offset?: Array<number>, 
     limit?: Array<number>
 ): Promise<Array<UserProfilePhotos>> {
     return await get('getUserProfilePhotos', {
-        user_id,
-        offset,
+        user_id, 
+        offset, 
         limit
     })
 }
@@ -4242,15 +4242,15 @@ async function getFile(
  * @returns {Promise<Array<boolean>>}
  */
 async function banChatMember(
-    chat_id: Array<number> | Array<string>,
-    user_id: Array<number>,
-    until_date?: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    user_id: Array<number>, 
+    until_date?: Array<number>, 
     revoke_messages?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('banChatMember', {
-        chat_id,
-        user_id,
-        until_date,
+        chat_id, 
+        user_id, 
+        until_date, 
         revoke_messages
     })
 }
@@ -4266,13 +4266,13 @@ async function banChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function unbanChatMember(
-    chat_id: Array<number> | Array<string>,
-    user_id: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    user_id: Array<number>, 
     only_if_banned?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('unbanChatMember', {
-        chat_id,
-        user_id,
+        chat_id, 
+        user_id, 
         only_if_banned
     })
 }
@@ -4290,17 +4290,17 @@ async function unbanChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function restrictChatMember(
-    chat_id: Array<number> | Array<string>,
-    user_id: Array<number>,
-    permissions: Array<ChatPermissions>,
-    use_independent_chat_permissions?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    user_id: Array<number>, 
+    permissions: Array<ChatPermissions>, 
+    use_independent_chat_permissions?: Array<boolean>, 
     until_date?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('restrictChatMember', {
-        chat_id,
-        user_id,
-        permissions,
-        use_independent_chat_permissions,
+        chat_id, 
+        user_id, 
+        permissions, 
+        use_independent_chat_permissions, 
         until_date
     })
 }
@@ -4327,35 +4327,35 @@ async function restrictChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function promoteChatMember(
-    chat_id: Array<number> | Array<string>,
-    user_id: Array<number>,
-    is_anonymous?: Array<boolean>,
-    can_manage_chat?: Array<boolean>,
-    can_post_messages?: Array<boolean>,
-    can_edit_messages?: Array<boolean>,
-    can_delete_messages?: Array<boolean>,
-    can_manage_video_chats?: Array<boolean>,
-    can_restrict_members?: Array<boolean>,
-    can_promote_members?: Array<boolean>,
-    can_change_info?: Array<boolean>,
-    can_invite_users?: Array<boolean>,
-    can_pin_messages?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    user_id: Array<number>, 
+    is_anonymous?: Array<boolean>, 
+    can_manage_chat?: Array<boolean>, 
+    can_post_messages?: Array<boolean>, 
+    can_edit_messages?: Array<boolean>, 
+    can_delete_messages?: Array<boolean>, 
+    can_manage_video_chats?: Array<boolean>, 
+    can_restrict_members?: Array<boolean>, 
+    can_promote_members?: Array<boolean>, 
+    can_change_info?: Array<boolean>, 
+    can_invite_users?: Array<boolean>, 
+    can_pin_messages?: Array<boolean>, 
     can_manage_topics?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('promoteChatMember', {
-        chat_id,
-        user_id,
-        is_anonymous,
-        can_manage_chat,
-        can_post_messages,
-        can_edit_messages,
-        can_delete_messages,
-        can_manage_video_chats,
-        can_restrict_members,
-        can_promote_members,
-        can_change_info,
-        can_invite_users,
-        can_pin_messages,
+        chat_id, 
+        user_id, 
+        is_anonymous, 
+        can_manage_chat, 
+        can_post_messages, 
+        can_edit_messages, 
+        can_delete_messages, 
+        can_manage_video_chats, 
+        can_restrict_members, 
+        can_promote_members, 
+        can_change_info, 
+        can_invite_users, 
+        can_pin_messages, 
         can_manage_topics
     })
 }
@@ -4371,13 +4371,13 @@ async function promoteChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatAdministratorCustomTitle(
-    chat_id: Array<number> | Array<string>,
-    user_id: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    user_id: Array<number>, 
     custom_title: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatAdministratorCustomTitle', {
-        chat_id,
-        user_id,
+        chat_id, 
+        user_id, 
         custom_title
     })
 }
@@ -4392,11 +4392,11 @@ async function setChatAdministratorCustomTitle(
  * @returns {Promise<Array<boolean>>}
  */
 async function banChatSenderChat(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     sender_chat_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('banChatSenderChat', {
-        chat_id,
+        chat_id, 
         sender_chat_id
     })
 }
@@ -4411,11 +4411,11 @@ async function banChatSenderChat(
  * @returns {Promise<Array<boolean>>}
  */
 async function unbanChatSenderChat(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     sender_chat_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('unbanChatSenderChat', {
-        chat_id,
+        chat_id, 
         sender_chat_id
     })
 }
@@ -4431,13 +4431,13 @@ async function unbanChatSenderChat(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatPermissions(
-    chat_id: Array<number> | Array<string>,
-    permissions: Array<ChatPermissions>,
+    chat_id: Array<number> | Array<string>, 
+    permissions: Array<ChatPermissions>, 
     use_independent_chat_permissions?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('setChatPermissions', {
-        chat_id,
-        permissions,
+        chat_id, 
+        permissions, 
         use_independent_chat_permissions
     })
 }
@@ -4471,17 +4471,17 @@ async function exportChatInviteLink(
  * @returns {Promise<Array<ChatInviteLink>>}
  */
 async function createChatInviteLink(
-    chat_id: Array<number> | Array<string>,
-    name?: Array<string>,
-    expire_date?: Array<number>,
-    member_limit?: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    name?: Array<string>, 
+    expire_date?: Array<number>, 
+    member_limit?: Array<number>, 
     creates_join_request?: Array<boolean>
 ): Promise<Array<ChatInviteLink>> {
     return await get('createChatInviteLink', {
-        chat_id,
-        name,
-        expire_date,
-        member_limit,
+        chat_id, 
+        name, 
+        expire_date, 
+        member_limit, 
         creates_join_request
     })
 }
@@ -4500,19 +4500,19 @@ async function createChatInviteLink(
  * @returns {Promise<Array<ChatInviteLink>>}
  */
 async function editChatInviteLink(
-    chat_id: Array<number> | Array<string>,
-    invite_link: Array<string>,
-    name?: Array<string>,
-    expire_date?: Array<number>,
-    member_limit?: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    invite_link: Array<string>, 
+    name?: Array<string>, 
+    expire_date?: Array<number>, 
+    member_limit?: Array<number>, 
     creates_join_request?: Array<boolean>
 ): Promise<Array<ChatInviteLink>> {
     return await get('editChatInviteLink', {
-        chat_id,
-        invite_link,
-        name,
-        expire_date,
-        member_limit,
+        chat_id, 
+        invite_link, 
+        name, 
+        expire_date, 
+        member_limit, 
         creates_join_request
     })
 }
@@ -4527,11 +4527,11 @@ async function editChatInviteLink(
  * @returns {Promise<Array<ChatInviteLink>>}
  */
 async function revokeChatInviteLink(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     invite_link: Array<string>
 ): Promise<Array<ChatInviteLink>> {
     return await get('revokeChatInviteLink', {
-        chat_id,
+        chat_id, 
         invite_link
     })
 }
@@ -4546,11 +4546,11 @@ async function revokeChatInviteLink(
  * @returns {Promise<Array<boolean>>}
  */
 async function approveChatJoinRequest(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     user_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('approveChatJoinRequest', {
-        chat_id,
+        chat_id, 
         user_id
     })
 }
@@ -4565,11 +4565,11 @@ async function approveChatJoinRequest(
  * @returns {Promise<Array<boolean>>}
  */
 async function declineChatJoinRequest(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     user_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('declineChatJoinRequest', {
-        chat_id,
+        chat_id, 
         user_id
     })
 }
@@ -4584,11 +4584,11 @@ async function declineChatJoinRequest(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatPhoto(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     photo: Array<InputFile>
 ): Promise<Array<boolean>> {
     return await get('setChatPhoto', {
-        chat_id,
+        chat_id, 
         photo
     })
 }
@@ -4619,11 +4619,11 @@ async function deleteChatPhoto(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatTitle(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     title: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatTitle', {
-        chat_id,
+        chat_id, 
         title
     })
 }
@@ -4638,11 +4638,11 @@ async function setChatTitle(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatDescription(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     description?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatDescription', {
-        chat_id,
+        chat_id, 
         description
     })
 }
@@ -4658,13 +4658,13 @@ async function setChatDescription(
  * @returns {Promise<Array<boolean>>}
  */
 async function pinChatMessage(
-    chat_id: Array<number> | Array<string>,
-    message_id: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    message_id: Array<number>, 
     disable_notification?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('pinChatMessage', {
-        chat_id,
-        message_id,
+        chat_id, 
+        message_id, 
         disable_notification
     })
 }
@@ -4679,11 +4679,11 @@ async function pinChatMessage(
  * @returns {Promise<Array<boolean>>}
  */
 async function unpinChatMessage(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     message_id?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('unpinChatMessage', {
-        chat_id,
+        chat_id, 
         message_id
     })
 }
@@ -4778,11 +4778,11 @@ async function getChatMemberCount(
  * @returns {Promise<Array<ChatMember>>}
  */
 async function getChatMember(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     user_id: Array<number>
 ): Promise<Array<ChatMember>> {
     return await get('getChatMember', {
-        chat_id,
+        chat_id, 
         user_id
     })
 }
@@ -4797,11 +4797,11 @@ async function getChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatStickerSet(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     sticker_set_name: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatStickerSet', {
-        chat_id,
+        chat_id, 
         sticker_set_name
     })
 }
@@ -4844,15 +4844,15 @@ async function getForumTopicIconStickers(): Promise<Array<Array<Sticker>>> {
  * @returns {Promise<Array<ForumTopic>>}
  */
 async function createForumTopic(
-    chat_id: Array<number> | Array<string>,
-    name: Array<string>,
-    icon_color?: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    name: Array<string>, 
+    icon_color?: Array<number>, 
     icon_custom_emoji_id?: Array<string>
 ): Promise<Array<ForumTopic>> {
     return await get('createForumTopic', {
-        chat_id,
-        name,
-        icon_color,
+        chat_id, 
+        name, 
+        icon_color, 
         icon_custom_emoji_id
     })
 }
@@ -4869,15 +4869,15 @@ async function createForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function editForumTopic(
-    chat_id: Array<number> | Array<string>,
-    message_thread_id: Array<number>,
-    name?: Array<string>,
+    chat_id: Array<number> | Array<string>, 
+    message_thread_id: Array<number>, 
+    name?: Array<string>, 
     icon_custom_emoji_id?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('editForumTopic', {
-        chat_id,
-        message_thread_id,
-        name,
+        chat_id, 
+        message_thread_id, 
+        name, 
         icon_custom_emoji_id
     })
 }
@@ -4892,11 +4892,11 @@ async function editForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function closeForumTopic(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('closeForumTopic', {
-        chat_id,
+        chat_id, 
         message_thread_id
     })
 }
@@ -4911,11 +4911,11 @@ async function closeForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function reopenForumTopic(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('reopenForumTopic', {
-        chat_id,
+        chat_id, 
         message_thread_id
     })
 }
@@ -4930,11 +4930,11 @@ async function reopenForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function deleteForumTopic(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('deleteForumTopic', {
-        chat_id,
+        chat_id, 
         message_thread_id
     })
 }
@@ -4949,11 +4949,11 @@ async function deleteForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function unpinAllForumTopicMessages(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('unpinAllForumTopicMessages', {
-        chat_id,
+        chat_id, 
         message_thread_id
     })
 }
@@ -4968,11 +4968,11 @@ async function unpinAllForumTopicMessages(
  * @returns {Promise<Array<boolean>>}
  */
 async function editGeneralForumTopic(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     name: Array<string>
 ): Promise<Array<boolean>> {
     return await get('editGeneralForumTopic', {
-        chat_id,
+        chat_id, 
         name
     })
 }
@@ -5054,17 +5054,17 @@ async function unhideGeneralForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerCallbackQuery(
-    callback_query_id: Array<string>,
-    text?: Array<string>,
-    show_alert?: Array<boolean>,
-    url?: Array<string>,
+    callback_query_id: Array<string>, 
+    text?: Array<string>, 
+    show_alert?: Array<boolean>, 
+    url?: Array<string>, 
     cache_time?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('answerCallbackQuery', {
-        callback_query_id,
-        text,
-        show_alert,
-        url,
+        callback_query_id, 
+        text, 
+        show_alert, 
+        url, 
         cache_time
     })
 }
@@ -5080,13 +5080,13 @@ async function answerCallbackQuery(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyCommands(
-    commands: Array<Array<BotCommand>>,
-    scope?: Array<BotCommandScope>,
+    commands: Array<Array<BotCommand>>, 
+    scope?: Array<BotCommandScope>, 
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyCommands', {
-        commands,
-        scope,
+        commands, 
+        scope, 
         language_code
     })
 }
@@ -5101,11 +5101,11 @@ async function setMyCommands(
  * @returns {Promise<Array<boolean>>}
  */
 async function deleteMyCommands(
-    scope?: Array<BotCommandScope>,
+    scope?: Array<BotCommandScope>, 
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('deleteMyCommands', {
-        scope,
+        scope, 
         language_code
     })
 }
@@ -5120,11 +5120,11 @@ async function deleteMyCommands(
  * @returns {Promise<Array<Array<BotCommand>>>}
  */
 async function getMyCommands(
-    scope?: Array<BotCommandScope>,
+    scope?: Array<BotCommandScope>, 
     language_code?: Array<string>
 ): Promise<Array<Array<BotCommand>>> {
     return await get('getMyCommands', {
-        scope,
+        scope, 
         language_code
     })
 }
@@ -5139,11 +5139,11 @@ async function getMyCommands(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyName(
-    name?: Array<string>,
+    name?: Array<string>, 
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyName', {
-        name,
+        name, 
         language_code
     })
 }
@@ -5174,11 +5174,11 @@ async function getMyName(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyDescription(
-    description?: Array<string>,
+    description?: Array<string>, 
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyDescription', {
-        description,
+        description, 
         language_code
     })
 }
@@ -5209,11 +5209,11 @@ async function getMyDescription(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyShortDescription(
-    short_description?: Array<string>,
+    short_description?: Array<string>, 
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyShortDescription', {
-        short_description,
+        short_description, 
         language_code
     })
 }
@@ -5244,11 +5244,11 @@ async function getMyShortDescription(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatMenuButton(
-    chat_id?: Array<number>,
+    chat_id?: Array<number>, 
     menu_button?: Array<MenuButton>
 ): Promise<Array<boolean>> {
     return await get('setChatMenuButton', {
-        chat_id,
+        chat_id, 
         menu_button
     })
 }
@@ -5279,11 +5279,11 @@ async function getChatMenuButton(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyDefaultAdministratorRights(
-    rights?: Array<ChatAdministratorRights>,
+    rights?: Array<ChatAdministratorRights>, 
     for_channels?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('setMyDefaultAdministratorRights', {
-        rights,
+        rights, 
         for_channels
     })
 }
@@ -5320,23 +5320,23 @@ async function getMyDefaultAdministratorRights(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageText(
-    text: Array<string>,
-    chat_id?: Array<number> | Array<string>,
-    message_id?: Array<number>,
-    inline_message_id?: Array<string>,
-    parse_mode?: Array<string>,
-    entities?: Array<Array<MessageEntity>>,
-    disable_web_page_preview?: Array<boolean>,
+    text: Array<string>, 
+    chat_id?: Array<number> | Array<string>, 
+    message_id?: Array<number>, 
+    inline_message_id?: Array<string>, 
+    parse_mode?: Array<string>, 
+    entities?: Array<Array<MessageEntity>>, 
+    disable_web_page_preview?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageText', {
-        text,
-        chat_id,
-        message_id,
-        inline_message_id,
-        parse_mode,
-        entities,
-        disable_web_page_preview,
+        text, 
+        chat_id, 
+        message_id, 
+        inline_message_id, 
+        parse_mode, 
+        entities, 
+        disable_web_page_preview, 
         reply_markup
     })
 }
@@ -5356,21 +5356,21 @@ async function editMessageText(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageCaption(
-    chat_id?: Array<number> | Array<string>,
-    message_id?: Array<number>,
-    inline_message_id?: Array<string>,
-    caption?: Array<string>,
-    parse_mode?: Array<string>,
-    caption_entities?: Array<Array<MessageEntity>>,
+    chat_id?: Array<number> | Array<string>, 
+    message_id?: Array<number>, 
+    inline_message_id?: Array<string>, 
+    caption?: Array<string>, 
+    parse_mode?: Array<string>, 
+    caption_entities?: Array<Array<MessageEntity>>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageCaption', {
-        chat_id,
-        message_id,
-        inline_message_id,
-        caption,
-        parse_mode,
-        caption_entities,
+        chat_id, 
+        message_id, 
+        inline_message_id, 
+        caption, 
+        parse_mode, 
+        caption_entities, 
         reply_markup
     })
 }
@@ -5388,17 +5388,17 @@ async function editMessageCaption(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageMedia(
-    media: Array<InputMedia>,
-    chat_id?: Array<number> | Array<string>,
-    message_id?: Array<number>,
-    inline_message_id?: Array<string>,
+    media: Array<InputMedia>, 
+    chat_id?: Array<number> | Array<string>, 
+    message_id?: Array<number>, 
+    inline_message_id?: Array<string>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageMedia', {
-        media,
-        chat_id,
-        message_id,
-        inline_message_id,
+        media, 
+        chat_id, 
+        message_id, 
+        inline_message_id, 
         reply_markup
     })
 }
@@ -5420,25 +5420,25 @@ async function editMessageMedia(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageLiveLocation(
-    latitude: Array<number>,
-    longitude: Array<number>,
-    chat_id?: Array<number> | Array<string>,
-    message_id?: Array<number>,
-    inline_message_id?: Array<string>,
-    horizontal_accuracy?: Array<number>,
-    heading?: Array<number>,
-    proximity_alert_radius?: Array<number>,
+    latitude: Array<number>, 
+    longitude: Array<number>, 
+    chat_id?: Array<number> | Array<string>, 
+    message_id?: Array<number>, 
+    inline_message_id?: Array<string>, 
+    horizontal_accuracy?: Array<number>, 
+    heading?: Array<number>, 
+    proximity_alert_radius?: Array<number>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageLiveLocation', {
-        latitude,
-        longitude,
-        chat_id,
-        message_id,
-        inline_message_id,
-        horizontal_accuracy,
-        heading,
-        proximity_alert_radius,
+        latitude, 
+        longitude, 
+        chat_id, 
+        message_id, 
+        inline_message_id, 
+        horizontal_accuracy, 
+        heading, 
+        proximity_alert_radius, 
         reply_markup
     })
 }
@@ -5455,15 +5455,15 @@ async function editMessageLiveLocation(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function stopMessageLiveLocation(
-    chat_id?: Array<number> | Array<string>,
-    message_id?: Array<number>,
-    inline_message_id?: Array<string>,
+    chat_id?: Array<number> | Array<string>, 
+    message_id?: Array<number>, 
+    inline_message_id?: Array<string>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('stopMessageLiveLocation', {
-        chat_id,
-        message_id,
-        inline_message_id,
+        chat_id, 
+        message_id, 
+        inline_message_id, 
         reply_markup
     })
 }
@@ -5480,15 +5480,15 @@ async function stopMessageLiveLocation(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageReplyMarkup(
-    chat_id?: Array<number> | Array<string>,
-    message_id?: Array<number>,
-    inline_message_id?: Array<string>,
+    chat_id?: Array<number> | Array<string>, 
+    message_id?: Array<number>, 
+    inline_message_id?: Array<string>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageReplyMarkup', {
-        chat_id,
-        message_id,
-        inline_message_id,
+        chat_id, 
+        message_id, 
+        inline_message_id, 
         reply_markup
     })
 }
@@ -5504,13 +5504,13 @@ async function editMessageReplyMarkup(
  * @returns {Promise<Array<Poll>>}
  */
 async function stopPoll(
-    chat_id: Array<number> | Array<string>,
-    message_id: Array<number>,
+    chat_id: Array<number> | Array<string>, 
+    message_id: Array<number>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Poll>> {
     return await get('stopPoll', {
-        chat_id,
-        message_id,
+        chat_id, 
+        message_id, 
         reply_markup
     })
 }
@@ -5534,11 +5534,11 @@ async function stopPoll(
  * @returns {Promise<Array<boolean>>}
  */
 async function deleteMessage(
-    chat_id: Array<number> | Array<string>,
+    chat_id: Array<number> | Array<string>, 
     message_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('deleteMessage', {
-        chat_id,
+        chat_id, 
         message_id
     })
 }
@@ -5560,25 +5560,25 @@ async function deleteMessage(
  * @returns {Promise<Array<Message>>}
  */
 async function sendSticker(
-    chat_id: Array<number> | Array<string>,
-    sticker: Array<InputFile> | Array<string>,
-    message_thread_id?: Array<number>,
-    emoji?: Array<string>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    sticker: Array<InputFile> | Array<string>, 
+    message_thread_id?: Array<number>, 
+    emoji?: Array<string>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendSticker', {
-        chat_id,
-        sticker,
-        message_thread_id,
-        emoji,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        sticker, 
+        message_thread_id, 
+        emoji, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -5626,13 +5626,13 @@ async function getCustomEmojiStickers(
  * @returns {Promise<Array<File>>}
  */
 async function uploadStickerFile(
-    user_id: Array<number>,
-    sticker: Array<InputFile>,
+    user_id: Array<number>, 
+    sticker: Array<InputFile>, 
     sticker_format: Array<string>
 ): Promise<Array<File>> {
     return await get('uploadStickerFile', {
-        user_id,
-        sticker,
+        user_id, 
+        sticker, 
         sticker_format
     })
 }
@@ -5652,21 +5652,21 @@ async function uploadStickerFile(
  * @returns {Promise<Array<boolean>>}
  */
 async function createNewStickerSet(
-    user_id: Array<number>,
-    name: Array<string>,
-    title: Array<string>,
-    stickers: Array<Array<InputSticker>>,
-    sticker_format: Array<string>,
-    sticker_type?: Array<string>,
+    user_id: Array<number>, 
+    name: Array<string>, 
+    title: Array<string>, 
+    stickers: Array<Array<InputSticker>>, 
+    sticker_format: Array<string>, 
+    sticker_type?: Array<string>, 
     needs_repainting?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('createNewStickerSet', {
-        user_id,
-        name,
-        title,
-        stickers,
-        sticker_format,
-        sticker_type,
+        user_id, 
+        name, 
+        title, 
+        stickers, 
+        sticker_format, 
+        sticker_type, 
         needs_repainting
     })
 }
@@ -5682,13 +5682,13 @@ async function createNewStickerSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function addStickerToSet(
-    user_id: Array<number>,
-    name: Array<string>,
+    user_id: Array<number>, 
+    name: Array<string>, 
     sticker: Array<InputSticker>
 ): Promise<Array<boolean>> {
     return await get('addStickerToSet', {
-        user_id,
-        name,
+        user_id, 
+        name, 
         sticker
     })
 }
@@ -5703,11 +5703,11 @@ async function addStickerToSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerPositionInSet(
-    sticker: Array<string>,
+    sticker: Array<string>, 
     position: Array<number>
 ): Promise<Array<boolean>> {
     return await get('setStickerPositionInSet', {
-        sticker,
+        sticker, 
         position
     })
 }
@@ -5738,11 +5738,11 @@ async function deleteStickerFromSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerEmojiList(
-    sticker: Array<string>,
+    sticker: Array<string>, 
     emoji_list: Array<Array<string>>
 ): Promise<Array<boolean>> {
     return await get('setStickerEmojiList', {
-        sticker,
+        sticker, 
         emoji_list
     })
 }
@@ -5757,11 +5757,11 @@ async function setStickerEmojiList(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerKeywords(
-    sticker: Array<string>,
+    sticker: Array<string>, 
     keywords?: Array<Array<string>>
 ): Promise<Array<boolean>> {
     return await get('setStickerKeywords', {
-        sticker,
+        sticker, 
         keywords
     })
 }
@@ -5776,11 +5776,11 @@ async function setStickerKeywords(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerMaskPosition(
-    sticker: Array<string>,
+    sticker: Array<string>, 
     mask_position?: Array<MaskPosition>
 ): Promise<Array<boolean>> {
     return await get('setStickerMaskPosition', {
-        sticker,
+        sticker, 
         mask_position
     })
 }
@@ -5795,11 +5795,11 @@ async function setStickerMaskPosition(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerSetTitle(
-    name: Array<string>,
+    name: Array<string>, 
     title: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setStickerSetTitle', {
-        name,
+        name, 
         title
     })
 }
@@ -5815,13 +5815,13 @@ async function setStickerSetTitle(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerSetThumbnail(
-    name: Array<string>,
-    user_id: Array<number>,
+    name: Array<string>, 
+    user_id: Array<number>, 
     thumbnail?: Array<InputFile> | Array<string>
 ): Promise<Array<boolean>> {
     return await get('setStickerSetThumbnail', {
-        name,
-        user_id,
+        name, 
+        user_id, 
         thumbnail
     })
 }
@@ -5836,11 +5836,11 @@ async function setStickerSetThumbnail(
  * @returns {Promise<Array<boolean>>}
  */
 async function setCustomEmojiStickerSetThumbnail(
-    name: Array<string>,
+    name: Array<string>, 
     custom_emoji_id?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setCustomEmojiStickerSetThumbnail', {
-        name,
+        name, 
         custom_emoji_id
     })
 }
@@ -5876,19 +5876,19 @@ async function deleteStickerSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerInlineQuery(
-    inline_query_id: Array<string>,
-    results: Array<Array<InlineQueryResult>>,
-    cache_time?: Array<number>,
-    is_personal?: Array<boolean>,
-    next_offset?: Array<string>,
+    inline_query_id: Array<string>, 
+    results: Array<Array<InlineQueryResult>>, 
+    cache_time?: Array<number>, 
+    is_personal?: Array<boolean>, 
+    next_offset?: Array<string>, 
     button?: Array<InlineQueryResultsButton>
 ): Promise<Array<boolean>> {
     return await get('answerInlineQuery', {
-        inline_query_id,
-        results,
-        cache_time,
-        is_personal,
-        next_offset,
+        inline_query_id, 
+        results, 
+        cache_time, 
+        is_personal, 
+        next_offset, 
         button
     })
 }
@@ -5903,11 +5903,11 @@ async function answerInlineQuery(
  * @returns {Promise<Array<SentWebAppMessage>>}
  */
 async function answerWebAppQuery(
-    web_app_query_id: Array<string>,
+    web_app_query_id: Array<string>, 
     result: Array<InlineQueryResult>
 ): Promise<Array<SentWebAppMessage>> {
     return await get('answerWebAppQuery', {
-        web_app_query_id,
+        web_app_query_id, 
         result
     })
 }
@@ -5948,63 +5948,63 @@ async function answerWebAppQuery(
  * @returns {Promise<Array<Message>>}
  */
 async function sendInvoice(
-    chat_id: Array<number> | Array<string>,
-    title: Array<string>,
-    description: Array<string>,
-    payload: Array<string>,
-    provider_token: Array<string>,
-    currency: Array<string>,
-    prices: Array<Array<LabeledPrice>>,
-    message_thread_id?: Array<number>,
-    max_tip_amount?: Array<number>,
-    suggested_tip_amounts?: Array<Array<number>>,
-    start_parameter?: Array<string>,
-    provider_data?: Array<string>,
-    photo_url?: Array<string>,
-    photo_size?: Array<number>,
-    photo_width?: Array<number>,
-    photo_height?: Array<number>,
-    need_name?: Array<boolean>,
-    need_phone_number?: Array<boolean>,
-    need_email?: Array<boolean>,
-    need_shipping_address?: Array<boolean>,
-    send_phone_number_to_provider?: Array<boolean>,
-    send_email_to_provider?: Array<boolean>,
-    is_flexible?: Array<boolean>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number> | Array<string>, 
+    title: Array<string>, 
+    description: Array<string>, 
+    payload: Array<string>, 
+    provider_token: Array<string>, 
+    currency: Array<string>, 
+    prices: Array<Array<LabeledPrice>>, 
+    message_thread_id?: Array<number>, 
+    max_tip_amount?: Array<number>, 
+    suggested_tip_amounts?: Array<Array<number>>, 
+    start_parameter?: Array<string>, 
+    provider_data?: Array<string>, 
+    photo_url?: Array<string>, 
+    photo_size?: Array<number>, 
+    photo_width?: Array<number>, 
+    photo_height?: Array<number>, 
+    need_name?: Array<boolean>, 
+    need_phone_number?: Array<boolean>, 
+    need_email?: Array<boolean>, 
+    need_shipping_address?: Array<boolean>, 
+    send_phone_number_to_provider?: Array<boolean>, 
+    send_email_to_provider?: Array<boolean>, 
+    is_flexible?: Array<boolean>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message>> {
     return await get('sendInvoice', {
-        chat_id,
-        title,
-        description,
-        payload,
-        provider_token,
-        currency,
-        prices,
-        message_thread_id,
-        max_tip_amount,
-        suggested_tip_amounts,
-        start_parameter,
-        provider_data,
-        photo_url,
-        photo_size,
-        photo_width,
-        photo_height,
-        need_name,
-        need_phone_number,
-        need_email,
-        need_shipping_address,
-        send_phone_number_to_provider,
-        send_email_to_provider,
-        is_flexible,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        title, 
+        description, 
+        payload, 
+        provider_token, 
+        currency, 
+        prices, 
+        message_thread_id, 
+        max_tip_amount, 
+        suggested_tip_amounts, 
+        start_parameter, 
+        provider_data, 
+        photo_url, 
+        photo_size, 
+        photo_width, 
+        photo_height, 
+        need_name, 
+        need_phone_number, 
+        need_email, 
+        need_shipping_address, 
+        send_phone_number_to_provider, 
+        send_email_to_provider, 
+        is_flexible, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -6037,47 +6037,47 @@ async function sendInvoice(
  * @returns {Promise<Array<string>>}
  */
 async function createInvoiceLink(
-    title: Array<string>,
-    description: Array<string>,
-    payload: Array<string>,
-    provider_token: Array<string>,
-    currency: Array<string>,
-    prices: Array<Array<LabeledPrice>>,
-    max_tip_amount?: Array<number>,
-    suggested_tip_amounts?: Array<Array<number>>,
-    provider_data?: Array<string>,
-    photo_url?: Array<string>,
-    photo_size?: Array<number>,
-    photo_width?: Array<number>,
-    photo_height?: Array<number>,
-    need_name?: Array<boolean>,
-    need_phone_number?: Array<boolean>,
-    need_email?: Array<boolean>,
-    need_shipping_address?: Array<boolean>,
-    send_phone_number_to_provider?: Array<boolean>,
-    send_email_to_provider?: Array<boolean>,
+    title: Array<string>, 
+    description: Array<string>, 
+    payload: Array<string>, 
+    provider_token: Array<string>, 
+    currency: Array<string>, 
+    prices: Array<Array<LabeledPrice>>, 
+    max_tip_amount?: Array<number>, 
+    suggested_tip_amounts?: Array<Array<number>>, 
+    provider_data?: Array<string>, 
+    photo_url?: Array<string>, 
+    photo_size?: Array<number>, 
+    photo_width?: Array<number>, 
+    photo_height?: Array<number>, 
+    need_name?: Array<boolean>, 
+    need_phone_number?: Array<boolean>, 
+    need_email?: Array<boolean>, 
+    need_shipping_address?: Array<boolean>, 
+    send_phone_number_to_provider?: Array<boolean>, 
+    send_email_to_provider?: Array<boolean>, 
     is_flexible?: Array<boolean>
 ): Promise<Array<string>> {
     return await get('createInvoiceLink', {
-        title,
-        description,
-        payload,
-        provider_token,
-        currency,
-        prices,
-        max_tip_amount,
-        suggested_tip_amounts,
-        provider_data,
-        photo_url,
-        photo_size,
-        photo_width,
-        photo_height,
-        need_name,
-        need_phone_number,
-        need_email,
-        need_shipping_address,
-        send_phone_number_to_provider,
-        send_email_to_provider,
+        title, 
+        description, 
+        payload, 
+        provider_token, 
+        currency, 
+        prices, 
+        max_tip_amount, 
+        suggested_tip_amounts, 
+        provider_data, 
+        photo_url, 
+        photo_size, 
+        photo_width, 
+        photo_height, 
+        need_name, 
+        need_phone_number, 
+        need_email, 
+        need_shipping_address, 
+        send_phone_number_to_provider, 
+        send_email_to_provider, 
         is_flexible
     })
 }
@@ -6094,15 +6094,15 @@ async function createInvoiceLink(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerShippingQuery(
-    shipping_query_id: Array<string>,
-    ok: Array<boolean>,
-    shipping_options?: Array<Array<ShippingOption>>,
+    shipping_query_id: Array<string>, 
+    ok: Array<boolean>, 
+    shipping_options?: Array<Array<ShippingOption>>, 
     error_message?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('answerShippingQuery', {
-        shipping_query_id,
-        ok,
-        shipping_options,
+        shipping_query_id, 
+        ok, 
+        shipping_options, 
         error_message
     })
 }
@@ -6118,13 +6118,13 @@ async function answerShippingQuery(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerPreCheckoutQuery(
-    pre_checkout_query_id: Array<string>,
-    ok: Array<boolean>,
+    pre_checkout_query_id: Array<string>, 
+    ok: Array<boolean>, 
     error_message?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('answerPreCheckoutQuery', {
-        pre_checkout_query_id,
-        ok,
+        pre_checkout_query_id, 
+        ok, 
         error_message
     })
 }
@@ -6140,11 +6140,11 @@ async function answerPreCheckoutQuery(
  * @returns {Promise<Array<boolean>>}
  */
 async function setPassportDataErrors(
-    user_id: Array<number>,
+    user_id: Array<number>, 
     errors: Array<Array<PassportElementError>>
 ): Promise<Array<boolean>> {
     return await get('setPassportDataErrors', {
-        user_id,
+        user_id, 
         errors
     })
 }
@@ -6165,23 +6165,23 @@ async function setPassportDataErrors(
  * @returns {Promise<Array<Message>>}
  */
 async function sendGame(
-    chat_id: Array<number>,
-    game_short_name: Array<string>,
-    message_thread_id?: Array<number>,
-    disable_notification?: Array<boolean>,
-    protect_content?: Array<boolean>,
-    reply_to_message_id?: Array<number>,
-    allow_sending_without_reply?: Array<boolean>,
+    chat_id: Array<number>, 
+    game_short_name: Array<string>, 
+    message_thread_id?: Array<number>, 
+    disable_notification?: Array<boolean>, 
+    protect_content?: Array<boolean>, 
+    reply_to_message_id?: Array<number>, 
+    allow_sending_without_reply?: Array<boolean>, 
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message>> {
     return await get('sendGame', {
-        chat_id,
-        game_short_name,
-        message_thread_id,
-        disable_notification,
-        protect_content,
-        reply_to_message_id,
-        allow_sending_without_reply,
+        chat_id, 
+        game_short_name, 
+        message_thread_id, 
+        disable_notification, 
+        protect_content, 
+        reply_to_message_id, 
+        allow_sending_without_reply, 
         reply_markup
     })
 }
@@ -6201,21 +6201,21 @@ async function sendGame(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function setGameScore(
-    user_id: Array<number>,
-    score: Array<number>,
-    force?: Array<boolean>,
-    disable_edit_message?: Array<boolean>,
-    chat_id?: Array<number>,
-    message_id?: Array<number>,
+    user_id: Array<number>, 
+    score: Array<number>, 
+    force?: Array<boolean>, 
+    disable_edit_message?: Array<boolean>, 
+    chat_id?: Array<number>, 
+    message_id?: Array<number>, 
     inline_message_id?: Array<string>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('setGameScore', {
-        user_id,
-        score,
-        force,
-        disable_edit_message,
-        chat_id,
-        message_id,
+        user_id, 
+        score, 
+        force, 
+        disable_edit_message, 
+        chat_id, 
+        message_id, 
         inline_message_id
     })
 }
@@ -6232,15 +6232,15 @@ async function setGameScore(
  * @returns {Promise<Array<Array<GameHighScore>>>}
  */
 async function getGameHighScores(
-    user_id: Array<number>,
-    chat_id?: Array<number>,
-    message_id?: Array<number>,
+    user_id: Array<number>, 
+    chat_id?: Array<number>, 
+    message_id?: Array<number>, 
     inline_message_id?: Array<string>
 ): Promise<Array<Array<GameHighScore>>> {
     return await get('getGameHighScores', {
-        user_id,
-        chat_id,
-        message_id,
+        user_id, 
+        chat_id, 
+        message_id, 
         inline_message_id
     })
 }
