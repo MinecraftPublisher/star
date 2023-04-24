@@ -4,6 +4,5 @@ node_modules/
 api.ts
 api.json
 
-# test shit
-bot.ts
+# test stuff
 example_syntax.json
