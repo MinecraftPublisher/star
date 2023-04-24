@@ -3,3 +3,7 @@ node_modules/
 # auto generated files, no need for them to be committed
 api.ts
 api.json
+
+# test shit
+bot.ts
+example_syntax.json

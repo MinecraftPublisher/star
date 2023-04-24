@@ -9,9 +9,7 @@ if (!fs.existsSync('api.json')) fs.writeFileSync('api.json', JSON.stringify(json
 let exports = []
 let module: string[] = []
 
-const http = `let BASE = \`https://api.telegram.org/bot\`
-
-/**
+const http = `/**
 * Makes an HTTP GET request to the Telegram Bot API.
 */
 
@@ -54,15 +52,14 @@ let methods = Object.keys(json.methods).map(j => {
     let data = json.methods[name]
     if(!data.fields) data.fields = []
 
-    let returns = data.returns.map(e => parseType(e)).join(' | ')
-    let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required)).map(e => `    ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e)).join(' | ')}`)
+    let returns = data.returns.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')
+    let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required)).map(e => `    ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')}`)
 
     return `/**
- * Function: ${name}
 ${data.description.map(e => ` * ${e}`).join('\n')}
  * 
  * Read more: ${data.href}
-${data.fields.map(e => ` * @param {${e.types.map(e => parseType(e)).join(' | ')}} ${e.name} ${e.description}`).join('\n')}
+${data.fields.map(e => ` * @param {${e.types.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')}} ${e.name} ${e.description}`).join('\n')}
  * @returns {Promise<${returns}>}
  */
 async function ${name}(
@@ -83,7 +80,7 @@ let types = Object.keys(json.types).map((j, i) => {
 
     let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required))
         .map(e => `    /* ${e.description} */
-    ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e)).join(' | ')}`)
+    ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')}`)
 
     return `/**
  * Interface: ${name}
@@ -103,13 +100,19 @@ let output = `/* Telegram API wrapper for Javascript
  * Auto-Scraped from https://core.telegram.org/bots/api
  */
 
-${http}
+const build = ((token: string) => {
+    let BASE = \`https://api.telegram.org/bot\${token}/\`
 
-${types.join('\n\n')}
+    ${http}
 
-${methods.join('\n\n')}
+    ${types.join('\n\n')}
 
-export default { login, get, ${Object.keys(json.methods).join(', ')} }`
+    ${methods.join('\n\n')}
+
+    return { login, get, ${Object.keys(json.methods).join(', ')} }
+})
+
+export const newBot = build`
 
 fs.writeFileSync('api.ts', output)
 
