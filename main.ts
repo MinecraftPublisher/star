@@ -17,15 +17,15 @@ const http = `let BASE = \`https://api.telegram.org/bot\`
 
 async function get(url: string, args: { [key: string]: any } = {}): Promise<any> {
     let keys = Object.keys(args)?.filter(e => !!args[e])?.map((e) => {
-       let value
+        let value
 
-       if (typeof args[e] === 'string') value = args[e]
-       else encodeURI(JSON.stringify(args[e]))
+        if (typeof args[e] === 'string') value = args[e]
+        else encodeURI(JSON.stringify(args[e]))
 
-       return \`\${e}=\${value}\`
+        return \`\${e}=\${value}\`
     })
 
-   return await fetch(\`\${BASE}\${url}?\` + keys?.join('&')).then((res) => res.json())
+    return await fetch(\`\${BASE}\${url}?\` + keys?.join('&')).then((res) => res.json())
 }
 
 async function load(token: string): Promise<void> {
@@ -83,7 +83,7 @@ let types = Object.keys(json.types).map((j, i) => {
     if(!data.fields) data.fields = []
 
     let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required))
-        .map(e => `/* ${e.description} */
+        .map(e => `    /* ${e.description} */
     ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e)).join(' | ')}`)
 
     return `/**
