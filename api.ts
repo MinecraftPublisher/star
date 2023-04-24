@@ -11,15 +11,15 @@ let BASE = `https://api.telegram.org/bot`
 
 async function get(url: string, args: { [key: string]: any } = {}): Promise<any> {
     let keys = Object.keys(args)?.filter(e => !!args[e])?.map((e) => {
-       let value
+        let value
 
-       if (typeof args[e] === 'string') value = args[e]
-       else encodeURI(JSON.stringify(args[e]))
+        if (typeof args[e] === 'string') value = args[e]
+        else encodeURI(JSON.stringify(args[e]))
 
-       return `${e}=${value}`
+        return `${e}=${value}`
     })
 
-   return await fetch(`${BASE}${url}?` + keys?.join('&')).then((res) => res.json())
+    return await fetch(`${BASE}${url}?` + keys?.join('&')).then((res) => res.json())
 }
 
 async function load(token: string): Promise<void> {
@@ -34,35 +34,35 @@ async function load(token: string): Promise<void> {
  * Read more: https://core.telegram.org/bots/api#update
  */
 interface Update {
-/* The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you're using webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially. */
+    /* The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you're using webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially. */
     update_id: Array<number>
-/* Optional. New incoming message of any kind - text, photo, sticker, etc. */
+    /* Optional. New incoming message of any kind - text, photo, sticker, etc. */
     message?: Array<Message>
-/* Optional. New version of a message that is known to the bot and was edited */
+    /* Optional. New version of a message that is known to the bot and was edited */
     edited_message?: Array<Message>
-/* Optional. New incoming channel post of any kind - text, photo, sticker, etc. */
+    /* Optional. New incoming channel post of any kind - text, photo, sticker, etc. */
     channel_post?: Array<Message>
-/* Optional. New version of a channel post that is known to the bot and was edited */
+    /* Optional. New version of a channel post that is known to the bot and was edited */
     edited_channel_post?: Array<Message>
-/* Optional. New incoming inline query */
+    /* Optional. New incoming inline query */
     inline_query?: Array<InlineQuery>
-/* Optional. The result of an inline query that was chosen by a user and sent to their chat partner. Please see our documentation on the feedback collecting for details on how to enable these updates for your bot. */
+    /* Optional. The result of an inline query that was chosen by a user and sent to their chat partner. Please see our documentation on the feedback collecting for details on how to enable these updates for your bot. */
     chosen_inline_result?: Array<ChosenInlineResult>
-/* Optional. New incoming callback query */
+    /* Optional. New incoming callback query */
     callback_query?: Array<CallbackQuery>
-/* Optional. New incoming shipping query. Only for invoices with flexible price */
+    /* Optional. New incoming shipping query. Only for invoices with flexible price */
     shipping_query?: Array<ShippingQuery>
-/* Optional. New incoming pre-checkout query. Contains full information about checkout */
+    /* Optional. New incoming pre-checkout query. Contains full information about checkout */
     pre_checkout_query?: Array<PreCheckoutQuery>
-/* Optional. New poll state. Bots receive only updates about stopped polls and polls, which are sent by the bot */
+    /* Optional. New poll state. Bots receive only updates about stopped polls and polls, which are sent by the bot */
     poll?: Array<Poll>
-/* Optional. A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself. */
+    /* Optional. A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself. */
     poll_answer?: Array<PollAnswer>
-/* Optional. The bot's chat member status was updated in a chat. For private chats, this update is received only when the bot is blocked or unblocked by the user. */
+    /* Optional. The bot's chat member status was updated in a chat. For private chats, this update is received only when the bot is blocked or unblocked by the user. */
     my_chat_member?: Array<ChatMemberUpdated>
-/* Optional. A chat member's status was updated in a chat. The bot must be an administrator in the chat and must explicitly specify "chat_member" in the list of allowed_updates to receive these updates. */
+    /* Optional. A chat member's status was updated in a chat. The bot must be an administrator in the chat and must explicitly specify "chat_member" in the list of allowed_updates to receive these updates. */
     chat_member?: Array<ChatMemberUpdated>
-/* Optional. A request to join the chat has been sent. The bot must have the can_invite_users administrator right in the chat to receive these updates. */
+    /* Optional. A request to join the chat has been sent. The bot must have the can_invite_users administrator right in the chat to receive these updates. */
     chat_join_request?: Array<ChatJoinRequest>
 }
 
@@ -73,23 +73,23 @@ interface Update {
  * Read more: https://core.telegram.org/bots/api#webhookinfo
  */
 interface WebhookInfo {
-/* Webhook URL, may be empty if webhook is not set up */
+    /* Webhook URL, may be empty if webhook is not set up */
     url: Array<string>
-/* True, if a custom certificate was provided for webhook certificate checks */
+    /* True, if a custom certificate was provided for webhook certificate checks */
     has_custom_certificate: Array<boolean>
-/* Number of updates awaiting delivery */
+    /* Number of updates awaiting delivery */
     pending_update_count: Array<number>
-/* Optional. Currently used webhook IP address */
+    /* Optional. Currently used webhook IP address */
     ip_address?: Array<string>
-/* Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook */
+    /* Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook */
     last_error_date?: Array<number>
-/* Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook */
+    /* Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook */
     last_error_message?: Array<string>
-/* Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters */
+    /* Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters */
     last_synchronization_error_date?: Array<number>
-/* Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery */
+    /* Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery */
     max_connections?: Array<number>
-/* Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member */
+    /* Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member */
     allowed_updates?: Array<Array<string>>
 }
 
@@ -100,27 +100,27 @@ interface WebhookInfo {
  * Read more: https://core.telegram.org/bots/api#user
  */
 interface User {
-/* Unique identifier for this user or bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. */
+    /* Unique identifier for this user or bot. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. */
     id: Array<number>
-/* True, if this user is a bot */
+    /* True, if this user is a bot */
     is_bot: Array<boolean>
-/* User's or bot's first name */
+    /* User's or bot's first name */
     first_name: Array<string>
-/* Optional. User's or bot's last name */
+    /* Optional. User's or bot's last name */
     last_name?: Array<string>
-/* Optional. User's or bot's username */
+    /* Optional. User's or bot's username */
     username?: Array<string>
-/* Optional. IETF language tag of the user's language */
+    /* Optional. IETF language tag of the user's language */
     language_code?: Array<string>
-/* Optional. True, if this user is a Telegram Premium user */
+    /* Optional. True, if this user is a Telegram Premium user */
     is_premium?: Array<boolean>
-/* Optional. True, if this user added the bot to the attachment menu */
+    /* Optional. True, if this user added the bot to the attachment menu */
     added_to_attachment_menu?: Array<boolean>
-/* Optional. True, if the bot can be invited to groups. Returned only in getMe. */
+    /* Optional. True, if the bot can be invited to groups. Returned only in getMe. */
     can_join_groups?: Array<boolean>
-/* Optional. True, if privacy mode is disabled for the bot. Returned only in getMe. */
+    /* Optional. True, if privacy mode is disabled for the bot. Returned only in getMe. */
     can_read_all_group_messages?: Array<boolean>
-/* Optional. True, if the bot supports inline queries. Returned only in getMe. */
+    /* Optional. True, if the bot supports inline queries. Returned only in getMe. */
     supports_inline_queries?: Array<boolean>
 }
 
@@ -131,61 +131,61 @@ interface User {
  * Read more: https://core.telegram.org/bots/api#chat
  */
 interface Chat {
-/* Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
+    /* Unique identifier for this chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
     id: Array<number>
-/* Type of chat, can be either "private", "group", "supergroup" or "channel" */
+    /* Type of chat, can be either "private", "group", "supergroup" or "channel" */
     type: Array<string>
-/* Optional. Title, for supergroups, channels and group chats */
+    /* Optional. Title, for supergroups, channels and group chats */
     title?: Array<string>
-/* Optional. Username, for private chats, supergroups and channels if available */
+    /* Optional. Username, for private chats, supergroups and channels if available */
     username?: Array<string>
-/* Optional. First name of the other party in a private chat */
+    /* Optional. First name of the other party in a private chat */
     first_name?: Array<string>
-/* Optional. Last name of the other party in a private chat */
+    /* Optional. Last name of the other party in a private chat */
     last_name?: Array<string>
-/* Optional. True, if the supergroup chat is a forum (has topics enabled) */
+    /* Optional. True, if the supergroup chat is a forum (has topics enabled) */
     is_forum?: Array<boolean>
-/* Optional. Chat photo. Returned only in getChat. */
+    /* Optional. Chat photo. Returned only in getChat. */
     photo?: Array<ChatPhoto>
-/* Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels. Returned only in getChat. */
+    /* Optional. If non-empty, the list of all active chat usernames; for private chats, supergroups and channels. Returned only in getChat. */
     active_usernames?: Array<Array<string>>
-/* Optional. Custom emoji identifier of emoji status of the other party in a private chat. Returned only in getChat. */
+    /* Optional. Custom emoji identifier of emoji status of the other party in a private chat. Returned only in getChat. */
     emoji_status_custom_emoji_id?: Array<string>
-/* Optional. Bio of the other party in a private chat. Returned only in getChat. */
+    /* Optional. Bio of the other party in a private chat. Returned only in getChat. */
     bio?: Array<string>
-/* Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user. Returned only in getChat. */
+    /* Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user. Returned only in getChat. */
     has_private_forwards?: Array<boolean>
-/* Optional. True, if the privacy settings of the other party restrict sending voice and video note messages in the private chat. Returned only in getChat. */
+    /* Optional. True, if the privacy settings of the other party restrict sending voice and video note messages in the private chat. Returned only in getChat. */
     has_restricted_voice_and_video_messages?: Array<boolean>
-/* Optional. True, if users need to join the supergroup before they can send messages. Returned only in getChat. */
+    /* Optional. True, if users need to join the supergroup before they can send messages. Returned only in getChat. */
     join_to_send_messages?: Array<boolean>
-/* Optional. True, if all users directly joining the supergroup need to be approved by supergroup administrators. Returned only in getChat. */
+    /* Optional. True, if all users directly joining the supergroup need to be approved by supergroup administrators. Returned only in getChat. */
     join_by_request?: Array<boolean>
-/* Optional. Description, for groups, supergroups and channel chats. Returned only in getChat. */
+    /* Optional. Description, for groups, supergroups and channel chats. Returned only in getChat. */
     description?: Array<string>
-/* Optional. Primary invite link, for groups, supergroups and channel chats. Returned only in getChat. */
+    /* Optional. Primary invite link, for groups, supergroups and channel chats. Returned only in getChat. */
     invite_link?: Array<string>
-/* Optional. The most recent pinned message (by sending date). Returned only in getChat. */
+    /* Optional. The most recent pinned message (by sending date). Returned only in getChat. */
     pinned_message?: Array<Message>
-/* Optional. Default chat member permissions, for groups and supergroups. Returned only in getChat. */
+    /* Optional. Default chat member permissions, for groups and supergroups. Returned only in getChat. */
     permissions?: Array<ChatPermissions>
-/* Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds. Returned only in getChat. */
+    /* Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds. Returned only in getChat. */
     slow_mode_delay?: Array<number>
-/* Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds. Returned only in getChat. */
+    /* Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds. Returned only in getChat. */
     message_auto_delete_time?: Array<number>
-/* Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in getChat. */
+    /* Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field is only available to chat administrators. Returned only in getChat. */
     has_aggressive_anti_spam_enabled?: Array<boolean>
-/* Optional. True, if non-administrators can only get the list of bots and administrators in the chat. Returned only in getChat. */
+    /* Optional. True, if non-administrators can only get the list of bots and administrators in the chat. Returned only in getChat. */
     has_hidden_members?: Array<boolean>
-/* Optional. True, if messages from the chat can't be forwarded to other chats. Returned only in getChat. */
+    /* Optional. True, if messages from the chat can't be forwarded to other chats. Returned only in getChat. */
     has_protected_content?: Array<boolean>
-/* Optional. For supergroups, name of group sticker set. Returned only in getChat. */
+    /* Optional. For supergroups, name of group sticker set. Returned only in getChat. */
     sticker_set_name?: Array<string>
-/* Optional. True, if the bot can change the group sticker set. Returned only in getChat. */
+    /* Optional. True, if the bot can change the group sticker set. Returned only in getChat. */
     can_set_sticker_set?: Array<boolean>
-/* Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in getChat. */
+    /* Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in getChat. */
     linked_chat_id?: Array<number>
-/* Optional. For supergroups, the location to which the supergroup is connected. Returned only in getChat. */
+    /* Optional. For supergroups, the location to which the supergroup is connected. Returned only in getChat. */
     location?: Array<ChatLocation>
 }
 
@@ -196,147 +196,147 @@ interface Chat {
  * Read more: https://core.telegram.org/bots/api#message
  */
 interface Message {
-/* Unique message identifier inside this chat */
+    /* Unique message identifier inside this chat */
     message_id: Array<number>
-/* Date the message was sent in Unix time */
+    /* Date the message was sent in Unix time */
     date: Array<number>
-/* Conversation the message belongs to */
+    /* Conversation the message belongs to */
     chat: Array<Chat>
-/* Optional. Unique identifier of a message thread to which the message belongs; for supergroups only */
+    /* Optional. Unique identifier of a message thread to which the message belongs; for supergroups only */
     message_thread_id?: Array<number>
-/* Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat. */
+    /* Optional. Sender of the message; empty for messages sent to channels. For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat. */
     from?: Array<User>
-/* Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat. */
+    /* Optional. Sender of the message, sent on behalf of a chat. For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat. */
     sender_chat?: Array<Chat>
-/* Optional. For forwarded messages, sender of the original message */
+    /* Optional. For forwarded messages, sender of the original message */
     forward_from?: Array<User>
-/* Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat */
+    /* Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat */
     forward_from_chat?: Array<Chat>
-/* Optional. For messages forwarded from channels, identifier of the original message in the channel */
+    /* Optional. For messages forwarded from channels, identifier of the original message in the channel */
     forward_from_message_id?: Array<number>
-/* Optional. For forwarded messages that were originally sent in channels or by an anonymous chat administrator, signature of the message sender if present */
+    /* Optional. For forwarded messages that were originally sent in channels or by an anonymous chat administrator, signature of the message sender if present */
     forward_signature?: Array<string>
-/* Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages */
+    /* Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages */
     forward_sender_name?: Array<string>
-/* Optional. For forwarded messages, date the original message was sent in Unix time */
+    /* Optional. For forwarded messages, date the original message was sent in Unix time */
     forward_date?: Array<number>
-/* Optional. True, if the message is sent to a forum topic */
+    /* Optional. True, if the message is sent to a forum topic */
     is_topic_message?: Array<boolean>
-/* Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group */
+    /* Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group */
     is_automatic_forward?: Array<boolean>
-/* Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply. */
+    /* Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply. */
     reply_to_message?: Array<Message>
-/* Optional. Bot through which the message was sent */
+    /* Optional. Bot through which the message was sent */
     via_bot?: Array<User>
-/* Optional. Date the message was last edited in Unix time */
+    /* Optional. Date the message was last edited in Unix time */
     edit_date?: Array<number>
-/* Optional. True, if the message can't be forwarded */
+    /* Optional. True, if the message can't be forwarded */
     has_protected_content?: Array<boolean>
-/* Optional. The unique identifier of a media message group this message belongs to */
+    /* Optional. The unique identifier of a media message group this message belongs to */
     media_group_id?: Array<string>
-/* Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator */
+    /* Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator */
     author_signature?: Array<string>
-/* Optional. For text messages, the actual UTF-8 text of the message */
+    /* Optional. For text messages, the actual UTF-8 text of the message */
     text?: Array<string>
-/* Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text */
+    /* Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text */
     entities?: Array<Array<MessageEntity>>
-/* Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set */
+    /* Optional. Message is an animation, information about the animation. For backward compatibility, when this field is set, the document field will also be set */
     animation?: Array<Animation>
-/* Optional. Message is an audio file, information about the file */
+    /* Optional. Message is an audio file, information about the file */
     audio?: Array<Audio>
-/* Optional. Message is a general file, information about the file */
+    /* Optional. Message is a general file, information about the file */
     document?: Array<Document>
-/* Optional. Message is a photo, available sizes of the photo */
+    /* Optional. Message is a photo, available sizes of the photo */
     photo?: Array<Array<PhotoSize>>
-/* Optional. Message is a sticker, information about the sticker */
+    /* Optional. Message is a sticker, information about the sticker */
     sticker?: Array<Sticker>
-/* Optional. Message is a video, information about the video */
+    /* Optional. Message is a video, information about the video */
     video?: Array<Video>
-/* Optional. Message is a video note, information about the video message */
+    /* Optional. Message is a video note, information about the video message */
     video_note?: Array<VideoNote>
-/* Optional. Message is a voice message, information about the file */
+    /* Optional. Message is a voice message, information about the file */
     voice?: Array<Voice>
-/* Optional. Caption for the animation, audio, document, photo, video or voice */
+    /* Optional. Caption for the animation, audio, document, photo, video or voice */
     caption?: Array<string>
-/* Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption */
+    /* Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. True, if the message media is covered by a spoiler animation */
+    /* Optional. True, if the message media is covered by a spoiler animation */
     has_media_spoiler?: Array<boolean>
-/* Optional. Message is a shared contact, information about the contact */
+    /* Optional. Message is a shared contact, information about the contact */
     contact?: Array<Contact>
-/* Optional. Message is a dice with random value */
+    /* Optional. Message is a dice with random value */
     dice?: Array<Dice>
-/* Optional. Message is a game, information about the game. More about games: https://core.telegram.org/bots/api#games */
+    /* Optional. Message is a game, information about the game. More about games: https://core.telegram.org/bots/api#games */
     game?: Array<Game>
-/* Optional. Message is a native poll, information about the poll */
+    /* Optional. Message is a native poll, information about the poll */
     poll?: Array<Poll>
-/* Optional. Message is a venue, information about the venue. For backward compatibility, when this field is set, the location field will also be set */
+    /* Optional. Message is a venue, information about the venue. For backward compatibility, when this field is set, the location field will also be set */
     venue?: Array<Venue>
-/* Optional. Message is a shared location, information about the location */
+    /* Optional. Message is a shared location, information about the location */
     location?: Array<Location>
-/* Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members) */
+    /* Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members) */
     new_chat_members?: Array<Array<User>>
-/* Optional. A member was removed from the group, information about them (this member may be the bot itself) */
+    /* Optional. A member was removed from the group, information about them (this member may be the bot itself) */
     left_chat_member?: Array<User>
-/* Optional. A chat title was changed to this value */
+    /* Optional. A chat title was changed to this value */
     new_chat_title?: Array<string>
-/* Optional. A chat photo was change to this value */
+    /* Optional. A chat photo was change to this value */
     new_chat_photo?: Array<Array<PhotoSize>>
-/* Optional. Service message: the chat photo was deleted */
+    /* Optional. Service message: the chat photo was deleted */
     delete_chat_photo?: Array<boolean>
-/* Optional. Service message: the group has been created */
+    /* Optional. Service message: the group has been created */
     group_chat_created?: Array<boolean>
-/* Optional. Service message: the supergroup has been created. This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created. It can only be found in reply_to_message if someone replies to a very first message in a directly created supergroup. */
+    /* Optional. Service message: the supergroup has been created. This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created. It can only be found in reply_to_message if someone replies to a very first message in a directly created supergroup. */
     supergroup_chat_created?: Array<boolean>
-/* Optional. Service message: the channel has been created. This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel. */
+    /* Optional. Service message: the channel has been created. This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel. */
     channel_chat_created?: Array<boolean>
-/* Optional. Service message: auto-delete timer settings changed in the chat */
+    /* Optional. Service message: auto-delete timer settings changed in the chat */
     message_auto_delete_timer_changed?: Array<MessageAutoDeleteTimerChanged>
-/* Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
+    /* Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
     migrate_to_chat_id?: Array<number>
-/* Optional. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
+    /* Optional. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
     migrate_from_chat_id?: Array<number>
-/* Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply. */
+    /* Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply. */
     pinned_message?: Array<Message>
-/* Optional. Message is an invoice for a payment, information about the invoice. More about payments: https://core.telegram.org/bots/api#payments */
+    /* Optional. Message is an invoice for a payment, information about the invoice. More about payments: https://core.telegram.org/bots/api#payments */
     invoice?: Array<Invoice>
-/* Optional. Message is a service message about a successful payment, information about the payment. More about payments: https://core.telegram.org/bots/api#payments */
+    /* Optional. Message is a service message about a successful payment, information about the payment. More about payments: https://core.telegram.org/bots/api#payments */
     successful_payment?: Array<SuccessfulPayment>
-/* Optional. Service message: a user was shared with the bot */
+    /* Optional. Service message: a user was shared with the bot */
     user_shared?: Array<UserShared>
-/* Optional. Service message: a chat was shared with the bot */
+    /* Optional. Service message: a chat was shared with the bot */
     chat_shared?: Array<ChatShared>
-/* Optional. The domain name of the website on which the user has logged in. More about Telegram Login: https://core.telegram.org/widgets/login */
+    /* Optional. The domain name of the website on which the user has logged in. More about Telegram Login: https://core.telegram.org/widgets/login */
     connected_website?: Array<string>
-/* Optional. Service message: the user allowed the bot added to the attachment menu to write messages */
+    /* Optional. Service message: the user allowed the bot added to the attachment menu to write messages */
     write_access_allowed?: Array<WriteAccessAllowed>
-/* Optional. Telegram Passport data */
+    /* Optional. Telegram Passport data */
     passport_data?: Array<PassportData>
-/* Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location. */
+    /* Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location. */
     proximity_alert_triggered?: Array<ProximityAlertTriggered>
-/* Optional. Service message: forum topic created */
+    /* Optional. Service message: forum topic created */
     forum_topic_created?: Array<ForumTopicCreated>
-/* Optional. Service message: forum topic edited */
+    /* Optional. Service message: forum topic edited */
     forum_topic_edited?: Array<ForumTopicEdited>
-/* Optional. Service message: forum topic closed */
+    /* Optional. Service message: forum topic closed */
     forum_topic_closed?: Array<ForumTopicClosed>
-/* Optional. Service message: forum topic reopened */
+    /* Optional. Service message: forum topic reopened */
     forum_topic_reopened?: Array<ForumTopicReopened>
-/* Optional. Service message: the 'General' forum topic hidden */
+    /* Optional. Service message: the 'General' forum topic hidden */
     general_forum_topic_hidden?: Array<GeneralForumTopicHidden>
-/* Optional. Service message: the 'General' forum topic unhidden */
+    /* Optional. Service message: the 'General' forum topic unhidden */
     general_forum_topic_unhidden?: Array<GeneralForumTopicUnhidden>
-/* Optional. Service message: video chat scheduled */
+    /* Optional. Service message: video chat scheduled */
     video_chat_scheduled?: Array<VideoChatScheduled>
-/* Optional. Service message: video chat started */
+    /* Optional. Service message: video chat started */
     video_chat_started?: Array<VideoChatStarted>
-/* Optional. Service message: video chat ended */
+    /* Optional. Service message: video chat ended */
     video_chat_ended?: Array<VideoChatEnded>
-/* Optional. Service message: new participants invited to a video chat */
+    /* Optional. Service message: new participants invited to a video chat */
     video_chat_participants_invited?: Array<VideoChatParticipantsInvited>
-/* Optional. Service message: data sent by a Web App */
+    /* Optional. Service message: data sent by a Web App */
     web_app_data?: Array<WebAppData>
-/* Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons. */
+    /* Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons. */
     reply_markup?: Array<InlineKeyboardMarkup>
 }
 
@@ -347,7 +347,7 @@ interface Message {
  * Read more: https://core.telegram.org/bots/api#messageid
  */
 interface MessageId {
-/* Unique message identifier */
+    /* Unique message identifier */
     message_id: Array<number>
 }
 
@@ -358,19 +358,19 @@ interface MessageId {
  * Read more: https://core.telegram.org/bots/api#messageentity
  */
 interface MessageEntity {
-/* Type of the entity. Currently, can be "mention" (@username), "hashtag" (#hashtag), "cashtag" ($USD), "bot_command" (/start@jobs_bot), "url" (https://telegram.org), "email" (do-not-reply@telegram.org), "phone_number" (+1-212-555-0123), "bold" (bold text), "italic" (italic text), "underline" (underlined text), "strikethrough" (strikethrough text), "spoiler" (spoiler message), "code" (monowidth string), "pre" (monowidth block), "text_link" (for clickable text URLs), "text_mention" (for users without usernames), "custom_emoji" (for inline custom emoji stickers) */
+    /* Type of the entity. Currently, can be "mention" (@username), "hashtag" (#hashtag), "cashtag" ($USD), "bot_command" (/start@jobs_bot), "url" (https://telegram.org), "email" (do-not-reply@telegram.org), "phone_number" (+1-212-555-0123), "bold" (bold text), "italic" (italic text), "underline" (underlined text), "strikethrough" (strikethrough text), "spoiler" (spoiler message), "code" (monowidth string), "pre" (monowidth block), "text_link" (for clickable text URLs), "text_mention" (for users without usernames), "custom_emoji" (for inline custom emoji stickers) */
     type: Array<string>
-/* Offset in UTF-16 code units to the start of the entity */
+    /* Offset in UTF-16 code units to the start of the entity */
     offset: Array<number>
-/* Length of the entity in UTF-16 code units */
+    /* Length of the entity in UTF-16 code units */
     length: Array<number>
-/* Optional. For "text_link" only, URL that will be opened after user taps on the text */
+    /* Optional. For "text_link" only, URL that will be opened after user taps on the text */
     url?: Array<string>
-/* Optional. For "text_mention" only, the mentioned user */
+    /* Optional. For "text_mention" only, the mentioned user */
     user?: Array<User>
-/* Optional. For "pre" only, the programming language of the entity text */
+    /* Optional. For "pre" only, the programming language of the entity text */
     language?: Array<string>
-/* Optional. For "custom_emoji" only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker */
+    /* Optional. For "custom_emoji" only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker */
     custom_emoji_id?: Array<string>
 }
 
@@ -381,15 +381,15 @@ interface MessageEntity {
  * Read more: https://core.telegram.org/bots/api#photosize
  */
 interface PhotoSize {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Photo width */
+    /* Photo width */
     width: Array<number>
-/* Photo height */
+    /* Photo height */
     height: Array<number>
-/* Optional. File size in bytes */
+    /* Optional. File size in bytes */
     file_size?: Array<number>
 }
 
@@ -400,23 +400,23 @@ interface PhotoSize {
  * Read more: https://core.telegram.org/bots/api#animation
  */
 interface Animation {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Video width as defined by sender */
+    /* Video width as defined by sender */
     width: Array<number>
-/* Video height as defined by sender */
+    /* Video height as defined by sender */
     height: Array<number>
-/* Duration of the video in seconds as defined by sender */
+    /* Duration of the video in seconds as defined by sender */
     duration: Array<number>
-/* Optional. Animation thumbnail as defined by sender */
+    /* Optional. Animation thumbnail as defined by sender */
     thumbnail?: Array<PhotoSize>
-/* Optional. Original animation filename as defined by sender */
+    /* Optional. Original animation filename as defined by sender */
     file_name?: Array<string>
-/* Optional. MIME type of the file as defined by sender */
+    /* Optional. MIME type of the file as defined by sender */
     mime_type?: Array<string>
-/* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
+    /* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
     file_size?: Array<number>
 }
 
@@ -427,23 +427,23 @@ interface Animation {
  * Read more: https://core.telegram.org/bots/api#audio
  */
 interface Audio {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Duration of the audio in seconds as defined by sender */
+    /* Duration of the audio in seconds as defined by sender */
     duration: Array<number>
-/* Optional. Performer of the audio as defined by sender or by audio tags */
+    /* Optional. Performer of the audio as defined by sender or by audio tags */
     performer?: Array<string>
-/* Optional. Title of the audio as defined by sender or by audio tags */
+    /* Optional. Title of the audio as defined by sender or by audio tags */
     title?: Array<string>
-/* Optional. Original filename as defined by sender */
+    /* Optional. Original filename as defined by sender */
     file_name?: Array<string>
-/* Optional. MIME type of the file as defined by sender */
+    /* Optional. MIME type of the file as defined by sender */
     mime_type?: Array<string>
-/* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
+    /* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
     file_size?: Array<number>
-/* Optional. Thumbnail of the album cover to which the music file belongs */
+    /* Optional. Thumbnail of the album cover to which the music file belongs */
     thumbnail?: Array<PhotoSize>
 }
 
@@ -454,17 +454,17 @@ interface Audio {
  * Read more: https://core.telegram.org/bots/api#document
  */
 interface Document {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Optional. Document thumbnail as defined by sender */
+    /* Optional. Document thumbnail as defined by sender */
     thumbnail?: Array<PhotoSize>
-/* Optional. Original filename as defined by sender */
+    /* Optional. Original filename as defined by sender */
     file_name?: Array<string>
-/* Optional. MIME type of the file as defined by sender */
+    /* Optional. MIME type of the file as defined by sender */
     mime_type?: Array<string>
-/* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
+    /* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
     file_size?: Array<number>
 }
 
@@ -475,23 +475,23 @@ interface Document {
  * Read more: https://core.telegram.org/bots/api#video
  */
 interface Video {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Video width as defined by sender */
+    /* Video width as defined by sender */
     width: Array<number>
-/* Video height as defined by sender */
+    /* Video height as defined by sender */
     height: Array<number>
-/* Duration of the video in seconds as defined by sender */
+    /* Duration of the video in seconds as defined by sender */
     duration: Array<number>
-/* Optional. Video thumbnail */
+    /* Optional. Video thumbnail */
     thumbnail?: Array<PhotoSize>
-/* Optional. Original filename as defined by sender */
+    /* Optional. Original filename as defined by sender */
     file_name?: Array<string>
-/* Optional. MIME type of the file as defined by sender */
+    /* Optional. MIME type of the file as defined by sender */
     mime_type?: Array<string>
-/* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
+    /* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
     file_size?: Array<number>
 }
 
@@ -502,17 +502,17 @@ interface Video {
  * Read more: https://core.telegram.org/bots/api#videonote
  */
 interface VideoNote {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Video width and height (diameter of the video message) as defined by sender */
+    /* Video width and height (diameter of the video message) as defined by sender */
     length: Array<number>
-/* Duration of the video in seconds as defined by sender */
+    /* Duration of the video in seconds as defined by sender */
     duration: Array<number>
-/* Optional. Video thumbnail */
+    /* Optional. Video thumbnail */
     thumbnail?: Array<PhotoSize>
-/* Optional. File size in bytes */
+    /* Optional. File size in bytes */
     file_size?: Array<number>
 }
 
@@ -523,15 +523,15 @@ interface VideoNote {
  * Read more: https://core.telegram.org/bots/api#voice
  */
 interface Voice {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Duration of the audio in seconds as defined by sender */
+    /* Duration of the audio in seconds as defined by sender */
     duration: Array<number>
-/* Optional. MIME type of the file as defined by sender */
+    /* Optional. MIME type of the file as defined by sender */
     mime_type?: Array<string>
-/* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
+    /* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
     file_size?: Array<number>
 }
 
@@ -542,15 +542,15 @@ interface Voice {
  * Read more: https://core.telegram.org/bots/api#contact
  */
 interface Contact {
-/* Contact's phone number */
+    /* Contact's phone number */
     phone_number: Array<string>
-/* Contact's first name */
+    /* Contact's first name */
     first_name: Array<string>
-/* Optional. Contact's last name */
+    /* Optional. Contact's last name */
     last_name?: Array<string>
-/* Optional. Contact's user identifier in Telegram. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. */
+    /* Optional. Contact's user identifier in Telegram. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. */
     user_id?: Array<number>
-/* Optional. Additional data about the contact in the form of a vCard */
+    /* Optional. Additional data about the contact in the form of a vCard */
     vcard?: Array<string>
 }
 
@@ -561,9 +561,9 @@ interface Contact {
  * Read more: https://core.telegram.org/bots/api#dice
  */
 interface Dice {
-/* Emoji on which the dice throw animation is based */
+    /* Emoji on which the dice throw animation is based */
     emoji: Array<string>
-/* Value of the dice, 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base emoji, 1-64 for "🎰" base emoji */
+    /* Value of the dice, 1-6 for "🎲", "🎯" and "🎳" base emoji, 1-5 for "🏀" and "⚽" base emoji, 1-64 for "🎰" base emoji */
     value: Array<number>
 }
 
@@ -574,9 +574,9 @@ interface Dice {
  * Read more: https://core.telegram.org/bots/api#polloption
  */
 interface PollOption {
-/* Option text, 1-100 characters */
+    /* Option text, 1-100 characters */
     text: Array<string>
-/* Number of users that voted for this option */
+    /* Number of users that voted for this option */
     voter_count: Array<number>
 }
 
@@ -587,11 +587,11 @@ interface PollOption {
  * Read more: https://core.telegram.org/bots/api#pollanswer
  */
 interface PollAnswer {
-/* Unique poll identifier */
+    /* Unique poll identifier */
     poll_id: Array<string>
-/* The user, who changed the answer to the poll */
+    /* The user, who changed the answer to the poll */
     user: Array<User>
-/* 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote. */
+    /* 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote. */
     option_ids: Array<Array<number>>
 }
 
@@ -602,31 +602,31 @@ interface PollAnswer {
  * Read more: https://core.telegram.org/bots/api#poll
  */
 interface Poll {
-/* Unique poll identifier */
+    /* Unique poll identifier */
     id: Array<string>
-/* Poll question, 1-300 characters */
+    /* Poll question, 1-300 characters */
     question: Array<string>
-/* List of poll options */
+    /* List of poll options */
     options: Array<Array<PollOption>>
-/* Total number of users that voted in the poll */
+    /* Total number of users that voted in the poll */
     total_voter_count: Array<number>
-/* True, if the poll is closed */
+    /* True, if the poll is closed */
     is_closed: Array<boolean>
-/* True, if the poll is anonymous */
+    /* True, if the poll is anonymous */
     is_anonymous: Array<boolean>
-/* Poll type, currently can be "regular" or "quiz" */
+    /* Poll type, currently can be "regular" or "quiz" */
     type: Array<string>
-/* True, if the poll allows multiple answers */
+    /* True, if the poll allows multiple answers */
     allows_multiple_answers: Array<boolean>
-/* Optional. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot. */
+    /* Optional. 0-based identifier of the correct answer option. Available only for polls in the quiz mode, which are closed, or was sent (not forwarded) by the bot or to the private chat with the bot. */
     correct_option_id?: Array<number>
-/* Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters */
+    /* Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters */
     explanation?: Array<string>
-/* Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation */
+    /* Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the explanation */
     explanation_entities?: Array<Array<MessageEntity>>
-/* Optional. Amount of time in seconds the poll will be active after creation */
+    /* Optional. Amount of time in seconds the poll will be active after creation */
     open_period?: Array<number>
-/* Optional. Point in time (Unix timestamp) when the poll will be automatically closed */
+    /* Optional. Point in time (Unix timestamp) when the poll will be automatically closed */
     close_date?: Array<number>
 }
 
@@ -637,17 +637,17 @@ interface Poll {
  * Read more: https://core.telegram.org/bots/api#location
  */
 interface Location {
-/* Longitude as defined by sender */
+    /* Longitude as defined by sender */
     longitude: Array<number>
-/* Latitude as defined by sender */
+    /* Latitude as defined by sender */
     latitude: Array<number>
-/* Optional. The radius of uncertainty for the location, measured in meters; 0-1500 */
+    /* Optional. The radius of uncertainty for the location, measured in meters; 0-1500 */
     horizontal_accuracy?: Array<number>
-/* Optional. Time relative to the message sending date, during which the location can be updated; in seconds. For active live locations only. */
+    /* Optional. Time relative to the message sending date, during which the location can be updated; in seconds. For active live locations only. */
     live_period?: Array<number>
-/* Optional. The direction in which user is moving, in degrees; 1-360. For active live locations only. */
+    /* Optional. The direction in which user is moving, in degrees; 1-360. For active live locations only. */
     heading?: Array<number>
-/* Optional. The maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only. */
+    /* Optional. The maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only. */
     proximity_alert_radius?: Array<number>
 }
 
@@ -658,19 +658,19 @@ interface Location {
  * Read more: https://core.telegram.org/bots/api#venue
  */
 interface Venue {
-/* Venue location. Can't be a live location */
+    /* Venue location. Can't be a live location */
     location: Array<Location>
-/* Name of the venue */
+    /* Name of the venue */
     title: Array<string>
-/* Address of the venue */
+    /* Address of the venue */
     address: Array<string>
-/* Optional. Foursquare identifier of the venue */
+    /* Optional. Foursquare identifier of the venue */
     foursquare_id?: Array<string>
-/* Optional. Foursquare type of the venue. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) */
+    /* Optional. Foursquare type of the venue. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) */
     foursquare_type?: Array<string>
-/* Optional. Google Places identifier of the venue */
+    /* Optional. Google Places identifier of the venue */
     google_place_id?: Array<string>
-/* Optional. Google Places type of the venue. (See supported types.) */
+    /* Optional. Google Places type of the venue. (See supported types.) */
     google_place_type?: Array<string>
 }
 
@@ -681,9 +681,9 @@ interface Venue {
  * Read more: https://core.telegram.org/bots/api#webappdata
  */
 interface WebAppData {
-/* The data. Be aware that a bad client can send arbitrary data in this field. */
+    /* The data. Be aware that a bad client can send arbitrary data in this field. */
     data: Array<string>
-/* Text of the web_app keyboard button from which the Web App was opened. Be aware that a bad client can send arbitrary data in this field. */
+    /* Text of the web_app keyboard button from which the Web App was opened. Be aware that a bad client can send arbitrary data in this field. */
     button_text: Array<string>
 }
 
@@ -694,11 +694,11 @@ interface WebAppData {
  * Read more: https://core.telegram.org/bots/api#proximityalerttriggered
  */
 interface ProximityAlertTriggered {
-/* User that triggered the alert */
+    /* User that triggered the alert */
     traveler: Array<User>
-/* User that set the alert */
+    /* User that set the alert */
     watcher: Array<User>
-/* The distance between the users */
+    /* The distance between the users */
     distance: Array<number>
 }
 
@@ -709,7 +709,7 @@ interface ProximityAlertTriggered {
  * Read more: https://core.telegram.org/bots/api#messageautodeletetimerchanged
  */
 interface MessageAutoDeleteTimerChanged {
-/* New auto-delete time for messages in the chat; in seconds */
+    /* New auto-delete time for messages in the chat; in seconds */
     message_auto_delete_time: Array<number>
 }
 
@@ -720,11 +720,11 @@ interface MessageAutoDeleteTimerChanged {
  * Read more: https://core.telegram.org/bots/api#forumtopiccreated
  */
 interface ForumTopicCreated {
-/* Name of the topic */
+    /* Name of the topic */
     name: Array<string>
-/* Color of the topic icon in RGB format */
+    /* Color of the topic icon in RGB format */
     icon_color: Array<number>
-/* Optional. Unique identifier of the custom emoji shown as the topic icon */
+    /* Optional. Unique identifier of the custom emoji shown as the topic icon */
     icon_custom_emoji_id?: Array<string>
 }
 
@@ -745,9 +745,9 @@ interface ForumTopicClosed {
  * Read more: https://core.telegram.org/bots/api#forumtopicedited
  */
 interface ForumTopicEdited {
-/* Optional. New name of the topic, if it was edited */
+    /* Optional. New name of the topic, if it was edited */
     name?: Array<string>
-/* Optional. New identifier of the custom emoji shown as the topic icon, if it was edited; an empty string if the icon was removed */
+    /* Optional. New identifier of the custom emoji shown as the topic icon, if it was edited; an empty string if the icon was removed */
     icon_custom_emoji_id?: Array<string>
 }
 
@@ -788,9 +788,9 @@ interface GeneralForumTopicUnhidden {
  * Read more: https://core.telegram.org/bots/api#usershared
  */
 interface UserShared {
-/* Identifier of the request */
+    /* Identifier of the request */
     request_id: Array<number>
-/* Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means. */
+    /* Identifier of the shared user. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the user and could be unable to use this identifier, unless the user is already known to the bot by some other means. */
     user_id: Array<number>
 }
 
@@ -801,9 +801,9 @@ interface UserShared {
  * Read more: https://core.telegram.org/bots/api#chatshared
  */
 interface ChatShared {
-/* Identifier of the request */
+    /* Identifier of the request */
     request_id: Array<number>
-/* Identifier of the shared chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the chat and could be unable to use this identifier, unless the chat is already known to the bot by some other means. */
+    /* Identifier of the shared chat. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot may not have access to the chat and could be unable to use this identifier, unless the chat is already known to the bot by some other means. */
     chat_id: Array<number>
 }
 
@@ -814,7 +814,7 @@ interface ChatShared {
  * Read more: https://core.telegram.org/bots/api#writeaccessallowed
  */
 interface WriteAccessAllowed {
-/* Optional. Name of the Web App which was launched from a link */
+    /* Optional. Name of the Web App which was launched from a link */
     web_app_name?: Array<string>
 }
 
@@ -825,7 +825,7 @@ interface WriteAccessAllowed {
  * Read more: https://core.telegram.org/bots/api#videochatscheduled
  */
 interface VideoChatScheduled {
-/* Point in time (Unix timestamp) when the video chat is supposed to be started by a chat administrator */
+    /* Point in time (Unix timestamp) when the video chat is supposed to be started by a chat administrator */
     start_date: Array<number>
 }
 
@@ -846,7 +846,7 @@ interface VideoChatStarted {
  * Read more: https://core.telegram.org/bots/api#videochatended
  */
 interface VideoChatEnded {
-/* Video chat duration in seconds */
+    /* Video chat duration in seconds */
     duration: Array<number>
 }
 
@@ -857,7 +857,7 @@ interface VideoChatEnded {
  * Read more: https://core.telegram.org/bots/api#videochatparticipantsinvited
  */
 interface VideoChatParticipantsInvited {
-/* New members that were invited to the video chat */
+    /* New members that were invited to the video chat */
     users: Array<Array<User>>
 }
 
@@ -868,9 +868,9 @@ interface VideoChatParticipantsInvited {
  * Read more: https://core.telegram.org/bots/api#userprofilephotos
  */
 interface UserProfilePhotos {
-/* Total number of profile pictures the target user has */
+    /* Total number of profile pictures the target user has */
     total_count: Array<number>
-/* Requested profile pictures (in up to 4 sizes each) */
+    /* Requested profile pictures (in up to 4 sizes each) */
     photos: Array<Array<Array<PhotoSize>>>
 }
 
@@ -881,13 +881,13 @@ interface UserProfilePhotos {
  * Read more: https://core.telegram.org/bots/api#file
  */
 interface File {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
+    /* Optional. File size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. */
     file_size?: Array<number>
-/* Optional. File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file. */
+    /* Optional. File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file. */
     file_path?: Array<string>
 }
 
@@ -898,7 +898,7 @@ interface File {
  * Read more: https://core.telegram.org/bots/api#webappinfo
  */
 interface WebAppInfo {
-/* An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps */
+    /* An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps */
     url: Array<string>
 }
 
@@ -909,17 +909,17 @@ interface WebAppInfo {
  * Read more: https://core.telegram.org/bots/api#replykeyboardmarkup
  */
 interface ReplyKeyboardMarkup {
-/* Array of button rows, each represented by an Array of KeyboardButton objects */
+    /* Array of button rows, each represented by an Array of KeyboardButton objects */
     keyboard: Array<Array<Array<KeyboardButton>>>
-/* Optional. Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to false, in which case the custom keyboard can be hidden and opened with a keyboard icon. */
+    /* Optional. Requests clients to always show the keyboard when the regular keyboard is hidden. Defaults to false, in which case the custom keyboard can be hidden and opened with a keyboard icon. */
     is_persistent?: Array<boolean>
-/* Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to false, in which case the custom keyboard is always of the same height as the app's standard keyboard. */
+    /* Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to false, in which case the custom keyboard is always of the same height as the app's standard keyboard. */
     resize_keyboard?: Array<boolean>
-/* Optional. Requests clients to hide the keyboard as soon as it's been used. The keyboard will still be available, but clients will automatically display the usual letter-keyboard in the chat - the user can press a special button in the input field to see the custom keyboard again. Defaults to false. */
+    /* Optional. Requests clients to hide the keyboard as soon as it's been used. The keyboard will still be available, but clients will automatically display the usual letter-keyboard in the chat - the user can press a special button in the input field to see the custom keyboard again. Defaults to false. */
     one_time_keyboard?: Array<boolean>
-/* Optional. The placeholder to be shown in the input field when the keyboard is active; 1-64 characters */
+    /* Optional. The placeholder to be shown in the input field when the keyboard is active; 1-64 characters */
     input_field_placeholder?: Array<string>
-/* Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. Example: A user requests to change the bot's language, bot replies to the request with a keyboard to select the new language. Other users in the group don't see the keyboard. */
+    /* Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. Example: A user requests to change the bot's language, bot replies to the request with a keyboard to select the new language. Other users in the group don't see the keyboard. */
     selective?: Array<boolean>
 }
 
@@ -934,19 +934,19 @@ interface ReplyKeyboardMarkup {
  * Read more: https://core.telegram.org/bots/api#keyboardbutton
  */
 interface KeyboardButton {
-/* Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed */
+    /* Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed */
     text: Array<string>
-/* Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a "user_shared" service message. Available in private chats only. */
+    /* Optional. If specified, pressing the button will open a list of suitable users. Tapping on any user will send their identifier to the bot in a "user_shared" service message. Available in private chats only. */
     request_user?: Array<KeyboardButtonRequestUser>
-/* Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a "chat_shared" service message. Available in private chats only. */
+    /* Optional. If specified, pressing the button will open a list of suitable chats. Tapping on a chat will send its identifier to the bot in a "chat_shared" service message. Available in private chats only. */
     request_chat?: Array<KeyboardButtonRequestChat>
-/* Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only. */
+    /* Optional. If True, the user's phone number will be sent as a contact when the button is pressed. Available in private chats only. */
     request_contact?: Array<boolean>
-/* Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only. */
+    /* Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only. */
     request_location?: Array<boolean>
-/* Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only. */
+    /* Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed. Available in private chats only. */
     request_poll?: Array<KeyboardButtonPollType>
-/* Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a "web_app_data" service message. Available in private chats only. */
+    /* Optional. If specified, the described Web App will be launched when the button is pressed. The Web App will be able to send a "web_app_data" service message. Available in private chats only. */
     web_app?: Array<WebAppInfo>
 }
 
@@ -957,11 +957,11 @@ interface KeyboardButton {
  * Read more: https://core.telegram.org/bots/api#keyboardbuttonrequestuser
  */
 interface KeyboardButtonRequestUser {
-/* Signed 32-bit identifier of the request, which will be received back in the UserShared object. Must be unique within the message */
+    /* Signed 32-bit identifier of the request, which will be received back in the UserShared object. Must be unique within the message */
     request_id: Array<number>
-/* Optional. Pass True to request a bot, pass False to request a regular user. If not specified, no additional restrictions are applied. */
+    /* Optional. Pass True to request a bot, pass False to request a regular user. If not specified, no additional restrictions are applied. */
     user_is_bot?: Array<boolean>
-/* Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied. */
+    /* Optional. Pass True to request a premium user, pass False to request a non-premium user. If not specified, no additional restrictions are applied. */
     user_is_premium?: Array<boolean>
 }
 
@@ -972,21 +972,21 @@ interface KeyboardButtonRequestUser {
  * Read more: https://core.telegram.org/bots/api#keyboardbuttonrequestchat
  */
 interface KeyboardButtonRequestChat {
-/* Signed 32-bit identifier of the request, which will be received back in the ChatShared object. Must be unique within the message */
+    /* Signed 32-bit identifier of the request, which will be received back in the ChatShared object. Must be unique within the message */
     request_id: Array<number>
-/* Pass True to request a channel chat, pass False to request a group or a supergroup chat. */
+    /* Pass True to request a channel chat, pass False to request a group or a supergroup chat. */
     chat_is_channel: Array<boolean>
-/* Optional. Pass True to request a forum supergroup, pass False to request a non-forum chat. If not specified, no additional restrictions are applied. */
+    /* Optional. Pass True to request a forum supergroup, pass False to request a non-forum chat. If not specified, no additional restrictions are applied. */
     chat_is_forum?: Array<boolean>
-/* Optional. Pass True to request a supergroup or a channel with a username, pass False to request a chat without a username. If not specified, no additional restrictions are applied. */
+    /* Optional. Pass True to request a supergroup or a channel with a username, pass False to request a chat without a username. If not specified, no additional restrictions are applied. */
     chat_has_username?: Array<boolean>
-/* Optional. Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied. */
+    /* Optional. Pass True to request a chat owned by the user. Otherwise, no additional restrictions are applied. */
     chat_is_created?: Array<boolean>
-/* Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. The rights must be a superset of bot_administrator_rights. If not specified, no additional restrictions are applied. */
+    /* Optional. A JSON-serialized object listing the required administrator rights of the user in the chat. The rights must be a superset of bot_administrator_rights. If not specified, no additional restrictions are applied. */
     user_administrator_rights?: Array<ChatAdministratorRights>
-/* Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied. */
+    /* Optional. A JSON-serialized object listing the required administrator rights of the bot in the chat. The rights must be a subset of user_administrator_rights. If not specified, no additional restrictions are applied. */
     bot_administrator_rights?: Array<ChatAdministratorRights>
-/* Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied. */
+    /* Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional restrictions are applied. */
     bot_is_member?: Array<boolean>
 }
 
@@ -997,7 +997,7 @@ interface KeyboardButtonRequestChat {
  * Read more: https://core.telegram.org/bots/api#keyboardbuttonpolltype
  */
 interface KeyboardButtonPollType {
-/* Optional. If quiz is passed, the user will be allowed to create only polls in the quiz mode. If regular is passed, only regular polls will be allowed. Otherwise, the user will be allowed to create a poll of any type. */
+    /* Optional. If quiz is passed, the user will be allowed to create only polls in the quiz mode. If regular is passed, only regular polls will be allowed. Otherwise, the user will be allowed to create a poll of any type. */
     type?: Array<string>
 }
 
@@ -1008,9 +1008,9 @@ interface KeyboardButtonPollType {
  * Read more: https://core.telegram.org/bots/api#replykeyboardremove
  */
 interface ReplyKeyboardRemove {
-/* Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; if you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup) */
+    /* Requests clients to remove the custom keyboard (user will not be able to summon this keyboard; if you want to hide the keyboard from sight but keep it accessible, use one_time_keyboard in ReplyKeyboardMarkup) */
     remove_keyboard: Array<boolean>
-/* Optional. Use this parameter if you want to remove the keyboard for specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. Example: A user votes in a poll, bot returns confirmation message in reply to the vote and removes the keyboard for that user, while still showing the keyboard with poll options to users who haven't voted yet. */
+    /* Optional. Use this parameter if you want to remove the keyboard for specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. Example: A user votes in a poll, bot returns confirmation message in reply to the vote and removes the keyboard for that user, while still showing the keyboard with poll options to users who haven't voted yet. */
     selective?: Array<boolean>
 }
 
@@ -1022,7 +1022,7 @@ interface ReplyKeyboardRemove {
  * Read more: https://core.telegram.org/bots/api#inlinekeyboardmarkup
  */
 interface InlineKeyboardMarkup {
-/* Array of button rows, each represented by an Array of InlineKeyboardButton objects */
+    /* Array of button rows, each represented by an Array of InlineKeyboardButton objects */
     inline_keyboard: Array<Array<Array<InlineKeyboardButton>>>
 }
 
@@ -1033,25 +1033,25 @@ interface InlineKeyboardMarkup {
  * Read more: https://core.telegram.org/bots/api#inlinekeyboardbutton
  */
 interface InlineKeyboardButton {
-/* Label text on the button */
+    /* Label text on the button */
     text: Array<string>
-/* Optional. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id=<user_id> can be used to mention a user by their ID without using a username, if this is allowed by their privacy settings. */
+    /* Optional. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id=<user_id> can be used to mention a user by their ID without using a username, if this is allowed by their privacy settings. */
     url?: Array<string>
-/* Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes */
+    /* Optional. Data to be sent in a callback query to the bot when button is pressed, 1-64 bytes */
     callback_data?: Array<string>
-/* Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. */
+    /* Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. */
     web_app?: Array<WebAppInfo>
-/* Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget. */
+    /* Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget. */
     login_url?: Array<LoginUrl>
-/* Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Note: This offers an easy way for users to start using your bot in inline mode when they are currently in a private chat with it. Especially useful when combined with switch_pm... actions - in this case the user will be automatically returned to the chat they switched from, skipping the chat selection screen. */
+    /* Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Note: This offers an easy way for users to start using your bot in inline mode when they are currently in a private chat with it. Especially useful when combined with switch_pm... actions - in this case the user will be automatically returned to the chat they switched from, skipping the chat selection screen. */
     switch_inline_query?: Array<string>
-/* Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted. This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. */
+    /* Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted. This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options. */
     switch_inline_query_current_chat?: Array<string>
-/* Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field */
+    /* Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field */
     switch_inline_query_chosen_chat?: Array<SwitchInlineQueryChosenChat>
-/* Optional. Description of the game that will be launched when the user presses the button. NOTE: This type of button must always be the first button in the first row. */
+    /* Optional. Description of the game that will be launched when the user presses the button. NOTE: This type of button must always be the first button in the first row. */
     callback_game?: Array<CallbackGame>
-/* Optional. Specify True, to send a Pay button. NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages. */
+    /* Optional. Specify True, to send a Pay button. NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages. */
     pay?: Array<boolean>
 }
 
@@ -1063,13 +1063,13 @@ interface InlineKeyboardButton {
  * Read more: https://core.telegram.org/bots/api#loginurl
  */
 interface LoginUrl {
-/* An HTTPS URL to be opened with user authorization data added to the query string when the button is pressed. If the user refuses to provide authorization data, the original URL without information about the user will be opened. The data added is the same as described in Receiving authorization data. NOTE: You must always check the hash of the received data to verify the authentication and the integrity of the data as described in Checking authorization. */
+    /* An HTTPS URL to be opened with user authorization data added to the query string when the button is pressed. If the user refuses to provide authorization data, the original URL without information about the user will be opened. The data added is the same as described in Receiving authorization data. NOTE: You must always check the hash of the received data to verify the authentication and the integrity of the data as described in Checking authorization. */
     url: Array<string>
-/* Optional. New text of the button in forwarded messages. */
+    /* Optional. New text of the button in forwarded messages. */
     forward_text?: Array<string>
-/* Optional. Username of a bot, which will be used for user authorization. See Setting up a bot for more details. If not specified, the current bot's username will be assumed. The url's domain must be the same as the domain linked with the bot. See Linking your domain to the bot for more details. */
+    /* Optional. Username of a bot, which will be used for user authorization. See Setting up a bot for more details. If not specified, the current bot's username will be assumed. The url's domain must be the same as the domain linked with the bot. See Linking your domain to the bot for more details. */
     bot_username?: Array<string>
-/* Optional. Pass True to request the permission for your bot to send messages to the user. */
+    /* Optional. Pass True to request the permission for your bot to send messages to the user. */
     request_write_access?: Array<boolean>
 }
 
@@ -1080,15 +1080,15 @@ interface LoginUrl {
  * Read more: https://core.telegram.org/bots/api#switchinlinequerychosenchat
  */
 interface SwitchInlineQueryChosenChat {
-/* Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted */
+    /* Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted */
     query?: Array<string>
-/* Optional. True, if private chats with users can be chosen */
+    /* Optional. True, if private chats with users can be chosen */
     allow_user_chats?: Array<boolean>
-/* Optional. True, if private chats with bots can be chosen */
+    /* Optional. True, if private chats with bots can be chosen */
     allow_bot_chats?: Array<boolean>
-/* Optional. True, if group and supergroup chats can be chosen */
+    /* Optional. True, if group and supergroup chats can be chosen */
     allow_group_chats?: Array<boolean>
-/* Optional. True, if channel chats can be chosen */
+    /* Optional. True, if channel chats can be chosen */
     allow_channel_chats?: Array<boolean>
 }
 
@@ -1099,19 +1099,19 @@ interface SwitchInlineQueryChosenChat {
  * Read more: https://core.telegram.org/bots/api#callbackquery
  */
 interface CallbackQuery {
-/* Unique identifier for this query */
+    /* Unique identifier for this query */
     id: Array<string>
-/* Sender */
+    /* Sender */
     from: Array<User>
-/* Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in games. */
+    /* Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in games. */
     chat_instance: Array<string>
-/* Optional. Message with the callback button that originated the query. Note that message content and message date will not be available if the message is too old */
+    /* Optional. Message with the callback button that originated the query. Note that message content and message date will not be available if the message is too old */
     message?: Array<Message>
-/* Optional. Identifier of the message sent via the bot in inline mode, that originated the query. */
+    /* Optional. Identifier of the message sent via the bot in inline mode, that originated the query. */
     inline_message_id?: Array<string>
-/* Optional. Data associated with the callback button. Be aware that the message originated the query can contain no callback buttons with this data. */
+    /* Optional. Data associated with the callback button. Be aware that the message originated the query can contain no callback buttons with this data. */
     data?: Array<string>
-/* Optional. Short name of a Game to be returned, serves as the unique identifier for the game */
+    /* Optional. Short name of a Game to be returned, serves as the unique identifier for the game */
     game_short_name?: Array<string>
 }
 
@@ -1122,11 +1122,11 @@ interface CallbackQuery {
  * Read more: https://core.telegram.org/bots/api#forcereply
  */
 interface ForceReply {
-/* Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply' */
+    /* Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply' */
     force_reply: Array<boolean>
-/* Optional. The placeholder to be shown in the input field when the reply is active; 1-64 characters */
+    /* Optional. The placeholder to be shown in the input field when the reply is active; 1-64 characters */
     input_field_placeholder?: Array<string>
-/* Optional. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. */
+    /* Optional. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. */
     selective?: Array<boolean>
 }
 
@@ -1137,13 +1137,13 @@ interface ForceReply {
  * Read more: https://core.telegram.org/bots/api#chatphoto
  */
 interface ChatPhoto {
-/* File identifier of small (160x160) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed. */
+    /* File identifier of small (160x160) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed. */
     small_file_id: Array<string>
-/* Unique file identifier of small (160x160) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique file identifier of small (160x160) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     small_file_unique_id: Array<string>
-/* File identifier of big (640x640) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed. */
+    /* File identifier of big (640x640) chat photo. This file_id can be used only for photo download and only for as long as the photo is not changed. */
     big_file_id: Array<string>
-/* Unique file identifier of big (640x640) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique file identifier of big (640x640) chat photo, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     big_file_unique_id: Array<string>
 }
 
@@ -1154,23 +1154,23 @@ interface ChatPhoto {
  * Read more: https://core.telegram.org/bots/api#chatinvitelink
  */
 interface ChatInviteLink {
-/* The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with "...". */
+    /* The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with "...". */
     invite_link: Array<string>
-/* Creator of the link */
+    /* Creator of the link */
     creator: Array<User>
-/* True, if users joining the chat via the link need to be approved by chat administrators */
+    /* True, if users joining the chat via the link need to be approved by chat administrators */
     creates_join_request: Array<boolean>
-/* True, if the link is primary */
+    /* True, if the link is primary */
     is_primary: Array<boolean>
-/* True, if the link is revoked */
+    /* True, if the link is revoked */
     is_revoked: Array<boolean>
-/* Optional. Invite link name */
+    /* Optional. Invite link name */
     name?: Array<string>
-/* Optional. Point in time (Unix timestamp) when the link will expire or has been expired */
+    /* Optional. Point in time (Unix timestamp) when the link will expire or has been expired */
     expire_date?: Array<number>
-/* Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999 */
+    /* Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999 */
     member_limit?: Array<number>
-/* Optional. Number of pending join requests created using this link */
+    /* Optional. Number of pending join requests created using this link */
     pending_join_request_count?: Array<number>
 }
 
@@ -1181,29 +1181,29 @@ interface ChatInviteLink {
  * Read more: https://core.telegram.org/bots/api#chatadministratorrights
  */
 interface ChatAdministratorRights {
-/* True, if the user's presence in the chat is hidden */
+    /* True, if the user's presence in the chat is hidden */
     is_anonymous: Array<boolean>
-/* True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege */
+    /* True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege */
     can_manage_chat: Array<boolean>
-/* True, if the administrator can delete messages of other users */
+    /* True, if the administrator can delete messages of other users */
     can_delete_messages: Array<boolean>
-/* True, if the administrator can manage video chats */
+    /* True, if the administrator can manage video chats */
     can_manage_video_chats: Array<boolean>
-/* True, if the administrator can restrict, ban or unban chat members */
+    /* True, if the administrator can restrict, ban or unban chat members */
     can_restrict_members: Array<boolean>
-/* True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by the user) */
+    /* True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by the user) */
     can_promote_members: Array<boolean>
-/* True, if the user is allowed to change the chat title, photo and other settings */
+    /* True, if the user is allowed to change the chat title, photo and other settings */
     can_change_info: Array<boolean>
-/* True, if the user is allowed to invite new users to the chat */
+    /* True, if the user is allowed to invite new users to the chat */
     can_invite_users: Array<boolean>
-/* Optional. True, if the administrator can post in the channel; channels only */
+    /* Optional. True, if the administrator can post in the channel; channels only */
     can_post_messages?: Array<boolean>
-/* Optional. True, if the administrator can edit messages of other users and can pin messages; channels only */
+    /* Optional. True, if the administrator can edit messages of other users and can pin messages; channels only */
     can_edit_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to pin messages; groups and supergroups only */
+    /* Optional. True, if the user is allowed to pin messages; groups and supergroups only */
     can_pin_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only */
+    /* Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only */
     can_manage_topics?: Array<boolean>
 }
 
@@ -1230,13 +1230,13 @@ interface ChatMember {
  * Read more: https://core.telegram.org/bots/api#chatmemberowner
  */
 interface ChatMemberOwner {
-/* The member's status in the chat, always "creator" */
+    /* The member's status in the chat, always "creator" */
     status: Array<string>
-/* Information about the user */
+    /* Information about the user */
     user: Array<User>
-/* True, if the user's presence in the chat is hidden */
+    /* True, if the user's presence in the chat is hidden */
     is_anonymous: Array<boolean>
-/* Optional. Custom title for this user */
+    /* Optional. Custom title for this user */
     custom_title?: Array<string>
 }
 
@@ -1247,37 +1247,37 @@ interface ChatMemberOwner {
  * Read more: https://core.telegram.org/bots/api#chatmemberadministrator
  */
 interface ChatMemberAdministrator {
-/* The member's status in the chat, always "administrator" */
+    /* The member's status in the chat, always "administrator" */
     status: Array<string>
-/* Information about the user */
+    /* Information about the user */
     user: Array<User>
-/* True, if the bot is allowed to edit administrator privileges of that user */
+    /* True, if the bot is allowed to edit administrator privileges of that user */
     can_be_edited: Array<boolean>
-/* True, if the user's presence in the chat is hidden */
+    /* True, if the user's presence in the chat is hidden */
     is_anonymous: Array<boolean>
-/* True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege */
+    /* True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege */
     can_manage_chat: Array<boolean>
-/* True, if the administrator can delete messages of other users */
+    /* True, if the administrator can delete messages of other users */
     can_delete_messages: Array<boolean>
-/* True, if the administrator can manage video chats */
+    /* True, if the administrator can manage video chats */
     can_manage_video_chats: Array<boolean>
-/* True, if the administrator can restrict, ban or unban chat members */
+    /* True, if the administrator can restrict, ban or unban chat members */
     can_restrict_members: Array<boolean>
-/* True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by the user) */
+    /* True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by the user) */
     can_promote_members: Array<boolean>
-/* True, if the user is allowed to change the chat title, photo and other settings */
+    /* True, if the user is allowed to change the chat title, photo and other settings */
     can_change_info: Array<boolean>
-/* True, if the user is allowed to invite new users to the chat */
+    /* True, if the user is allowed to invite new users to the chat */
     can_invite_users: Array<boolean>
-/* Optional. True, if the administrator can post in the channel; channels only */
+    /* Optional. True, if the administrator can post in the channel; channels only */
     can_post_messages?: Array<boolean>
-/* Optional. True, if the administrator can edit messages of other users and can pin messages; channels only */
+    /* Optional. True, if the administrator can edit messages of other users and can pin messages; channels only */
     can_edit_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to pin messages; groups and supergroups only */
+    /* Optional. True, if the user is allowed to pin messages; groups and supergroups only */
     can_pin_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only */
+    /* Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only */
     can_manage_topics?: Array<boolean>
-/* Optional. Custom title for this user */
+    /* Optional. Custom title for this user */
     custom_title?: Array<string>
 }
 
@@ -1288,9 +1288,9 @@ interface ChatMemberAdministrator {
  * Read more: https://core.telegram.org/bots/api#chatmembermember
  */
 interface ChatMemberMember {
-/* The member's status in the chat, always "member" */
+    /* The member's status in the chat, always "member" */
     status: Array<string>
-/* Information about the user */
+    /* Information about the user */
     user: Array<User>
 }
 
@@ -1301,41 +1301,41 @@ interface ChatMemberMember {
  * Read more: https://core.telegram.org/bots/api#chatmemberrestricted
  */
 interface ChatMemberRestricted {
-/* The member's status in the chat, always "restricted" */
+    /* The member's status in the chat, always "restricted" */
     status: Array<string>
-/* Information about the user */
+    /* Information about the user */
     user: Array<User>
-/* True, if the user is a member of the chat at the moment of the request */
+    /* True, if the user is a member of the chat at the moment of the request */
     is_member: Array<boolean>
-/* True, if the user is allowed to send text messages, contacts, invoices, locations and venues */
+    /* True, if the user is allowed to send text messages, contacts, invoices, locations and venues */
     can_send_messages: Array<boolean>
-/* True, if the user is allowed to send audios */
+    /* True, if the user is allowed to send audios */
     can_send_audios: Array<boolean>
-/* True, if the user is allowed to send documents */
+    /* True, if the user is allowed to send documents */
     can_send_documents: Array<boolean>
-/* True, if the user is allowed to send photos */
+    /* True, if the user is allowed to send photos */
     can_send_photos: Array<boolean>
-/* True, if the user is allowed to send videos */
+    /* True, if the user is allowed to send videos */
     can_send_videos: Array<boolean>
-/* True, if the user is allowed to send video notes */
+    /* True, if the user is allowed to send video notes */
     can_send_video_notes: Array<boolean>
-/* True, if the user is allowed to send voice notes */
+    /* True, if the user is allowed to send voice notes */
     can_send_voice_notes: Array<boolean>
-/* True, if the user is allowed to send polls */
+    /* True, if the user is allowed to send polls */
     can_send_polls: Array<boolean>
-/* True, if the user is allowed to send animations, games, stickers and use inline bots */
+    /* True, if the user is allowed to send animations, games, stickers and use inline bots */
     can_send_other_messages: Array<boolean>
-/* True, if the user is allowed to add web page previews to their messages */
+    /* True, if the user is allowed to add web page previews to their messages */
     can_add_web_page_previews: Array<boolean>
-/* True, if the user is allowed to change the chat title, photo and other settings */
+    /* True, if the user is allowed to change the chat title, photo and other settings */
     can_change_info: Array<boolean>
-/* True, if the user is allowed to invite new users to the chat */
+    /* True, if the user is allowed to invite new users to the chat */
     can_invite_users: Array<boolean>
-/* True, if the user is allowed to pin messages */
+    /* True, if the user is allowed to pin messages */
     can_pin_messages: Array<boolean>
-/* True, if the user is allowed to create forum topics */
+    /* True, if the user is allowed to create forum topics */
     can_manage_topics: Array<boolean>
-/* Date when restrictions will be lifted for this user; unix time. If 0, then the user is restricted forever */
+    /* Date when restrictions will be lifted for this user; unix time. If 0, then the user is restricted forever */
     until_date: Array<number>
 }
 
@@ -1346,9 +1346,9 @@ interface ChatMemberRestricted {
  * Read more: https://core.telegram.org/bots/api#chatmemberleft
  */
 interface ChatMemberLeft {
-/* The member's status in the chat, always "left" */
+    /* The member's status in the chat, always "left" */
     status: Array<string>
-/* Information about the user */
+    /* Information about the user */
     user: Array<User>
 }
 
@@ -1359,11 +1359,11 @@ interface ChatMemberLeft {
  * Read more: https://core.telegram.org/bots/api#chatmemberbanned
  */
 interface ChatMemberBanned {
-/* The member's status in the chat, always "kicked" */
+    /* The member's status in the chat, always "kicked" */
     status: Array<string>
-/* Information about the user */
+    /* Information about the user */
     user: Array<User>
-/* Date when restrictions will be lifted for this user; unix time. If 0, then the user is banned forever */
+    /* Date when restrictions will be lifted for this user; unix time. If 0, then the user is banned forever */
     until_date: Array<number>
 }
 
@@ -1374,19 +1374,19 @@ interface ChatMemberBanned {
  * Read more: https://core.telegram.org/bots/api#chatmemberupdated
  */
 interface ChatMemberUpdated {
-/* Chat the user belongs to */
+    /* Chat the user belongs to */
     chat: Array<Chat>
-/* Performer of the action, which resulted in the change */
+    /* Performer of the action, which resulted in the change */
     from: Array<User>
-/* Date the change was done in Unix time */
+    /* Date the change was done in Unix time */
     date: Array<number>
-/* Previous information about the chat member */
+    /* Previous information about the chat member */
     old_chat_member: Array<ChatMember>
-/* New information about the chat member */
+    /* New information about the chat member */
     new_chat_member: Array<ChatMember>
-/* Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only. */
+    /* Optional. Chat invite link, which was used by the user to join the chat; for joining by invite link events only. */
     invite_link?: Array<ChatInviteLink>
-/* Optional. True, if the user joined the chat via a chat folder invite link */
+    /* Optional. True, if the user joined the chat via a chat folder invite link */
     via_chat_folder_invite_link?: Array<boolean>
 }
 
@@ -1397,17 +1397,17 @@ interface ChatMemberUpdated {
  * Read more: https://core.telegram.org/bots/api#chatjoinrequest
  */
 interface ChatJoinRequest {
-/* Chat to which the request was sent */
+    /* Chat to which the request was sent */
     chat: Array<Chat>
-/* User that sent the join request */
+    /* User that sent the join request */
     from: Array<User>
-/* Identifier of a private chat with the user who sent the join request. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot can use this identifier for 24 hours to send messages until the join request is processed, assuming no other administrator contacted the user. */
+    /* Identifier of a private chat with the user who sent the join request. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier. The bot can use this identifier for 24 hours to send messages until the join request is processed, assuming no other administrator contacted the user. */
     user_chat_id: Array<number>
-/* Date the request was sent in Unix time */
+    /* Date the request was sent in Unix time */
     date: Array<number>
-/* Optional. Bio of the user. */
+    /* Optional. Bio of the user. */
     bio?: Array<string>
-/* Optional. Chat invite link that was used by the user to send the join request */
+    /* Optional. Chat invite link that was used by the user to send the join request */
     invite_link?: Array<ChatInviteLink>
 }
 
@@ -1418,33 +1418,33 @@ interface ChatJoinRequest {
  * Read more: https://core.telegram.org/bots/api#chatpermissions
  */
 interface ChatPermissions {
-/* Optional. True, if the user is allowed to send text messages, contacts, invoices, locations and venues */
+    /* Optional. True, if the user is allowed to send text messages, contacts, invoices, locations and venues */
     can_send_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to send audios */
+    /* Optional. True, if the user is allowed to send audios */
     can_send_audios?: Array<boolean>
-/* Optional. True, if the user is allowed to send documents */
+    /* Optional. True, if the user is allowed to send documents */
     can_send_documents?: Array<boolean>
-/* Optional. True, if the user is allowed to send photos */
+    /* Optional. True, if the user is allowed to send photos */
     can_send_photos?: Array<boolean>
-/* Optional. True, if the user is allowed to send videos */
+    /* Optional. True, if the user is allowed to send videos */
     can_send_videos?: Array<boolean>
-/* Optional. True, if the user is allowed to send video notes */
+    /* Optional. True, if the user is allowed to send video notes */
     can_send_video_notes?: Array<boolean>
-/* Optional. True, if the user is allowed to send voice notes */
+    /* Optional. True, if the user is allowed to send voice notes */
     can_send_voice_notes?: Array<boolean>
-/* Optional. True, if the user is allowed to send polls */
+    /* Optional. True, if the user is allowed to send polls */
     can_send_polls?: Array<boolean>
-/* Optional. True, if the user is allowed to send animations, games, stickers and use inline bots */
+    /* Optional. True, if the user is allowed to send animations, games, stickers and use inline bots */
     can_send_other_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to add web page previews to their messages */
+    /* Optional. True, if the user is allowed to add web page previews to their messages */
     can_add_web_page_previews?: Array<boolean>
-/* Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups */
+    /* Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups */
     can_change_info?: Array<boolean>
-/* Optional. True, if the user is allowed to invite new users to the chat */
+    /* Optional. True, if the user is allowed to invite new users to the chat */
     can_invite_users?: Array<boolean>
-/* Optional. True, if the user is allowed to pin messages. Ignored in public supergroups */
+    /* Optional. True, if the user is allowed to pin messages. Ignored in public supergroups */
     can_pin_messages?: Array<boolean>
-/* Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages */
+    /* Optional. True, if the user is allowed to create forum topics. If omitted defaults to the value of can_pin_messages */
     can_manage_topics?: Array<boolean>
 }
 
@@ -1455,9 +1455,9 @@ interface ChatPermissions {
  * Read more: https://core.telegram.org/bots/api#chatlocation
  */
 interface ChatLocation {
-/* The location to which the supergroup is connected. Can't be a live location. */
+    /* The location to which the supergroup is connected. Can't be a live location. */
     location: Array<Location>
-/* Location address; 1-64 characters, as defined by the chat owner */
+    /* Location address; 1-64 characters, as defined by the chat owner */
     address: Array<string>
 }
 
@@ -1468,13 +1468,13 @@ interface ChatLocation {
  * Read more: https://core.telegram.org/bots/api#forumtopic
  */
 interface ForumTopic {
-/* Unique identifier of the forum topic */
+    /* Unique identifier of the forum topic */
     message_thread_id: Array<number>
-/* Name of the topic */
+    /* Name of the topic */
     name: Array<string>
-/* Color of the topic icon in RGB format */
+    /* Color of the topic icon in RGB format */
     icon_color: Array<number>
-/* Optional. Unique identifier of the custom emoji shown as the topic icon */
+    /* Optional. Unique identifier of the custom emoji shown as the topic icon */
     icon_custom_emoji_id?: Array<string>
 }
 
@@ -1485,9 +1485,9 @@ interface ForumTopic {
  * Read more: https://core.telegram.org/bots/api#botcommand
  */
 interface BotCommand {
-/* Text of the command; 1-32 characters. Can contain only lowercase English letters, digits and underscores. */
+    /* Text of the command; 1-32 characters. Can contain only lowercase English letters, digits and underscores. */
     command: Array<string>
-/* Description of the command; 1-256 characters. */
+    /* Description of the command; 1-256 characters. */
     description: Array<string>
 }
 
@@ -1515,7 +1515,7 @@ interface BotCommandScope {
  * Read more: https://core.telegram.org/bots/api#botcommandscopedefault
  */
 interface BotCommandScopeDefault {
-/* Scope type, must be default */
+    /* Scope type, must be default */
     type: Array<string>
 }
 
@@ -1526,7 +1526,7 @@ interface BotCommandScopeDefault {
  * Read more: https://core.telegram.org/bots/api#botcommandscopeallprivatechats
  */
 interface BotCommandScopeAllPrivateChats {
-/* Scope type, must be all_private_chats */
+    /* Scope type, must be all_private_chats */
     type: Array<string>
 }
 
@@ -1537,7 +1537,7 @@ interface BotCommandScopeAllPrivateChats {
  * Read more: https://core.telegram.org/bots/api#botcommandscopeallgroupchats
  */
 interface BotCommandScopeAllGroupChats {
-/* Scope type, must be all_group_chats */
+    /* Scope type, must be all_group_chats */
     type: Array<string>
 }
 
@@ -1548,7 +1548,7 @@ interface BotCommandScopeAllGroupChats {
  * Read more: https://core.telegram.org/bots/api#botcommandscopeallchatadministrators
  */
 interface BotCommandScopeAllChatAdministrators {
-/* Scope type, must be all_chat_administrators */
+    /* Scope type, must be all_chat_administrators */
     type: Array<string>
 }
 
@@ -1559,9 +1559,9 @@ interface BotCommandScopeAllChatAdministrators {
  * Read more: https://core.telegram.org/bots/api#botcommandscopechat
  */
 interface BotCommandScopeChat {
-/* Scope type, must be chat */
+    /* Scope type, must be chat */
     type: Array<string>
-/* Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
+    /* Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Array<number> | Array<string>
 }
 
@@ -1572,9 +1572,9 @@ interface BotCommandScopeChat {
  * Read more: https://core.telegram.org/bots/api#botcommandscopechatadministrators
  */
 interface BotCommandScopeChatAdministrators {
-/* Scope type, must be chat_administrators */
+    /* Scope type, must be chat_administrators */
     type: Array<string>
-/* Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
+    /* Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Array<number> | Array<string>
 }
 
@@ -1585,11 +1585,11 @@ interface BotCommandScopeChatAdministrators {
  * Read more: https://core.telegram.org/bots/api#botcommandscopechatmember
  */
 interface BotCommandScopeChatMember {
-/* Scope type, must be chat_member */
+    /* Scope type, must be chat_member */
     type: Array<string>
-/* Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
+    /* Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) */
     chat_id: Array<number> | Array<string>
-/* Unique identifier of the target user */
+    /* Unique identifier of the target user */
     user_id: Array<number>
 }
 
@@ -1600,7 +1600,7 @@ interface BotCommandScopeChatMember {
  * Read more: https://core.telegram.org/bots/api#botname
  */
 interface BotName {
-/* The bot's name */
+    /* The bot's name */
     name: Array<string>
 }
 
@@ -1611,7 +1611,7 @@ interface BotName {
  * Read more: https://core.telegram.org/bots/api#botdescription
  */
 interface BotDescription {
-/* The bot's description */
+    /* The bot's description */
     description: Array<string>
 }
 
@@ -1622,7 +1622,7 @@ interface BotDescription {
  * Read more: https://core.telegram.org/bots/api#botshortdescription
  */
 interface BotShortDescription {
-/* The bot's short description */
+    /* The bot's short description */
     short_description: Array<string>
 }
 
@@ -1647,7 +1647,7 @@ interface MenuButton {
  * Read more: https://core.telegram.org/bots/api#menubuttoncommands
  */
 interface MenuButtonCommands {
-/* Type of the button, must be commands */
+    /* Type of the button, must be commands */
     type: Array<string>
 }
 
@@ -1658,11 +1658,11 @@ interface MenuButtonCommands {
  * Read more: https://core.telegram.org/bots/api#menubuttonwebapp
  */
 interface MenuButtonWebApp {
-/* Type of the button, must be web_app */
+    /* Type of the button, must be web_app */
     type: Array<string>
-/* Text on the button */
+    /* Text on the button */
     text: Array<string>
-/* Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. */
+    /* Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. */
     web_app: Array<WebAppInfo>
 }
 
@@ -1673,7 +1673,7 @@ interface MenuButtonWebApp {
  * Read more: https://core.telegram.org/bots/api#menubuttondefault
  */
 interface MenuButtonDefault {
-/* Type of the button, must be default */
+    /* Type of the button, must be default */
     type: Array<string>
 }
 
@@ -1684,9 +1684,9 @@ interface MenuButtonDefault {
  * Read more: https://core.telegram.org/bots/api#responseparameters
  */
 interface ResponseParameters {
-/* Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
+    /* Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. */
     migrate_to_chat_id?: Array<number>
-/* Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated */
+    /* Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated */
     retry_after?: Array<number>
 }
 
@@ -1712,17 +1712,17 @@ interface InputMedia {
  * Read more: https://core.telegram.org/bots/api#inputmediaphoto
  */
 interface InputMediaPhoto {
-/* Type of the result, must be photo */
+    /* Type of the result, must be photo */
     type: Array<string>
-/* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     media: Array<string>
-/* Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the photo caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the photo caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Pass True if the photo needs to be covered with a spoiler animation */
+    /* Optional. Pass True if the photo needs to be covered with a spoiler animation */
     has_spoiler?: Array<boolean>
 }
 
@@ -1733,27 +1733,27 @@ interface InputMediaPhoto {
  * Read more: https://core.telegram.org/bots/api#inputmediavideo
  */
 interface InputMediaVideo {
-/* Type of the result, must be video */
+    /* Type of the result, must be video */
     type: Array<string>
-/* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     media: Array<string>
-/* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     thumbnail?: Array<InputFile> | Array<string>
-/* Optional. Caption of the video to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the video to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the video caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the video caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Video width */
+    /* Optional. Video width */
     width?: Array<number>
-/* Optional. Video height */
+    /* Optional. Video height */
     height?: Array<number>
-/* Optional. Video duration in seconds */
+    /* Optional. Video duration in seconds */
     duration?: Array<number>
-/* Optional. Pass True if the uploaded video is suitable for streaming */
+    /* Optional. Pass True if the uploaded video is suitable for streaming */
     supports_streaming?: Array<boolean>
-/* Optional. Pass True if the video needs to be covered with a spoiler animation */
+    /* Optional. Pass True if the video needs to be covered with a spoiler animation */
     has_spoiler?: Array<boolean>
 }
 
@@ -1764,25 +1764,25 @@ interface InputMediaVideo {
  * Read more: https://core.telegram.org/bots/api#inputmediaanimation
  */
 interface InputMediaAnimation {
-/* Type of the result, must be animation */
+    /* Type of the result, must be animation */
     type: Array<string>
-/* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     media: Array<string>
-/* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     thumbnail?: Array<InputFile> | Array<string>
-/* Optional. Caption of the animation to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the animation to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the animation caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the animation caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Animation width */
+    /* Optional. Animation width */
     width?: Array<number>
-/* Optional. Animation height */
+    /* Optional. Animation height */
     height?: Array<number>
-/* Optional. Animation duration in seconds */
+    /* Optional. Animation duration in seconds */
     duration?: Array<number>
-/* Optional. Pass True if the animation needs to be covered with a spoiler animation */
+    /* Optional. Pass True if the animation needs to be covered with a spoiler animation */
     has_spoiler?: Array<boolean>
 }
 
@@ -1793,23 +1793,23 @@ interface InputMediaAnimation {
  * Read more: https://core.telegram.org/bots/api#inputmediaaudio
  */
 interface InputMediaAudio {
-/* Type of the result, must be audio */
+    /* Type of the result, must be audio */
     type: Array<string>
-/* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     media: Array<string>
-/* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     thumbnail?: Array<InputFile> | Array<string>
-/* Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the audio caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the audio caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Duration of the audio in seconds */
+    /* Optional. Duration of the audio in seconds */
     duration?: Array<number>
-/* Optional. Performer of the audio */
+    /* Optional. Performer of the audio */
     performer?: Array<string>
-/* Optional. Title of the audio */
+    /* Optional. Title of the audio */
     title?: Array<string>
 }
 
@@ -1820,19 +1820,19 @@ interface InputMediaAudio {
  * Read more: https://core.telegram.org/bots/api#inputmediadocument
  */
 interface InputMediaDocument {
-/* Type of the result, must be document */
+    /* Type of the result, must be document */
     type: Array<string>
-/* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     media: Array<string>
-/* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     thumbnail?: Array<InputFile> | Array<string>
-/* Optional. Caption of the document to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the document to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the document caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the document caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always True, if the document is sent as part of an album. */
+    /* Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data. Always True, if the document is sent as part of an album. */
     disable_content_type_detection?: Array<boolean>
 }
 
@@ -1853,35 +1853,35 @@ interface InputFile {
  * Read more: https://core.telegram.org/bots/api#sticker
  */
 interface Sticker {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* Type of the sticker, currently one of "regular", "mask", "custom_emoji". The type of the sticker is independent from its format, which is determined by the fields is_animated and is_video. */
+    /* Type of the sticker, currently one of "regular", "mask", "custom_emoji". The type of the sticker is independent from its format, which is determined by the fields is_animated and is_video. */
     type: Array<string>
-/* Sticker width */
+    /* Sticker width */
     width: Array<number>
-/* Sticker height */
+    /* Sticker height */
     height: Array<number>
-/* True, if the sticker is animated */
+    /* True, if the sticker is animated */
     is_animated: Array<boolean>
-/* True, if the sticker is a video sticker */
+    /* True, if the sticker is a video sticker */
     is_video: Array<boolean>
-/* Optional. Sticker thumbnail in the .WEBP or .JPG format */
+    /* Optional. Sticker thumbnail in the .WEBP or .JPG format */
     thumbnail?: Array<PhotoSize>
-/* Optional. Emoji associated with the sticker */
+    /* Optional. Emoji associated with the sticker */
     emoji?: Array<string>
-/* Optional. Name of the sticker set to which the sticker belongs */
+    /* Optional. Name of the sticker set to which the sticker belongs */
     set_name?: Array<string>
-/* Optional. For premium regular stickers, premium animation for the sticker */
+    /* Optional. For premium regular stickers, premium animation for the sticker */
     premium_animation?: Array<File>
-/* Optional. For mask stickers, the position where the mask should be placed */
+    /* Optional. For mask stickers, the position where the mask should be placed */
     mask_position?: Array<MaskPosition>
-/* Optional. For custom emoji stickers, unique identifier of the custom emoji */
+    /* Optional. For custom emoji stickers, unique identifier of the custom emoji */
     custom_emoji_id?: Array<string>
-/* Optional. True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places */
+    /* Optional. True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places */
     needs_repainting?: Array<boolean>
-/* Optional. File size in bytes */
+    /* Optional. File size in bytes */
     file_size?: Array<number>
 }
 
@@ -1892,19 +1892,19 @@ interface Sticker {
  * Read more: https://core.telegram.org/bots/api#stickerset
  */
 interface StickerSet {
-/* Sticker set name */
+    /* Sticker set name */
     name: Array<string>
-/* Sticker set title */
+    /* Sticker set title */
     title: Array<string>
-/* Type of stickers in the set, currently one of "regular", "mask", "custom_emoji" */
+    /* Type of stickers in the set, currently one of "regular", "mask", "custom_emoji" */
     sticker_type: Array<string>
-/* True, if the sticker set contains animated stickers */
+    /* True, if the sticker set contains animated stickers */
     is_animated: Array<boolean>
-/* True, if the sticker set contains video stickers */
+    /* True, if the sticker set contains video stickers */
     is_video: Array<boolean>
-/* List of all set stickers */
+    /* List of all set stickers */
     stickers: Array<Array<Sticker>>
-/* Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format */
+    /* Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format */
     thumbnail?: Array<PhotoSize>
 }
 
@@ -1915,13 +1915,13 @@ interface StickerSet {
  * Read more: https://core.telegram.org/bots/api#maskposition
  */
 interface MaskPosition {
-/* The part of the face relative to which the mask should be placed. One of "forehead", "eyes", "mouth", or "chin". */
+    /* The part of the face relative to which the mask should be placed. One of "forehead", "eyes", "mouth", or "chin". */
     point: Array<string>
-/* Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position. */
+    /* Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position. */
     x_shift: Array<number>
-/* Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position. */
+    /* Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position. */
     y_shift: Array<number>
-/* Mask scaling coefficient. For example, 2.0 means double size. */
+    /* Mask scaling coefficient. For example, 2.0 means double size. */
     scale: Array<number>
 }
 
@@ -1932,13 +1932,13 @@ interface MaskPosition {
  * Read more: https://core.telegram.org/bots/api#inputsticker
  */
 interface InputSticker {
-/* The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, upload a new one using multipart/form-data, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. Animated and video stickers can't be uploaded via HTTP URL. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
+    /* The added sticker. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, upload a new one using multipart/form-data, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name. Animated and video stickers can't be uploaded via HTTP URL. More information on Sending Files: https://core.telegram.org/bots/api#sending-files */
     sticker: Array<InputFile> | Array<string>
-/* List of 1-20 emoji associated with the sticker */
+    /* List of 1-20 emoji associated with the sticker */
     emoji_list: Array<Array<string>>
-/* Optional. Position where the mask should be placed on faces. For "mask" stickers only. */
+    /* Optional. Position where the mask should be placed on faces. For "mask" stickers only. */
     mask_position?: Array<MaskPosition>
-/* Optional. List of 0-20 search keywords for the sticker with total length of up to 64 characters. For "regular" and "custom_emoji" stickers only. */
+    /* Optional. List of 0-20 search keywords for the sticker with total length of up to 64 characters. For "regular" and "custom_emoji" stickers only. */
     keywords?: Array<Array<string>>
 }
 
@@ -1949,17 +1949,17 @@ interface InputSticker {
  * Read more: https://core.telegram.org/bots/api#inlinequery
  */
 interface InlineQuery {
-/* Unique identifier for this query */
+    /* Unique identifier for this query */
     id: Array<string>
-/* Sender */
+    /* Sender */
     from: Array<User>
-/* Text of the query (up to 256 characters) */
+    /* Text of the query (up to 256 characters) */
     query: Array<string>
-/* Offset of the results to be returned, can be controlled by the bot */
+    /* Offset of the results to be returned, can be controlled by the bot */
     offset: Array<string>
-/* Optional. Type of the chat from which the inline query was sent. Can be either "sender" for a private chat with the inline query sender, "private", "group", "supergroup", or "channel". The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat */
+    /* Optional. Type of the chat from which the inline query was sent. Can be either "sender" for a private chat with the inline query sender, "private", "group", "supergroup", or "channel". The chat type should be always known for requests sent from official clients and most third-party clients, unless the request was sent from a secret chat */
     chat_type?: Array<string>
-/* Optional. Sender location, only for bots that request user location */
+    /* Optional. Sender location, only for bots that request user location */
     location?: Array<Location>
 }
 
@@ -1970,11 +1970,11 @@ interface InlineQuery {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultsbutton
  */
 interface InlineQueryResultsButton {
-/* Label text on the button */
+    /* Label text on the button */
     text: Array<string>
-/* Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to switch back to the inline mode using the method switchInlineQuery inside the Web App. */
+    /* Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to switch back to the inline mode using the method switchInlineQuery inside the Web App. */
     web_app?: Array<WebAppInfo>
-/* Optional. Deep-linking parameter for the /start message sent to the bot when a user presses the button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed. Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer a switch_inline button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities. */
+    /* Optional. Deep-linking parameter for the /start message sent to the bot when a user presses the button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed. Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer a switch_inline button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities. */
     start_parameter?: Array<string>
 }
 
@@ -2016,27 +2016,27 @@ interface InlineQueryResult {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultarticle
  */
 interface InlineQueryResultArticle {
-/* Type of the result, must be article */
+    /* Type of the result, must be article */
     type: Array<string>
-/* Unique identifier for this result, 1-64 Bytes */
+    /* Unique identifier for this result, 1-64 Bytes */
     id: Array<string>
-/* Title of the result */
+    /* Title of the result */
     title: Array<string>
-/* Content of the message to be sent */
+    /* Content of the message to be sent */
     input_message_content: Array<InputMessageContent>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. URL of the result */
+    /* Optional. URL of the result */
     url?: Array<string>
-/* Optional. Pass True if you don't want the URL to be shown in the message */
+    /* Optional. Pass True if you don't want the URL to be shown in the message */
     hide_url?: Array<boolean>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Url of the thumbnail for the result */
+    /* Optional. Url of the thumbnail for the result */
     thumbnail_url?: Array<string>
-/* Optional. Thumbnail width */
+    /* Optional. Thumbnail width */
     thumbnail_width?: Array<number>
-/* Optional. Thumbnail height */
+    /* Optional. Thumbnail height */
     thumbnail_height?: Array<number>
 }
 
@@ -2047,31 +2047,31 @@ interface InlineQueryResultArticle {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultphoto
  */
 interface InlineQueryResultPhoto {
-/* Type of the result, must be photo */
+    /* Type of the result, must be photo */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB */
+    /* A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB */
     photo_url: Array<string>
-/* URL of the thumbnail for the photo */
+    /* URL of the thumbnail for the photo */
     thumbnail_url: Array<string>
-/* Optional. Width of the photo */
+    /* Optional. Width of the photo */
     photo_width?: Array<number>
-/* Optional. Height of the photo */
+    /* Optional. Height of the photo */
     photo_height?: Array<number>
-/* Optional. Title for the result */
+    /* Optional. Title for the result */
     title?: Array<string>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the photo caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the photo caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the photo */
+    /* Optional. Content of the message to be sent instead of the photo */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2082,33 +2082,33 @@ interface InlineQueryResultPhoto {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultgif
  */
 interface InlineQueryResultGif {
-/* Type of the result, must be gif */
+    /* Type of the result, must be gif */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid URL for the GIF file. File size must not exceed 1MB */
+    /* A valid URL for the GIF file. File size must not exceed 1MB */
     gif_url: Array<string>
-/* URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result */
+    /* URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result */
     thumbnail_url: Array<string>
-/* Optional. Width of the GIF */
+    /* Optional. Width of the GIF */
     gif_width?: Array<number>
-/* Optional. Height of the GIF */
+    /* Optional. Height of the GIF */
     gif_height?: Array<number>
-/* Optional. Duration of the GIF in seconds */
+    /* Optional. Duration of the GIF in seconds */
     gif_duration?: Array<number>
-/* Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg" */
+    /* Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg" */
     thumbnail_mime_type?: Array<string>
-/* Optional. Title for the result */
+    /* Optional. Title for the result */
     title?: Array<string>
-/* Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the GIF animation */
+    /* Optional. Content of the message to be sent instead of the GIF animation */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2119,33 +2119,33 @@ interface InlineQueryResultGif {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultmpeg4gif
  */
 interface InlineQueryResultMpeg4Gif {
-/* Type of the result, must be mpeg4_gif */
+    /* Type of the result, must be mpeg4_gif */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid URL for the MPEG4 file. File size must not exceed 1MB */
+    /* A valid URL for the MPEG4 file. File size must not exceed 1MB */
     mpeg4_url: Array<string>
-/* URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result */
+    /* URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result */
     thumbnail_url: Array<string>
-/* Optional. Video width */
+    /* Optional. Video width */
     mpeg4_width?: Array<number>
-/* Optional. Video height */
+    /* Optional. Video height */
     mpeg4_height?: Array<number>
-/* Optional. Video duration in seconds */
+    /* Optional. Video duration in seconds */
     mpeg4_duration?: Array<number>
-/* Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg" */
+    /* Optional. MIME type of the thumbnail, must be one of "image/jpeg", "image/gif", or "video/mp4". Defaults to "image/jpeg" */
     thumbnail_mime_type?: Array<string>
-/* Optional. Title for the result */
+    /* Optional. Title for the result */
     title?: Array<string>
-/* Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the video animation */
+    /* Optional. Content of the message to be sent instead of the video animation */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2156,35 +2156,35 @@ interface InlineQueryResultMpeg4Gif {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultvideo
  */
 interface InlineQueryResultVideo {
-/* Type of the result, must be video */
+    /* Type of the result, must be video */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid URL for the embedded video player or video file */
+    /* A valid URL for the embedded video player or video file */
     video_url: Array<string>
-/* MIME type of the content of the video URL, "text/html" or "video/mp4" */
+    /* MIME type of the content of the video URL, "text/html" or "video/mp4" */
     mime_type: Array<string>
-/* URL of the thumbnail (JPEG only) for the video */
+    /* URL of the thumbnail (JPEG only) for the video */
     thumbnail_url: Array<string>
-/* Title for the result */
+    /* Title for the result */
     title: Array<string>
-/* Optional. Caption of the video to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the video to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the video caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the video caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Video width */
+    /* Optional. Video width */
     video_width?: Array<number>
-/* Optional. Video height */
+    /* Optional. Video height */
     video_height?: Array<number>
-/* Optional. Video duration in seconds */
+    /* Optional. Video duration in seconds */
     video_duration?: Array<number>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video). */
+    /* Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video). */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2196,27 +2196,27 @@ interface InlineQueryResultVideo {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultaudio
  */
 interface InlineQueryResultAudio {
-/* Type of the result, must be audio */
+    /* Type of the result, must be audio */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid URL for the audio file */
+    /* A valid URL for the audio file */
     audio_url: Array<string>
-/* Title */
+    /* Title */
     title: Array<string>
-/* Optional. Caption, 0-1024 characters after entities parsing */
+    /* Optional. Caption, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the audio caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the audio caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Performer */
+    /* Optional. Performer */
     performer?: Array<string>
-/* Optional. Audio duration in seconds */
+    /* Optional. Audio duration in seconds */
     audio_duration?: Array<number>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the audio */
+    /* Optional. Content of the message to be sent instead of the audio */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2228,25 +2228,25 @@ interface InlineQueryResultAudio {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultvoice
  */
 interface InlineQueryResultVoice {
-/* Type of the result, must be voice */
+    /* Type of the result, must be voice */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid URL for the voice recording */
+    /* A valid URL for the voice recording */
     voice_url: Array<string>
-/* Recording title */
+    /* Recording title */
     title: Array<string>
-/* Optional. Caption, 0-1024 characters after entities parsing */
+    /* Optional. Caption, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the voice message caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the voice message caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Recording duration in seconds */
+    /* Optional. Recording duration in seconds */
     voice_duration?: Array<number>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the voice recording */
+    /* Optional. Content of the message to be sent instead of the voice recording */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2258,33 +2258,33 @@ interface InlineQueryResultVoice {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultdocument
  */
 interface InlineQueryResultDocument {
-/* Type of the result, must be document */
+    /* Type of the result, must be document */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* Title for the result */
+    /* Title for the result */
     title: Array<string>
-/* A valid URL for the file */
+    /* A valid URL for the file */
     document_url: Array<string>
-/* MIME type of the content of the file, either "application/pdf" or "application/zip" */
+    /* MIME type of the content of the file, either "application/pdf" or "application/zip" */
     mime_type: Array<string>
-/* Optional. Caption of the document to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the document to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the document caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the document caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the file */
+    /* Optional. Content of the message to be sent instead of the file */
     input_message_content?: Array<InputMessageContent>
-/* Optional. URL of the thumbnail (JPEG only) for the file */
+    /* Optional. URL of the thumbnail (JPEG only) for the file */
     thumbnail_url?: Array<string>
-/* Optional. Thumbnail width */
+    /* Optional. Thumbnail width */
     thumbnail_width?: Array<number>
-/* Optional. Thumbnail height */
+    /* Optional. Thumbnail height */
     thumbnail_height?: Array<number>
 }
 
@@ -2296,33 +2296,33 @@ interface InlineQueryResultDocument {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultlocation
  */
 interface InlineQueryResultLocation {
-/* Type of the result, must be location */
+    /* Type of the result, must be location */
     type: Array<string>
-/* Unique identifier for this result, 1-64 Bytes */
+    /* Unique identifier for this result, 1-64 Bytes */
     id: Array<string>
-/* Location latitude in degrees */
+    /* Location latitude in degrees */
     latitude: Array<number>
-/* Location longitude in degrees */
+    /* Location longitude in degrees */
     longitude: Array<number>
-/* Location title */
+    /* Location title */
     title: Array<string>
-/* Optional. The radius of uncertainty for the location, measured in meters; 0-1500 */
+    /* Optional. The radius of uncertainty for the location, measured in meters; 0-1500 */
     horizontal_accuracy?: Array<number>
-/* Optional. Period in seconds for which the location can be updated, should be between 60 and 86400. */
+    /* Optional. Period in seconds for which the location can be updated, should be between 60 and 86400. */
     live_period?: Array<number>
-/* Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. */
+    /* Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. */
     heading?: Array<number>
-/* Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. */
+    /* Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. */
     proximity_alert_radius?: Array<number>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the location */
+    /* Optional. Content of the message to be sent instead of the location */
     input_message_content?: Array<InputMessageContent>
-/* Optional. Url of the thumbnail for the result */
+    /* Optional. Url of the thumbnail for the result */
     thumbnail_url?: Array<string>
-/* Optional. Thumbnail width */
+    /* Optional. Thumbnail width */
     thumbnail_width?: Array<number>
-/* Optional. Thumbnail height */
+    /* Optional. Thumbnail height */
     thumbnail_height?: Array<number>
 }
 
@@ -2334,35 +2334,35 @@ interface InlineQueryResultLocation {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultvenue
  */
 interface InlineQueryResultVenue {
-/* Type of the result, must be venue */
+    /* Type of the result, must be venue */
     type: Array<string>
-/* Unique identifier for this result, 1-64 Bytes */
+    /* Unique identifier for this result, 1-64 Bytes */
     id: Array<string>
-/* Latitude of the venue location in degrees */
+    /* Latitude of the venue location in degrees */
     latitude: Array<number>
-/* Longitude of the venue location in degrees */
+    /* Longitude of the venue location in degrees */
     longitude: Array<number>
-/* Title of the venue */
+    /* Title of the venue */
     title: Array<string>
-/* Address of the venue */
+    /* Address of the venue */
     address: Array<string>
-/* Optional. Foursquare identifier of the venue if known */
+    /* Optional. Foursquare identifier of the venue if known */
     foursquare_id?: Array<string>
-/* Optional. Foursquare type of the venue, if known. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) */
+    /* Optional. Foursquare type of the venue, if known. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) */
     foursquare_type?: Array<string>
-/* Optional. Google Places identifier of the venue */
+    /* Optional. Google Places identifier of the venue */
     google_place_id?: Array<string>
-/* Optional. Google Places type of the venue. (See supported types.) */
+    /* Optional. Google Places type of the venue. (See supported types.) */
     google_place_type?: Array<string>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the venue */
+    /* Optional. Content of the message to be sent instead of the venue */
     input_message_content?: Array<InputMessageContent>
-/* Optional. Url of the thumbnail for the result */
+    /* Optional. Url of the thumbnail for the result */
     thumbnail_url?: Array<string>
-/* Optional. Thumbnail width */
+    /* Optional. Thumbnail width */
     thumbnail_width?: Array<number>
-/* Optional. Thumbnail height */
+    /* Optional. Thumbnail height */
     thumbnail_height?: Array<number>
 }
 
@@ -2374,27 +2374,27 @@ interface InlineQueryResultVenue {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcontact
  */
 interface InlineQueryResultContact {
-/* Type of the result, must be contact */
+    /* Type of the result, must be contact */
     type: Array<string>
-/* Unique identifier for this result, 1-64 Bytes */
+    /* Unique identifier for this result, 1-64 Bytes */
     id: Array<string>
-/* Contact's phone number */
+    /* Contact's phone number */
     phone_number: Array<string>
-/* Contact's first name */
+    /* Contact's first name */
     first_name: Array<string>
-/* Optional. Contact's last name */
+    /* Optional. Contact's last name */
     last_name?: Array<string>
-/* Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes */
+    /* Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes */
     vcard?: Array<string>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the contact */
+    /* Optional. Content of the message to be sent instead of the contact */
     input_message_content?: Array<InputMessageContent>
-/* Optional. Url of the thumbnail for the result */
+    /* Optional. Url of the thumbnail for the result */
     thumbnail_url?: Array<string>
-/* Optional. Thumbnail width */
+    /* Optional. Thumbnail width */
     thumbnail_width?: Array<number>
-/* Optional. Thumbnail height */
+    /* Optional. Thumbnail height */
     thumbnail_height?: Array<number>
 }
 
@@ -2406,13 +2406,13 @@ interface InlineQueryResultContact {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultgame
  */
 interface InlineQueryResultGame {
-/* Type of the result, must be game */
+    /* Type of the result, must be game */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* Short name of the game */
+    /* Short name of the game */
     game_short_name: Array<string>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
 }
 
@@ -2423,25 +2423,25 @@ interface InlineQueryResultGame {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedphoto
  */
 interface InlineQueryResultCachedPhoto {
-/* Type of the result, must be photo */
+    /* Type of the result, must be photo */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier of the photo */
+    /* A valid file identifier of the photo */
     photo_file_id: Array<string>
-/* Optional. Title for the result */
+    /* Optional. Title for the result */
     title?: Array<string>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the photo caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the photo caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the photo */
+    /* Optional. Content of the message to be sent instead of the photo */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2452,23 +2452,23 @@ interface InlineQueryResultCachedPhoto {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedgif
  */
 interface InlineQueryResultCachedGif {
-/* Type of the result, must be gif */
+    /* Type of the result, must be gif */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier for the GIF file */
+    /* A valid file identifier for the GIF file */
     gif_file_id: Array<string>
-/* Optional. Title for the result */
+    /* Optional. Title for the result */
     title?: Array<string>
-/* Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the GIF animation */
+    /* Optional. Content of the message to be sent instead of the GIF animation */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2479,23 +2479,23 @@ interface InlineQueryResultCachedGif {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedmpeg4gif
  */
 interface InlineQueryResultCachedMpeg4Gif {
-/* Type of the result, must be mpeg4_gif */
+    /* Type of the result, must be mpeg4_gif */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier for the MPEG4 file */
+    /* A valid file identifier for the MPEG4 file */
     mpeg4_file_id: Array<string>
-/* Optional. Title for the result */
+    /* Optional. Title for the result */
     title?: Array<string>
-/* Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the video animation */
+    /* Optional. Content of the message to be sent instead of the video animation */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2507,15 +2507,15 @@ interface InlineQueryResultCachedMpeg4Gif {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedsticker
  */
 interface InlineQueryResultCachedSticker {
-/* Type of the result, must be sticker */
+    /* Type of the result, must be sticker */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier of the sticker */
+    /* A valid file identifier of the sticker */
     sticker_file_id: Array<string>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the sticker */
+    /* Optional. Content of the message to be sent instead of the sticker */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2527,25 +2527,25 @@ interface InlineQueryResultCachedSticker {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcacheddocument
  */
 interface InlineQueryResultCachedDocument {
-/* Type of the result, must be document */
+    /* Type of the result, must be document */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* Title for the result */
+    /* Title for the result */
     title: Array<string>
-/* A valid file identifier for the file */
+    /* A valid file identifier for the file */
     document_file_id: Array<string>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Caption of the document to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the document to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the document caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the document caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the file */
+    /* Optional. Content of the message to be sent instead of the file */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2556,25 +2556,25 @@ interface InlineQueryResultCachedDocument {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedvideo
  */
 interface InlineQueryResultCachedVideo {
-/* Type of the result, must be video */
+    /* Type of the result, must be video */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier for the video file */
+    /* A valid file identifier for the video file */
     video_file_id: Array<string>
-/* Title for the result */
+    /* Title for the result */
     title: Array<string>
-/* Optional. Short description of the result */
+    /* Optional. Short description of the result */
     description?: Array<string>
-/* Optional. Caption of the video to be sent, 0-1024 characters after entities parsing */
+    /* Optional. Caption of the video to be sent, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the video caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the video caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the video */
+    /* Optional. Content of the message to be sent instead of the video */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2586,23 +2586,23 @@ interface InlineQueryResultCachedVideo {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedvoice
  */
 interface InlineQueryResultCachedVoice {
-/* Type of the result, must be voice */
+    /* Type of the result, must be voice */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier for the voice message */
+    /* A valid file identifier for the voice message */
     voice_file_id: Array<string>
-/* Voice message title */
+    /* Voice message title */
     title: Array<string>
-/* Optional. Caption, 0-1024 characters after entities parsing */
+    /* Optional. Caption, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the voice message caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the voice message caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the voice message */
+    /* Optional. Content of the message to be sent instead of the voice message */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2614,21 +2614,21 @@ interface InlineQueryResultCachedVoice {
  * Read more: https://core.telegram.org/bots/api#inlinequeryresultcachedaudio
  */
 interface InlineQueryResultCachedAudio {
-/* Type of the result, must be audio */
+    /* Type of the result, must be audio */
     type: Array<string>
-/* Unique identifier for this result, 1-64 bytes */
+    /* Unique identifier for this result, 1-64 bytes */
     id: Array<string>
-/* A valid file identifier for the audio file */
+    /* A valid file identifier for the audio file */
     audio_file_id: Array<string>
-/* Optional. Caption, 0-1024 characters after entities parsing */
+    /* Optional. Caption, 0-1024 characters after entities parsing */
     caption?: Array<string>
-/* Optional. Mode for parsing entities in the audio caption. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the audio caption. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode */
     caption_entities?: Array<Array<MessageEntity>>
-/* Optional. Inline keyboard attached to the message */
+    /* Optional. Inline keyboard attached to the message */
     reply_markup?: Array<InlineKeyboardMarkup>
-/* Optional. Content of the message to be sent instead of the audio */
+    /* Optional. Content of the message to be sent instead of the audio */
     input_message_content?: Array<InputMessageContent>
 }
 
@@ -2654,13 +2654,13 @@ interface InputMessageContent {
  * Read more: https://core.telegram.org/bots/api#inputtextmessagecontent
  */
 interface InputTextMessageContent {
-/* Text of the message to be sent, 1-4096 characters */
+    /* Text of the message to be sent, 1-4096 characters */
     message_text: Array<string>
-/* Optional. Mode for parsing entities in the message text. See formatting options for more details. */
+    /* Optional. Mode for parsing entities in the message text. See formatting options for more details. */
     parse_mode?: Array<string>
-/* Optional. List of special entities that appear in message text, which can be specified instead of parse_mode */
+    /* Optional. List of special entities that appear in message text, which can be specified instead of parse_mode */
     entities?: Array<Array<MessageEntity>>
-/* Optional. Disables link previews for links in the sent message */
+    /* Optional. Disables link previews for links in the sent message */
     disable_web_page_preview?: Array<boolean>
 }
 
@@ -2671,17 +2671,17 @@ interface InputTextMessageContent {
  * Read more: https://core.telegram.org/bots/api#inputlocationmessagecontent
  */
 interface InputLocationMessageContent {
-/* Latitude of the location in degrees */
+    /* Latitude of the location in degrees */
     latitude: Array<number>
-/* Longitude of the location in degrees */
+    /* Longitude of the location in degrees */
     longitude: Array<number>
-/* Optional. The radius of uncertainty for the location, measured in meters; 0-1500 */
+    /* Optional. The radius of uncertainty for the location, measured in meters; 0-1500 */
     horizontal_accuracy?: Array<number>
-/* Optional. Period in seconds for which the location can be updated, should be between 60 and 86400. */
+    /* Optional. Period in seconds for which the location can be updated, should be between 60 and 86400. */
     live_period?: Array<number>
-/* Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. */
+    /* Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. */
     heading?: Array<number>
-/* Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. */
+    /* Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. */
     proximity_alert_radius?: Array<number>
 }
 
@@ -2692,21 +2692,21 @@ interface InputLocationMessageContent {
  * Read more: https://core.telegram.org/bots/api#inputvenuemessagecontent
  */
 interface InputVenueMessageContent {
-/* Latitude of the venue in degrees */
+    /* Latitude of the venue in degrees */
     latitude: Array<number>
-/* Longitude of the venue in degrees */
+    /* Longitude of the venue in degrees */
     longitude: Array<number>
-/* Name of the venue */
+    /* Name of the venue */
     title: Array<string>
-/* Address of the venue */
+    /* Address of the venue */
     address: Array<string>
-/* Optional. Foursquare identifier of the venue, if known */
+    /* Optional. Foursquare identifier of the venue, if known */
     foursquare_id?: Array<string>
-/* Optional. Foursquare type of the venue, if known. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) */
+    /* Optional. Foursquare type of the venue, if known. (For example, "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) */
     foursquare_type?: Array<string>
-/* Optional. Google Places identifier of the venue */
+    /* Optional. Google Places identifier of the venue */
     google_place_id?: Array<string>
-/* Optional. Google Places type of the venue. (See supported types.) */
+    /* Optional. Google Places type of the venue. (See supported types.) */
     google_place_type?: Array<string>
 }
 
@@ -2717,13 +2717,13 @@ interface InputVenueMessageContent {
  * Read more: https://core.telegram.org/bots/api#inputcontactmessagecontent
  */
 interface InputContactMessageContent {
-/* Contact's phone number */
+    /* Contact's phone number */
     phone_number: Array<string>
-/* Contact's first name */
+    /* Contact's first name */
     first_name: Array<string>
-/* Optional. Contact's last name */
+    /* Optional. Contact's last name */
     last_name?: Array<string>
-/* Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes */
+    /* Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes */
     vcard?: Array<string>
 }
 
@@ -2734,45 +2734,45 @@ interface InputContactMessageContent {
  * Read more: https://core.telegram.org/bots/api#inputinvoicemessagecontent
  */
 interface InputInvoiceMessageContent {
-/* Product name, 1-32 characters */
+    /* Product name, 1-32 characters */
     title: Array<string>
-/* Product description, 1-255 characters */
+    /* Product description, 1-255 characters */
     description: Array<string>
-/* Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes. */
+    /* Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes. */
     payload: Array<string>
-/* Payment provider token, obtained via @BotFather */
+    /* Payment provider token, obtained via @BotFather */
     provider_token: Array<string>
-/* Three-letter ISO 4217 currency code, see more on currencies */
+    /* Three-letter ISO 4217 currency code, see more on currencies */
     currency: Array<string>
-/* Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.) */
+    /* Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.) */
     prices: Array<Array<LabeledPrice>>
-/* Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0 */
+    /* Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0 */
     max_tip_amount?: Array<number>
-/* Optional. A JSON-serialized array of suggested amounts of tip in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount. */
+    /* Optional. A JSON-serialized array of suggested amounts of tip in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount. */
     suggested_tip_amounts?: Array<Array<number>>
-/* Optional. A JSON-serialized object for data about the invoice, which will be shared with the payment provider. A detailed description of the required fields should be provided by the payment provider. */
+    /* Optional. A JSON-serialized object for data about the invoice, which will be shared with the payment provider. A detailed description of the required fields should be provided by the payment provider. */
     provider_data?: Array<string>
-/* Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. */
+    /* Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. */
     photo_url?: Array<string>
-/* Optional. Photo size in bytes */
+    /* Optional. Photo size in bytes */
     photo_size?: Array<number>
-/* Optional. Photo width */
+    /* Optional. Photo width */
     photo_width?: Array<number>
-/* Optional. Photo height */
+    /* Optional. Photo height */
     photo_height?: Array<number>
-/* Optional. Pass True if you require the user's full name to complete the order */
+    /* Optional. Pass True if you require the user's full name to complete the order */
     need_name?: Array<boolean>
-/* Optional. Pass True if you require the user's phone number to complete the order */
+    /* Optional. Pass True if you require the user's phone number to complete the order */
     need_phone_number?: Array<boolean>
-/* Optional. Pass True if you require the user's email address to complete the order */
+    /* Optional. Pass True if you require the user's email address to complete the order */
     need_email?: Array<boolean>
-/* Optional. Pass True if you require the user's shipping address to complete the order */
+    /* Optional. Pass True if you require the user's shipping address to complete the order */
     need_shipping_address?: Array<boolean>
-/* Optional. Pass True if the user's phone number should be sent to provider */
+    /* Optional. Pass True if the user's phone number should be sent to provider */
     send_phone_number_to_provider?: Array<boolean>
-/* Optional. Pass True if the user's email address should be sent to provider */
+    /* Optional. Pass True if the user's email address should be sent to provider */
     send_email_to_provider?: Array<boolean>
-/* Optional. Pass True if the final price depends on the shipping method */
+    /* Optional. Pass True if the final price depends on the shipping method */
     is_flexible?: Array<boolean>
 }
 
@@ -2784,15 +2784,15 @@ interface InputInvoiceMessageContent {
  * Read more: https://core.telegram.org/bots/api#choseninlineresult
  */
 interface ChosenInlineResult {
-/* The unique identifier for the result that was chosen */
+    /* The unique identifier for the result that was chosen */
     result_id: Array<string>
-/* The user that chose the result */
+    /* The user that chose the result */
     from: Array<User>
-/* The query that was used to obtain the result */
+    /* The query that was used to obtain the result */
     query: Array<string>
-/* Optional. Sender location, only for bots that require user location */
+    /* Optional. Sender location, only for bots that require user location */
     location?: Array<Location>
-/* Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message. Will be also received in callback queries and can be used to edit the message. */
+    /* Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message. Will be also received in callback queries and can be used to edit the message. */
     inline_message_id?: Array<string>
 }
 
@@ -2803,7 +2803,7 @@ interface ChosenInlineResult {
  * Read more: https://core.telegram.org/bots/api#sentwebappmessage
  */
 interface SentWebAppMessage {
-/* Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message. */
+    /* Optional. Identifier of the sent inline message. Available only if there is an inline keyboard attached to the message. */
     inline_message_id?: Array<string>
 }
 
@@ -2814,9 +2814,9 @@ interface SentWebAppMessage {
  * Read more: https://core.telegram.org/bots/api#labeledprice
  */
 interface LabeledPrice {
-/* Portion label */
+    /* Portion label */
     label: Array<string>
-/* Price of the product in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
+    /* Price of the product in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
     amount: Array<number>
 }
 
@@ -2827,15 +2827,15 @@ interface LabeledPrice {
  * Read more: https://core.telegram.org/bots/api#invoice
  */
 interface Invoice {
-/* Product name */
+    /* Product name */
     title: Array<string>
-/* Product description */
+    /* Product description */
     description: Array<string>
-/* Unique bot deep-linking parameter that can be used to generate this invoice */
+    /* Unique bot deep-linking parameter that can be used to generate this invoice */
     start_parameter: Array<string>
-/* Three-letter ISO 4217 currency code */
+    /* Three-letter ISO 4217 currency code */
     currency: Array<string>
-/* Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
+    /* Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
     total_amount: Array<number>
 }
 
@@ -2846,17 +2846,17 @@ interface Invoice {
  * Read more: https://core.telegram.org/bots/api#shippingaddress
  */
 interface ShippingAddress {
-/* Two-letter ISO 3166-1 alpha-2 country code */
+    /* Two-letter ISO 3166-1 alpha-2 country code */
     country_code: Array<string>
-/* State, if applicable */
+    /* State, if applicable */
     state: Array<string>
-/* City */
+    /* City */
     city: Array<string>
-/* First line for the address */
+    /* First line for the address */
     street_line1: Array<string>
-/* Second line for the address */
+    /* Second line for the address */
     street_line2: Array<string>
-/* Address post code */
+    /* Address post code */
     post_code: Array<string>
 }
 
@@ -2867,13 +2867,13 @@ interface ShippingAddress {
  * Read more: https://core.telegram.org/bots/api#orderinfo
  */
 interface OrderInfo {
-/* Optional. User name */
+    /* Optional. User name */
     name?: Array<string>
-/* Optional. User's phone number */
+    /* Optional. User's phone number */
     phone_number?: Array<string>
-/* Optional. User email */
+    /* Optional. User email */
     email?: Array<string>
-/* Optional. User shipping address */
+    /* Optional. User shipping address */
     shipping_address?: Array<ShippingAddress>
 }
 
@@ -2884,11 +2884,11 @@ interface OrderInfo {
  * Read more: https://core.telegram.org/bots/api#shippingoption
  */
 interface ShippingOption {
-/* Shipping option identifier */
+    /* Shipping option identifier */
     id: Array<string>
-/* Option title */
+    /* Option title */
     title: Array<string>
-/* List of price portions */
+    /* List of price portions */
     prices: Array<Array<LabeledPrice>>
 }
 
@@ -2899,19 +2899,19 @@ interface ShippingOption {
  * Read more: https://core.telegram.org/bots/api#successfulpayment
  */
 interface SuccessfulPayment {
-/* Three-letter ISO 4217 currency code */
+    /* Three-letter ISO 4217 currency code */
     currency: Array<string>
-/* Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
+    /* Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
     total_amount: Array<number>
-/* Bot specified invoice payload */
+    /* Bot specified invoice payload */
     invoice_payload: Array<string>
-/* Telegram payment identifier */
+    /* Telegram payment identifier */
     telegram_payment_charge_id: Array<string>
-/* Provider payment identifier */
+    /* Provider payment identifier */
     provider_payment_charge_id: Array<string>
-/* Optional. Identifier of the shipping option chosen by the user */
+    /* Optional. Identifier of the shipping option chosen by the user */
     shipping_option_id?: Array<string>
-/* Optional. Order information provided by the user */
+    /* Optional. Order information provided by the user */
     order_info?: Array<OrderInfo>
 }
 
@@ -2922,13 +2922,13 @@ interface SuccessfulPayment {
  * Read more: https://core.telegram.org/bots/api#shippingquery
  */
 interface ShippingQuery {
-/* Unique query identifier */
+    /* Unique query identifier */
     id: Array<string>
-/* User who sent the query */
+    /* User who sent the query */
     from: Array<User>
-/* Bot specified invoice payload */
+    /* Bot specified invoice payload */
     invoice_payload: Array<string>
-/* User specified shipping address */
+    /* User specified shipping address */
     shipping_address: Array<ShippingAddress>
 }
 
@@ -2939,19 +2939,19 @@ interface ShippingQuery {
  * Read more: https://core.telegram.org/bots/api#precheckoutquery
  */
 interface PreCheckoutQuery {
-/* Unique query identifier */
+    /* Unique query identifier */
     id: Array<string>
-/* User who sent the query */
+    /* User who sent the query */
     from: Array<User>
-/* Three-letter ISO 4217 currency code */
+    /* Three-letter ISO 4217 currency code */
     currency: Array<string>
-/* Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
+    /* Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). */
     total_amount: Array<number>
-/* Bot specified invoice payload */
+    /* Bot specified invoice payload */
     invoice_payload: Array<string>
-/* Optional. Identifier of the shipping option chosen by the user */
+    /* Optional. Identifier of the shipping option chosen by the user */
     shipping_option_id?: Array<string>
-/* Optional. Order information provided by the user */
+    /* Optional. Order information provided by the user */
     order_info?: Array<OrderInfo>
 }
 
@@ -2962,9 +2962,9 @@ interface PreCheckoutQuery {
  * Read more: https://core.telegram.org/bots/api#passportdata
  */
 interface PassportData {
-/* Array with information about documents and other Telegram Passport elements that was shared with the bot */
+    /* Array with information about documents and other Telegram Passport elements that was shared with the bot */
     data: Array<Array<EncryptedPassportElement>>
-/* Encrypted credentials required to decrypt the data */
+    /* Encrypted credentials required to decrypt the data */
     credentials: Array<EncryptedCredentials>
 }
 
@@ -2975,13 +2975,13 @@ interface PassportData {
  * Read more: https://core.telegram.org/bots/api#passportfile
  */
 interface PassportFile {
-/* Identifier for this file, which can be used to download or reuse the file */
+    /* Identifier for this file, which can be used to download or reuse the file */
     file_id: Array<string>
-/* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
+    /* Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. */
     file_unique_id: Array<string>
-/* File size in bytes */
+    /* File size in bytes */
     file_size: Array<number>
-/* Unix time when the file was uploaded */
+    /* Unix time when the file was uploaded */
     file_date: Array<number>
 }
 
@@ -2992,25 +2992,25 @@ interface PassportFile {
  * Read more: https://core.telegram.org/bots/api#encryptedpassportelement
  */
 interface EncryptedPassportElement {
-/* Element type. One of "personal_details", "passport", "driver_license", "identity_card", "internal_passport", "address", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration", "phone_number", "email". */
+    /* Element type. One of "personal_details", "passport", "driver_license", "identity_card", "internal_passport", "address", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration", "phone_number", "email". */
     type: Array<string>
-/* Base64-encoded element hash for using in PassportElementErrorUnspecified */
+    /* Base64-encoded element hash for using in PassportElementErrorUnspecified */
     hash: Array<string>
-/* Optional. Base64-encoded encrypted Telegram Passport element data provided by the user, available for "personal_details", "passport", "driver_license", "identity_card", "internal_passport" and "address" types. Can be decrypted and verified using the accompanying EncryptedCredentials. */
+    /* Optional. Base64-encoded encrypted Telegram Passport element data provided by the user, available for "personal_details", "passport", "driver_license", "identity_card", "internal_passport" and "address" types. Can be decrypted and verified using the accompanying EncryptedCredentials. */
     data?: Array<string>
-/* Optional. User's verified phone number, available only for "phone_number" type */
+    /* Optional. User's verified phone number, available only for "phone_number" type */
     phone_number?: Array<string>
-/* Optional. User's verified email address, available only for "email" type */
+    /* Optional. User's verified email address, available only for "email" type */
     email?: Array<string>
-/* Optional. Array of encrypted files with documents provided by the user, available for "utility_bill", "bank_statement", "rental_agreement", "passport_registration" and "temporary_registration" types. Files can be decrypted and verified using the accompanying EncryptedCredentials. */
+    /* Optional. Array of encrypted files with documents provided by the user, available for "utility_bill", "bank_statement", "rental_agreement", "passport_registration" and "temporary_registration" types. Files can be decrypted and verified using the accompanying EncryptedCredentials. */
     files?: Array<Array<PassportFile>>
-/* Optional. Encrypted file with the front side of the document, provided by the user. Available for "passport", "driver_license", "identity_card" and "internal_passport". The file can be decrypted and verified using the accompanying EncryptedCredentials. */
+    /* Optional. Encrypted file with the front side of the document, provided by the user. Available for "passport", "driver_license", "identity_card" and "internal_passport". The file can be decrypted and verified using the accompanying EncryptedCredentials. */
     front_side?: Array<PassportFile>
-/* Optional. Encrypted file with the reverse side of the document, provided by the user. Available for "driver_license" and "identity_card". The file can be decrypted and verified using the accompanying EncryptedCredentials. */
+    /* Optional. Encrypted file with the reverse side of the document, provided by the user. Available for "driver_license" and "identity_card". The file can be decrypted and verified using the accompanying EncryptedCredentials. */
     reverse_side?: Array<PassportFile>
-/* Optional. Encrypted file with the selfie of the user holding a document, provided by the user; available for "passport", "driver_license", "identity_card" and "internal_passport". The file can be decrypted and verified using the accompanying EncryptedCredentials. */
+    /* Optional. Encrypted file with the selfie of the user holding a document, provided by the user; available for "passport", "driver_license", "identity_card" and "internal_passport". The file can be decrypted and verified using the accompanying EncryptedCredentials. */
     selfie?: Array<PassportFile>
-/* Optional. Array of encrypted files with translated versions of documents provided by the user. Available if requested for "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration" and "temporary_registration" types. Files can be decrypted and verified using the accompanying EncryptedCredentials. */
+    /* Optional. Array of encrypted files with translated versions of documents provided by the user. Available if requested for "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration" and "temporary_registration" types. Files can be decrypted and verified using the accompanying EncryptedCredentials. */
     translation?: Array<Array<PassportFile>>
 }
 
@@ -3021,11 +3021,11 @@ interface EncryptedPassportElement {
  * Read more: https://core.telegram.org/bots/api#encryptedcredentials
  */
 interface EncryptedCredentials {
-/* Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication */
+    /* Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets required for EncryptedPassportElement decryption and authentication */
     data: Array<string>
-/* Base64-encoded data hash for data authentication */
+    /* Base64-encoded data hash for data authentication */
     hash: Array<string>
-/* Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption */
+    /* Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption */
     secret: Array<string>
 }
 
@@ -3055,15 +3055,15 @@ interface PassportElementError {
  * Read more: https://core.telegram.org/bots/api#passportelementerrordatafield
  */
 interface PassportElementErrorDataField {
-/* Error source, must be data */
+    /* Error source, must be data */
     source: Array<string>
-/* The section of the user's Telegram Passport which has the error, one of "personal_details", "passport", "driver_license", "identity_card", "internal_passport", "address" */
+    /* The section of the user's Telegram Passport which has the error, one of "personal_details", "passport", "driver_license", "identity_card", "internal_passport", "address" */
     type: Array<string>
-/* Name of the data field which has the error */
+    /* Name of the data field which has the error */
     field_name: Array<string>
-/* Base64-encoded data hash */
+    /* Base64-encoded data hash */
     data_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3074,13 +3074,13 @@ interface PassportElementErrorDataField {
  * Read more: https://core.telegram.org/bots/api#passportelementerrorfrontside
  */
 interface PassportElementErrorFrontSide {
-/* Error source, must be front_side */
+    /* Error source, must be front_side */
     source: Array<string>
-/* The section of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport" */
+    /* The section of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport" */
     type: Array<string>
-/* Base64-encoded hash of the file with the front side of the document */
+    /* Base64-encoded hash of the file with the front side of the document */
     file_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3091,13 +3091,13 @@ interface PassportElementErrorFrontSide {
  * Read more: https://core.telegram.org/bots/api#passportelementerrorreverseside
  */
 interface PassportElementErrorReverseSide {
-/* Error source, must be reverse_side */
+    /* Error source, must be reverse_side */
     source: Array<string>
-/* The section of the user's Telegram Passport which has the issue, one of "driver_license", "identity_card" */
+    /* The section of the user's Telegram Passport which has the issue, one of "driver_license", "identity_card" */
     type: Array<string>
-/* Base64-encoded hash of the file with the reverse side of the document */
+    /* Base64-encoded hash of the file with the reverse side of the document */
     file_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3108,13 +3108,13 @@ interface PassportElementErrorReverseSide {
  * Read more: https://core.telegram.org/bots/api#passportelementerrorselfie
  */
 interface PassportElementErrorSelfie {
-/* Error source, must be selfie */
+    /* Error source, must be selfie */
     source: Array<string>
-/* The section of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport" */
+    /* The section of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport" */
     type: Array<string>
-/* Base64-encoded hash of the file with the selfie */
+    /* Base64-encoded hash of the file with the selfie */
     file_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3125,13 +3125,13 @@ interface PassportElementErrorSelfie {
  * Read more: https://core.telegram.org/bots/api#passportelementerrorfile
  */
 interface PassportElementErrorFile {
-/* Error source, must be file */
+    /* Error source, must be file */
     source: Array<string>
-/* The section of the user's Telegram Passport which has the issue, one of "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
+    /* The section of the user's Telegram Passport which has the issue, one of "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
     type: Array<string>
-/* Base64-encoded file hash */
+    /* Base64-encoded file hash */
     file_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3142,13 +3142,13 @@ interface PassportElementErrorFile {
  * Read more: https://core.telegram.org/bots/api#passportelementerrorfiles
  */
 interface PassportElementErrorFiles {
-/* Error source, must be files */
+    /* Error source, must be files */
     source: Array<string>
-/* The section of the user's Telegram Passport which has the issue, one of "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
+    /* The section of the user's Telegram Passport which has the issue, one of "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
     type: Array<string>
-/* List of base64-encoded file hashes */
+    /* List of base64-encoded file hashes */
     file_hashes: Array<Array<string>>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3159,13 +3159,13 @@ interface PassportElementErrorFiles {
  * Read more: https://core.telegram.org/bots/api#passportelementerrortranslationfile
  */
 interface PassportElementErrorTranslationFile {
-/* Error source, must be translation_file */
+    /* Error source, must be translation_file */
     source: Array<string>
-/* Type of element of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
+    /* Type of element of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
     type: Array<string>
-/* Base64-encoded file hash */
+    /* Base64-encoded file hash */
     file_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3176,13 +3176,13 @@ interface PassportElementErrorTranslationFile {
  * Read more: https://core.telegram.org/bots/api#passportelementerrortranslationfiles
  */
 interface PassportElementErrorTranslationFiles {
-/* Error source, must be translation_files */
+    /* Error source, must be translation_files */
     source: Array<string>
-/* Type of element of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
+    /* Type of element of the user's Telegram Passport which has the issue, one of "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration" */
     type: Array<string>
-/* List of base64-encoded file hashes */
+    /* List of base64-encoded file hashes */
     file_hashes: Array<Array<string>>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3193,13 +3193,13 @@ interface PassportElementErrorTranslationFiles {
  * Read more: https://core.telegram.org/bots/api#passportelementerrorunspecified
  */
 interface PassportElementErrorUnspecified {
-/* Error source, must be unspecified */
+    /* Error source, must be unspecified */
     source: Array<string>
-/* Type of element of the user's Telegram Passport which has the issue */
+    /* Type of element of the user's Telegram Passport which has the issue */
     type: Array<string>
-/* Base64-encoded element hash */
+    /* Base64-encoded element hash */
     element_hash: Array<string>
-/* Error message */
+    /* Error message */
     message: Array<string>
 }
 
@@ -3210,17 +3210,17 @@ interface PassportElementErrorUnspecified {
  * Read more: https://core.telegram.org/bots/api#game
  */
 interface Game {
-/* Title of the game */
+    /* Title of the game */
     title: Array<string>
-/* Description of the game */
+    /* Description of the game */
     description: Array<string>
-/* Photo that will be displayed in the game message in chats. */
+    /* Photo that will be displayed in the game message in chats. */
     photo: Array<Array<PhotoSize>>
-/* Optional. Brief description of the game or high scores included in the game message. Can be automatically edited to include current high scores for the game when the bot calls setGameScore, or manually edited using editMessageText. 0-4096 characters. */
+    /* Optional. Brief description of the game or high scores included in the game message. Can be automatically edited to include current high scores for the game when the bot calls setGameScore, or manually edited using editMessageText. 0-4096 characters. */
     text?: Array<string>
-/* Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc. */
+    /* Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc. */
     text_entities?: Array<Array<MessageEntity>>
-/* Optional. Animation that will be displayed in the game message in chats. Upload via BotFather */
+    /* Optional. Animation that will be displayed in the game message in chats. Upload via BotFather */
     animation?: Array<Animation>
 }
 
@@ -3241,11 +3241,11 @@ interface CallbackGame {
  * Read more: https://core.telegram.org/bots/api#gamehighscore
  */
 interface GameHighScore {
-/* Position in high score table for the game */
+    /* Position in high score table for the game */
     position: Array<number>
-/* User */
+    /* User */
     user: Array<User>
-/* Score */
+    /* Score */
     score: Array<number>
 }
 
@@ -3261,15 +3261,15 @@ interface GameHighScore {
  * @returns {Promise<Array<Array<Update>>>}
  */
 async function getUpdates(
-    offset?: Array<number>, 
-    limit?: Array<number>, 
-    timeout?: Array<number>, 
+    offset?: Array<number>,
+    limit?: Array<number>,
+    timeout?: Array<number>,
     allowed_updates?: Array<Array<string>>
 ): Promise<Array<Array<Update>>> {
     return await get('getUpdates', {
-        offset, 
-        limit, 
-        timeout, 
+        offset,
+        limit,
+        timeout,
         allowed_updates
     })
 }
@@ -3290,21 +3290,21 @@ async function getUpdates(
  * @returns {Promise<Array<boolean>>}
  */
 async function setWebhook(
-    url: Array<string>, 
-    certificate?: Array<InputFile>, 
-    ip_address?: Array<string>, 
-    max_connections?: Array<number>, 
-    allowed_updates?: Array<Array<string>>, 
-    drop_pending_updates?: Array<boolean>, 
+    url: Array<string>,
+    certificate?: Array<InputFile>,
+    ip_address?: Array<string>,
+    max_connections?: Array<number>,
+    allowed_updates?: Array<Array<string>>,
+    drop_pending_updates?: Array<boolean>,
     secret_token?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setWebhook', {
-        url, 
-        certificate, 
-        ip_address, 
-        max_connections, 
-        allowed_updates, 
-        drop_pending_updates, 
+        url,
+        certificate,
+        ip_address,
+        max_connections,
+        allowed_updates,
+        drop_pending_updates,
         secret_token
     })
 }
@@ -3384,29 +3384,29 @@ async function close(): Promise<Array<boolean>> {
  * @returns {Promise<Array<Message>>}
  */
 async function sendMessage(
-    chat_id: Array<number> | Array<string>, 
-    text: Array<string>, 
-    message_thread_id?: Array<number>, 
-    parse_mode?: Array<string>, 
-    entities?: Array<Array<MessageEntity>>, 
-    disable_web_page_preview?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    text: Array<string>,
+    message_thread_id?: Array<number>,
+    parse_mode?: Array<string>,
+    entities?: Array<Array<MessageEntity>>,
+    disable_web_page_preview?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendMessage', {
-        chat_id, 
-        text, 
-        message_thread_id, 
-        parse_mode, 
-        entities, 
-        disable_web_page_preview, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        text,
+        message_thread_id,
+        parse_mode,
+        entities,
+        disable_web_page_preview,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3425,19 +3425,19 @@ async function sendMessage(
  * @returns {Promise<Array<Message>>}
  */
 async function forwardMessage(
-    chat_id: Array<number> | Array<string>, 
-    from_chat_id: Array<number> | Array<string>, 
-    message_id: Array<number>, 
-    message_thread_id?: Array<number>, 
-    disable_notification?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    from_chat_id: Array<number> | Array<string>,
+    message_id: Array<number>,
+    message_thread_id?: Array<number>,
+    disable_notification?: Array<boolean>,
     protect_content?: Array<boolean>
 ): Promise<Array<Message>> {
     return await get('forwardMessage', {
-        chat_id, 
-        from_chat_id, 
-        message_id, 
-        message_thread_id, 
-        disable_notification, 
+        chat_id,
+        from_chat_id,
+        message_id,
+        message_thread_id,
+        disable_notification,
         protect_content
     })
 }
@@ -3462,31 +3462,31 @@ async function forwardMessage(
  * @returns {Promise<Array<MessageId>>}
  */
 async function copyMessage(
-    chat_id: Array<number> | Array<string>, 
-    from_chat_id: Array<number> | Array<string>, 
-    message_id: Array<number>, 
-    message_thread_id?: Array<number>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    from_chat_id: Array<number> | Array<string>,
+    message_id: Array<number>,
+    message_thread_id?: Array<number>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<MessageId>> {
     return await get('copyMessage', {
-        chat_id, 
-        from_chat_id, 
-        message_id, 
-        message_thread_id, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        from_chat_id,
+        message_id,
+        message_thread_id,
+        caption,
+        parse_mode,
+        caption_entities,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3511,31 +3511,31 @@ async function copyMessage(
  * @returns {Promise<Array<Message>>}
  */
 async function sendPhoto(
-    chat_id: Array<number> | Array<string>, 
-    photo: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    has_spoiler?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    photo: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    has_spoiler?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendPhoto', {
-        chat_id, 
-        photo, 
-        message_thread_id, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        has_spoiler, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        photo,
+        message_thread_id,
+        caption,
+        parse_mode,
+        caption_entities,
+        has_spoiler,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3564,37 +3564,37 @@ async function sendPhoto(
  * @returns {Promise<Array<Message>>}
  */
 async function sendAudio(
-    chat_id: Array<number> | Array<string>, 
-    audio: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    duration?: Array<number>, 
-    performer?: Array<string>, 
-    title?: Array<string>, 
-    thumbnail?: Array<InputFile> | Array<string>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    audio: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    duration?: Array<number>,
+    performer?: Array<string>,
+    title?: Array<string>,
+    thumbnail?: Array<InputFile> | Array<string>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendAudio', {
-        chat_id, 
-        audio, 
-        message_thread_id, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        duration, 
-        performer, 
-        title, 
-        thumbnail, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        audio,
+        message_thread_id,
+        caption,
+        parse_mode,
+        caption_entities,
+        duration,
+        performer,
+        title,
+        thumbnail,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3620,33 +3620,33 @@ async function sendAudio(
  * @returns {Promise<Array<Message>>}
  */
 async function sendDocument(
-    chat_id: Array<number> | Array<string>, 
-    document: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    thumbnail?: Array<InputFile> | Array<string>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    disable_content_type_detection?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    document: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    thumbnail?: Array<InputFile> | Array<string>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    disable_content_type_detection?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendDocument', {
-        chat_id, 
-        document, 
-        message_thread_id, 
-        thumbnail, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        disable_content_type_detection, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        document,
+        message_thread_id,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        disable_content_type_detection,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3676,41 +3676,41 @@ async function sendDocument(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVideo(
-    chat_id: Array<number> | Array<string>, 
-    video: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    duration?: Array<number>, 
-    width?: Array<number>, 
-    height?: Array<number>, 
-    thumbnail?: Array<InputFile> | Array<string>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    has_spoiler?: Array<boolean>, 
-    supports_streaming?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    video: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    duration?: Array<number>,
+    width?: Array<number>,
+    height?: Array<number>,
+    thumbnail?: Array<InputFile> | Array<string>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    has_spoiler?: Array<boolean>,
+    supports_streaming?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVideo', {
-        chat_id, 
-        video, 
-        message_thread_id, 
-        duration, 
-        width, 
-        height, 
-        thumbnail, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        has_spoiler, 
-        supports_streaming, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        video,
+        message_thread_id,
+        duration,
+        width,
+        height,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        has_spoiler,
+        supports_streaming,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3739,39 +3739,39 @@ async function sendVideo(
  * @returns {Promise<Array<Message>>}
  */
 async function sendAnimation(
-    chat_id: Array<number> | Array<string>, 
-    animation: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    duration?: Array<number>, 
-    width?: Array<number>, 
-    height?: Array<number>, 
-    thumbnail?: Array<InputFile> | Array<string>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    has_spoiler?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    animation: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    duration?: Array<number>,
+    width?: Array<number>,
+    height?: Array<number>,
+    thumbnail?: Array<InputFile> | Array<string>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    has_spoiler?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendAnimation', {
-        chat_id, 
-        animation, 
-        message_thread_id, 
-        duration, 
-        width, 
-        height, 
-        thumbnail, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        has_spoiler, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        animation,
+        message_thread_id,
+        duration,
+        width,
+        height,
+        thumbnail,
+        caption,
+        parse_mode,
+        caption_entities,
+        has_spoiler,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3796,31 +3796,31 @@ async function sendAnimation(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVoice(
-    chat_id: Array<number> | Array<string>, 
-    voice: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
-    duration?: Array<number>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    voice: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
+    duration?: Array<number>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVoice', {
-        chat_id, 
-        voice, 
-        message_thread_id, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
-        duration, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        voice,
+        message_thread_id,
+        caption,
+        parse_mode,
+        caption_entities,
+        duration,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3844,29 +3844,29 @@ async function sendVoice(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVideoNote(
-    chat_id: Array<number> | Array<string>, 
-    video_note: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    duration?: Array<number>, 
-    length?: Array<number>, 
-    thumbnail?: Array<InputFile> | Array<string>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    video_note: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    duration?: Array<number>,
+    length?: Array<number>,
+    thumbnail?: Array<InputFile> | Array<string>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVideoNote', {
-        chat_id, 
-        video_note, 
-        message_thread_id, 
-        duration, 
-        length, 
-        thumbnail, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        video_note,
+        message_thread_id,
+        duration,
+        length,
+        thumbnail,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3886,21 +3886,21 @@ async function sendVideoNote(
  * @returns {Promise<Array<Array<Message>>>}
  */
 async function sendMediaGroup(
-    chat_id: Array<number> | Array<string>, 
-    media: Array<Array<InputMediaAudio>> | Array<Array<InputMediaDocument>> | Array<Array<InputMediaPhoto>> | Array<Array<InputMediaVideo>>, 
-    message_thread_id?: Array<number>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    media: Array<Array<InputMediaAudio>> | Array<Array<InputMediaDocument>> | Array<Array<InputMediaPhoto>> | Array<Array<InputMediaVideo>>,
+    message_thread_id?: Array<number>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
     allow_sending_without_reply?: Array<boolean>
 ): Promise<Array<Array<Message>>> {
     return await get('sendMediaGroup', {
-        chat_id, 
-        media, 
-        message_thread_id, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
+        chat_id,
+        media,
+        message_thread_id,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
         allow_sending_without_reply
     })
 }
@@ -3926,33 +3926,33 @@ async function sendMediaGroup(
  * @returns {Promise<Array<Message>>}
  */
 async function sendLocation(
-    chat_id: Array<number> | Array<string>, 
-    latitude: Array<number>, 
-    longitude: Array<number>, 
-    message_thread_id?: Array<number>, 
-    horizontal_accuracy?: Array<number>, 
-    live_period?: Array<number>, 
-    heading?: Array<number>, 
-    proximity_alert_radius?: Array<number>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    latitude: Array<number>,
+    longitude: Array<number>,
+    message_thread_id?: Array<number>,
+    horizontal_accuracy?: Array<number>,
+    live_period?: Array<number>,
+    heading?: Array<number>,
+    proximity_alert_radius?: Array<number>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendLocation', {
-        chat_id, 
-        latitude, 
-        longitude, 
-        message_thread_id, 
-        horizontal_accuracy, 
-        live_period, 
-        heading, 
-        proximity_alert_radius, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        latitude,
+        longitude,
+        message_thread_id,
+        horizontal_accuracy,
+        live_period,
+        heading,
+        proximity_alert_radius,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -3980,37 +3980,37 @@ async function sendLocation(
  * @returns {Promise<Array<Message>>}
  */
 async function sendVenue(
-    chat_id: Array<number> | Array<string>, 
-    latitude: Array<number>, 
-    longitude: Array<number>, 
-    title: Array<string>, 
-    address: Array<string>, 
-    message_thread_id?: Array<number>, 
-    foursquare_id?: Array<string>, 
-    foursquare_type?: Array<string>, 
-    google_place_id?: Array<string>, 
-    google_place_type?: Array<string>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    latitude: Array<number>,
+    longitude: Array<number>,
+    title: Array<string>,
+    address: Array<string>,
+    message_thread_id?: Array<number>,
+    foursquare_id?: Array<string>,
+    foursquare_type?: Array<string>,
+    google_place_id?: Array<string>,
+    google_place_type?: Array<string>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendVenue', {
-        chat_id, 
-        latitude, 
-        longitude, 
-        title, 
-        address, 
-        message_thread_id, 
-        foursquare_id, 
-        foursquare_type, 
-        google_place_id, 
-        google_place_type, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        latitude,
+        longitude,
+        title,
+        address,
+        message_thread_id,
+        foursquare_id,
+        foursquare_type,
+        google_place_id,
+        google_place_type,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -4034,29 +4034,29 @@ async function sendVenue(
  * @returns {Promise<Array<Message>>}
  */
 async function sendContact(
-    chat_id: Array<number> | Array<string>, 
-    phone_number: Array<string>, 
-    first_name: Array<string>, 
-    message_thread_id?: Array<number>, 
-    last_name?: Array<string>, 
-    vcard?: Array<string>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    phone_number: Array<string>,
+    first_name: Array<string>,
+    message_thread_id?: Array<number>,
+    last_name?: Array<string>,
+    vcard?: Array<string>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendContact', {
-        chat_id, 
-        phone_number, 
-        first_name, 
-        message_thread_id, 
-        last_name, 
-        vcard, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        phone_number,
+        first_name,
+        message_thread_id,
+        last_name,
+        vcard,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -4088,45 +4088,45 @@ async function sendContact(
  * @returns {Promise<Array<Message>>}
  */
 async function sendPoll(
-    chat_id: Array<number> | Array<string>, 
-    question: Array<string>, 
-    options: Array<Array<string>>, 
-    message_thread_id?: Array<number>, 
-    is_anonymous?: Array<boolean>, 
-    type?: Array<string>, 
-    allows_multiple_answers?: Array<boolean>, 
-    correct_option_id?: Array<number>, 
-    explanation?: Array<string>, 
-    explanation_parse_mode?: Array<string>, 
-    explanation_entities?: Array<Array<MessageEntity>>, 
-    open_period?: Array<number>, 
-    close_date?: Array<number>, 
-    is_closed?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    question: Array<string>,
+    options: Array<Array<string>>,
+    message_thread_id?: Array<number>,
+    is_anonymous?: Array<boolean>,
+    type?: Array<string>,
+    allows_multiple_answers?: Array<boolean>,
+    correct_option_id?: Array<number>,
+    explanation?: Array<string>,
+    explanation_parse_mode?: Array<string>,
+    explanation_entities?: Array<Array<MessageEntity>>,
+    open_period?: Array<number>,
+    close_date?: Array<number>,
+    is_closed?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendPoll', {
-        chat_id, 
-        question, 
-        options, 
-        message_thread_id, 
-        is_anonymous, 
-        type, 
-        allows_multiple_answers, 
-        correct_option_id, 
-        explanation, 
-        explanation_parse_mode, 
-        explanation_entities, 
-        open_period, 
-        close_date, 
-        is_closed, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        question,
+        options,
+        message_thread_id,
+        is_anonymous,
+        type,
+        allows_multiple_answers,
+        correct_option_id,
+        explanation,
+        explanation_parse_mode,
+        explanation_entities,
+        open_period,
+        close_date,
+        is_closed,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -4147,23 +4147,23 @@ async function sendPoll(
  * @returns {Promise<Array<Message>>}
  */
 async function sendDice(
-    chat_id: Array<number> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    emoji?: Array<string>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    message_thread_id?: Array<number>,
+    emoji?: Array<string>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendDice', {
-        chat_id, 
-        message_thread_id, 
-        emoji, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        message_thread_id,
+        emoji,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -4180,13 +4180,13 @@ async function sendDice(
  * @returns {Promise<Array<boolean>>}
  */
 async function sendChatAction(
-    chat_id: Array<number> | Array<string>, 
-    action: Array<string>, 
+    chat_id: Array<number> | Array<string>,
+    action: Array<string>,
     message_thread_id?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('sendChatAction', {
-        chat_id, 
-        action, 
+        chat_id,
+        action,
         message_thread_id
     })
 }
@@ -4202,13 +4202,13 @@ async function sendChatAction(
  * @returns {Promise<Array<UserProfilePhotos>>}
  */
 async function getUserProfilePhotos(
-    user_id: Array<number>, 
-    offset?: Array<number>, 
+    user_id: Array<number>,
+    offset?: Array<number>,
     limit?: Array<number>
 ): Promise<Array<UserProfilePhotos>> {
     return await get('getUserProfilePhotos', {
-        user_id, 
-        offset, 
+        user_id,
+        offset,
         limit
     })
 }
@@ -4242,15 +4242,15 @@ async function getFile(
  * @returns {Promise<Array<boolean>>}
  */
 async function banChatMember(
-    chat_id: Array<number> | Array<string>, 
-    user_id: Array<number>, 
-    until_date?: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    user_id: Array<number>,
+    until_date?: Array<number>,
     revoke_messages?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('banChatMember', {
-        chat_id, 
-        user_id, 
-        until_date, 
+        chat_id,
+        user_id,
+        until_date,
         revoke_messages
     })
 }
@@ -4266,13 +4266,13 @@ async function banChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function unbanChatMember(
-    chat_id: Array<number> | Array<string>, 
-    user_id: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    user_id: Array<number>,
     only_if_banned?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('unbanChatMember', {
-        chat_id, 
-        user_id, 
+        chat_id,
+        user_id,
         only_if_banned
     })
 }
@@ -4290,17 +4290,17 @@ async function unbanChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function restrictChatMember(
-    chat_id: Array<number> | Array<string>, 
-    user_id: Array<number>, 
-    permissions: Array<ChatPermissions>, 
-    use_independent_chat_permissions?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    user_id: Array<number>,
+    permissions: Array<ChatPermissions>,
+    use_independent_chat_permissions?: Array<boolean>,
     until_date?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('restrictChatMember', {
-        chat_id, 
-        user_id, 
-        permissions, 
-        use_independent_chat_permissions, 
+        chat_id,
+        user_id,
+        permissions,
+        use_independent_chat_permissions,
         until_date
     })
 }
@@ -4327,35 +4327,35 @@ async function restrictChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function promoteChatMember(
-    chat_id: Array<number> | Array<string>, 
-    user_id: Array<number>, 
-    is_anonymous?: Array<boolean>, 
-    can_manage_chat?: Array<boolean>, 
-    can_post_messages?: Array<boolean>, 
-    can_edit_messages?: Array<boolean>, 
-    can_delete_messages?: Array<boolean>, 
-    can_manage_video_chats?: Array<boolean>, 
-    can_restrict_members?: Array<boolean>, 
-    can_promote_members?: Array<boolean>, 
-    can_change_info?: Array<boolean>, 
-    can_invite_users?: Array<boolean>, 
-    can_pin_messages?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    user_id: Array<number>,
+    is_anonymous?: Array<boolean>,
+    can_manage_chat?: Array<boolean>,
+    can_post_messages?: Array<boolean>,
+    can_edit_messages?: Array<boolean>,
+    can_delete_messages?: Array<boolean>,
+    can_manage_video_chats?: Array<boolean>,
+    can_restrict_members?: Array<boolean>,
+    can_promote_members?: Array<boolean>,
+    can_change_info?: Array<boolean>,
+    can_invite_users?: Array<boolean>,
+    can_pin_messages?: Array<boolean>,
     can_manage_topics?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('promoteChatMember', {
-        chat_id, 
-        user_id, 
-        is_anonymous, 
-        can_manage_chat, 
-        can_post_messages, 
-        can_edit_messages, 
-        can_delete_messages, 
-        can_manage_video_chats, 
-        can_restrict_members, 
-        can_promote_members, 
-        can_change_info, 
-        can_invite_users, 
-        can_pin_messages, 
+        chat_id,
+        user_id,
+        is_anonymous,
+        can_manage_chat,
+        can_post_messages,
+        can_edit_messages,
+        can_delete_messages,
+        can_manage_video_chats,
+        can_restrict_members,
+        can_promote_members,
+        can_change_info,
+        can_invite_users,
+        can_pin_messages,
         can_manage_topics
     })
 }
@@ -4371,13 +4371,13 @@ async function promoteChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatAdministratorCustomTitle(
-    chat_id: Array<number> | Array<string>, 
-    user_id: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    user_id: Array<number>,
     custom_title: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatAdministratorCustomTitle', {
-        chat_id, 
-        user_id, 
+        chat_id,
+        user_id,
         custom_title
     })
 }
@@ -4392,11 +4392,11 @@ async function setChatAdministratorCustomTitle(
  * @returns {Promise<Array<boolean>>}
  */
 async function banChatSenderChat(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     sender_chat_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('banChatSenderChat', {
-        chat_id, 
+        chat_id,
         sender_chat_id
     })
 }
@@ -4411,11 +4411,11 @@ async function banChatSenderChat(
  * @returns {Promise<Array<boolean>>}
  */
 async function unbanChatSenderChat(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     sender_chat_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('unbanChatSenderChat', {
-        chat_id, 
+        chat_id,
         sender_chat_id
     })
 }
@@ -4431,13 +4431,13 @@ async function unbanChatSenderChat(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatPermissions(
-    chat_id: Array<number> | Array<string>, 
-    permissions: Array<ChatPermissions>, 
+    chat_id: Array<number> | Array<string>,
+    permissions: Array<ChatPermissions>,
     use_independent_chat_permissions?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('setChatPermissions', {
-        chat_id, 
-        permissions, 
+        chat_id,
+        permissions,
         use_independent_chat_permissions
     })
 }
@@ -4471,17 +4471,17 @@ async function exportChatInviteLink(
  * @returns {Promise<Array<ChatInviteLink>>}
  */
 async function createChatInviteLink(
-    chat_id: Array<number> | Array<string>, 
-    name?: Array<string>, 
-    expire_date?: Array<number>, 
-    member_limit?: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    name?: Array<string>,
+    expire_date?: Array<number>,
+    member_limit?: Array<number>,
     creates_join_request?: Array<boolean>
 ): Promise<Array<ChatInviteLink>> {
     return await get('createChatInviteLink', {
-        chat_id, 
-        name, 
-        expire_date, 
-        member_limit, 
+        chat_id,
+        name,
+        expire_date,
+        member_limit,
         creates_join_request
     })
 }
@@ -4500,19 +4500,19 @@ async function createChatInviteLink(
  * @returns {Promise<Array<ChatInviteLink>>}
  */
 async function editChatInviteLink(
-    chat_id: Array<number> | Array<string>, 
-    invite_link: Array<string>, 
-    name?: Array<string>, 
-    expire_date?: Array<number>, 
-    member_limit?: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    invite_link: Array<string>,
+    name?: Array<string>,
+    expire_date?: Array<number>,
+    member_limit?: Array<number>,
     creates_join_request?: Array<boolean>
 ): Promise<Array<ChatInviteLink>> {
     return await get('editChatInviteLink', {
-        chat_id, 
-        invite_link, 
-        name, 
-        expire_date, 
-        member_limit, 
+        chat_id,
+        invite_link,
+        name,
+        expire_date,
+        member_limit,
         creates_join_request
     })
 }
@@ -4527,11 +4527,11 @@ async function editChatInviteLink(
  * @returns {Promise<Array<ChatInviteLink>>}
  */
 async function revokeChatInviteLink(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     invite_link: Array<string>
 ): Promise<Array<ChatInviteLink>> {
     return await get('revokeChatInviteLink', {
-        chat_id, 
+        chat_id,
         invite_link
     })
 }
@@ -4546,11 +4546,11 @@ async function revokeChatInviteLink(
  * @returns {Promise<Array<boolean>>}
  */
 async function approveChatJoinRequest(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     user_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('approveChatJoinRequest', {
-        chat_id, 
+        chat_id,
         user_id
     })
 }
@@ -4565,11 +4565,11 @@ async function approveChatJoinRequest(
  * @returns {Promise<Array<boolean>>}
  */
 async function declineChatJoinRequest(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     user_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('declineChatJoinRequest', {
-        chat_id, 
+        chat_id,
         user_id
     })
 }
@@ -4584,11 +4584,11 @@ async function declineChatJoinRequest(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatPhoto(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     photo: Array<InputFile>
 ): Promise<Array<boolean>> {
     return await get('setChatPhoto', {
-        chat_id, 
+        chat_id,
         photo
     })
 }
@@ -4619,11 +4619,11 @@ async function deleteChatPhoto(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatTitle(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     title: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatTitle', {
-        chat_id, 
+        chat_id,
         title
     })
 }
@@ -4638,11 +4638,11 @@ async function setChatTitle(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatDescription(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     description?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatDescription', {
-        chat_id, 
+        chat_id,
         description
     })
 }
@@ -4658,13 +4658,13 @@ async function setChatDescription(
  * @returns {Promise<Array<boolean>>}
  */
 async function pinChatMessage(
-    chat_id: Array<number> | Array<string>, 
-    message_id: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    message_id: Array<number>,
     disable_notification?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('pinChatMessage', {
-        chat_id, 
-        message_id, 
+        chat_id,
+        message_id,
         disable_notification
     })
 }
@@ -4679,11 +4679,11 @@ async function pinChatMessage(
  * @returns {Promise<Array<boolean>>}
  */
 async function unpinChatMessage(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     message_id?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('unpinChatMessage', {
-        chat_id, 
+        chat_id,
         message_id
     })
 }
@@ -4778,11 +4778,11 @@ async function getChatMemberCount(
  * @returns {Promise<Array<ChatMember>>}
  */
 async function getChatMember(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     user_id: Array<number>
 ): Promise<Array<ChatMember>> {
     return await get('getChatMember', {
-        chat_id, 
+        chat_id,
         user_id
     })
 }
@@ -4797,11 +4797,11 @@ async function getChatMember(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatStickerSet(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     sticker_set_name: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setChatStickerSet', {
-        chat_id, 
+        chat_id,
         sticker_set_name
     })
 }
@@ -4844,15 +4844,15 @@ async function getForumTopicIconStickers(): Promise<Array<Array<Sticker>>> {
  * @returns {Promise<Array<ForumTopic>>}
  */
 async function createForumTopic(
-    chat_id: Array<number> | Array<string>, 
-    name: Array<string>, 
-    icon_color?: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    name: Array<string>,
+    icon_color?: Array<number>,
     icon_custom_emoji_id?: Array<string>
 ): Promise<Array<ForumTopic>> {
     return await get('createForumTopic', {
-        chat_id, 
-        name, 
-        icon_color, 
+        chat_id,
+        name,
+        icon_color,
         icon_custom_emoji_id
     })
 }
@@ -4869,15 +4869,15 @@ async function createForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function editForumTopic(
-    chat_id: Array<number> | Array<string>, 
-    message_thread_id: Array<number>, 
-    name?: Array<string>, 
+    chat_id: Array<number> | Array<string>,
+    message_thread_id: Array<number>,
+    name?: Array<string>,
     icon_custom_emoji_id?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('editForumTopic', {
-        chat_id, 
-        message_thread_id, 
-        name, 
+        chat_id,
+        message_thread_id,
+        name,
         icon_custom_emoji_id
     })
 }
@@ -4892,11 +4892,11 @@ async function editForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function closeForumTopic(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('closeForumTopic', {
-        chat_id, 
+        chat_id,
         message_thread_id
     })
 }
@@ -4911,11 +4911,11 @@ async function closeForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function reopenForumTopic(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('reopenForumTopic', {
-        chat_id, 
+        chat_id,
         message_thread_id
     })
 }
@@ -4930,11 +4930,11 @@ async function reopenForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function deleteForumTopic(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('deleteForumTopic', {
-        chat_id, 
+        chat_id,
         message_thread_id
     })
 }
@@ -4949,11 +4949,11 @@ async function deleteForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function unpinAllForumTopicMessages(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     message_thread_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('unpinAllForumTopicMessages', {
-        chat_id, 
+        chat_id,
         message_thread_id
     })
 }
@@ -4968,11 +4968,11 @@ async function unpinAllForumTopicMessages(
  * @returns {Promise<Array<boolean>>}
  */
 async function editGeneralForumTopic(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     name: Array<string>
 ): Promise<Array<boolean>> {
     return await get('editGeneralForumTopic', {
-        chat_id, 
+        chat_id,
         name
     })
 }
@@ -5054,17 +5054,17 @@ async function unhideGeneralForumTopic(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerCallbackQuery(
-    callback_query_id: Array<string>, 
-    text?: Array<string>, 
-    show_alert?: Array<boolean>, 
-    url?: Array<string>, 
+    callback_query_id: Array<string>,
+    text?: Array<string>,
+    show_alert?: Array<boolean>,
+    url?: Array<string>,
     cache_time?: Array<number>
 ): Promise<Array<boolean>> {
     return await get('answerCallbackQuery', {
-        callback_query_id, 
-        text, 
-        show_alert, 
-        url, 
+        callback_query_id,
+        text,
+        show_alert,
+        url,
         cache_time
     })
 }
@@ -5080,13 +5080,13 @@ async function answerCallbackQuery(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyCommands(
-    commands: Array<Array<BotCommand>>, 
-    scope?: Array<BotCommandScope>, 
+    commands: Array<Array<BotCommand>>,
+    scope?: Array<BotCommandScope>,
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyCommands', {
-        commands, 
-        scope, 
+        commands,
+        scope,
         language_code
     })
 }
@@ -5101,11 +5101,11 @@ async function setMyCommands(
  * @returns {Promise<Array<boolean>>}
  */
 async function deleteMyCommands(
-    scope?: Array<BotCommandScope>, 
+    scope?: Array<BotCommandScope>,
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('deleteMyCommands', {
-        scope, 
+        scope,
         language_code
     })
 }
@@ -5120,11 +5120,11 @@ async function deleteMyCommands(
  * @returns {Promise<Array<Array<BotCommand>>>}
  */
 async function getMyCommands(
-    scope?: Array<BotCommandScope>, 
+    scope?: Array<BotCommandScope>,
     language_code?: Array<string>
 ): Promise<Array<Array<BotCommand>>> {
     return await get('getMyCommands', {
-        scope, 
+        scope,
         language_code
     })
 }
@@ -5139,11 +5139,11 @@ async function getMyCommands(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyName(
-    name?: Array<string>, 
+    name?: Array<string>,
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyName', {
-        name, 
+        name,
         language_code
     })
 }
@@ -5174,11 +5174,11 @@ async function getMyName(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyDescription(
-    description?: Array<string>, 
+    description?: Array<string>,
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyDescription', {
-        description, 
+        description,
         language_code
     })
 }
@@ -5209,11 +5209,11 @@ async function getMyDescription(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyShortDescription(
-    short_description?: Array<string>, 
+    short_description?: Array<string>,
     language_code?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setMyShortDescription', {
-        short_description, 
+        short_description,
         language_code
     })
 }
@@ -5244,11 +5244,11 @@ async function getMyShortDescription(
  * @returns {Promise<Array<boolean>>}
  */
 async function setChatMenuButton(
-    chat_id?: Array<number>, 
+    chat_id?: Array<number>,
     menu_button?: Array<MenuButton>
 ): Promise<Array<boolean>> {
     return await get('setChatMenuButton', {
-        chat_id, 
+        chat_id,
         menu_button
     })
 }
@@ -5279,11 +5279,11 @@ async function getChatMenuButton(
  * @returns {Promise<Array<boolean>>}
  */
 async function setMyDefaultAdministratorRights(
-    rights?: Array<ChatAdministratorRights>, 
+    rights?: Array<ChatAdministratorRights>,
     for_channels?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('setMyDefaultAdministratorRights', {
-        rights, 
+        rights,
         for_channels
     })
 }
@@ -5320,23 +5320,23 @@ async function getMyDefaultAdministratorRights(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageText(
-    text: Array<string>, 
-    chat_id?: Array<number> | Array<string>, 
-    message_id?: Array<number>, 
-    inline_message_id?: Array<string>, 
-    parse_mode?: Array<string>, 
-    entities?: Array<Array<MessageEntity>>, 
-    disable_web_page_preview?: Array<boolean>, 
+    text: Array<string>,
+    chat_id?: Array<number> | Array<string>,
+    message_id?: Array<number>,
+    inline_message_id?: Array<string>,
+    parse_mode?: Array<string>,
+    entities?: Array<Array<MessageEntity>>,
+    disable_web_page_preview?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageText', {
-        text, 
-        chat_id, 
-        message_id, 
-        inline_message_id, 
-        parse_mode, 
-        entities, 
-        disable_web_page_preview, 
+        text,
+        chat_id,
+        message_id,
+        inline_message_id,
+        parse_mode,
+        entities,
+        disable_web_page_preview,
         reply_markup
     })
 }
@@ -5356,21 +5356,21 @@ async function editMessageText(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageCaption(
-    chat_id?: Array<number> | Array<string>, 
-    message_id?: Array<number>, 
-    inline_message_id?: Array<string>, 
-    caption?: Array<string>, 
-    parse_mode?: Array<string>, 
-    caption_entities?: Array<Array<MessageEntity>>, 
+    chat_id?: Array<number> | Array<string>,
+    message_id?: Array<number>,
+    inline_message_id?: Array<string>,
+    caption?: Array<string>,
+    parse_mode?: Array<string>,
+    caption_entities?: Array<Array<MessageEntity>>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageCaption', {
-        chat_id, 
-        message_id, 
-        inline_message_id, 
-        caption, 
-        parse_mode, 
-        caption_entities, 
+        chat_id,
+        message_id,
+        inline_message_id,
+        caption,
+        parse_mode,
+        caption_entities,
         reply_markup
     })
 }
@@ -5388,17 +5388,17 @@ async function editMessageCaption(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageMedia(
-    media: Array<InputMedia>, 
-    chat_id?: Array<number> | Array<string>, 
-    message_id?: Array<number>, 
-    inline_message_id?: Array<string>, 
+    media: Array<InputMedia>,
+    chat_id?: Array<number> | Array<string>,
+    message_id?: Array<number>,
+    inline_message_id?: Array<string>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageMedia', {
-        media, 
-        chat_id, 
-        message_id, 
-        inline_message_id, 
+        media,
+        chat_id,
+        message_id,
+        inline_message_id,
         reply_markup
     })
 }
@@ -5420,25 +5420,25 @@ async function editMessageMedia(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageLiveLocation(
-    latitude: Array<number>, 
-    longitude: Array<number>, 
-    chat_id?: Array<number> | Array<string>, 
-    message_id?: Array<number>, 
-    inline_message_id?: Array<string>, 
-    horizontal_accuracy?: Array<number>, 
-    heading?: Array<number>, 
-    proximity_alert_radius?: Array<number>, 
+    latitude: Array<number>,
+    longitude: Array<number>,
+    chat_id?: Array<number> | Array<string>,
+    message_id?: Array<number>,
+    inline_message_id?: Array<string>,
+    horizontal_accuracy?: Array<number>,
+    heading?: Array<number>,
+    proximity_alert_radius?: Array<number>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageLiveLocation', {
-        latitude, 
-        longitude, 
-        chat_id, 
-        message_id, 
-        inline_message_id, 
-        horizontal_accuracy, 
-        heading, 
-        proximity_alert_radius, 
+        latitude,
+        longitude,
+        chat_id,
+        message_id,
+        inline_message_id,
+        horizontal_accuracy,
+        heading,
+        proximity_alert_radius,
         reply_markup
     })
 }
@@ -5455,15 +5455,15 @@ async function editMessageLiveLocation(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function stopMessageLiveLocation(
-    chat_id?: Array<number> | Array<string>, 
-    message_id?: Array<number>, 
-    inline_message_id?: Array<string>, 
+    chat_id?: Array<number> | Array<string>,
+    message_id?: Array<number>,
+    inline_message_id?: Array<string>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('stopMessageLiveLocation', {
-        chat_id, 
-        message_id, 
-        inline_message_id, 
+        chat_id,
+        message_id,
+        inline_message_id,
         reply_markup
     })
 }
@@ -5480,15 +5480,15 @@ async function stopMessageLiveLocation(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function editMessageReplyMarkup(
-    chat_id?: Array<number> | Array<string>, 
-    message_id?: Array<number>, 
-    inline_message_id?: Array<string>, 
+    chat_id?: Array<number> | Array<string>,
+    message_id?: Array<number>,
+    inline_message_id?: Array<string>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('editMessageReplyMarkup', {
-        chat_id, 
-        message_id, 
-        inline_message_id, 
+        chat_id,
+        message_id,
+        inline_message_id,
         reply_markup
     })
 }
@@ -5504,13 +5504,13 @@ async function editMessageReplyMarkup(
  * @returns {Promise<Array<Poll>>}
  */
 async function stopPoll(
-    chat_id: Array<number> | Array<string>, 
-    message_id: Array<number>, 
+    chat_id: Array<number> | Array<string>,
+    message_id: Array<number>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Poll>> {
     return await get('stopPoll', {
-        chat_id, 
-        message_id, 
+        chat_id,
+        message_id,
         reply_markup
     })
 }
@@ -5534,11 +5534,11 @@ async function stopPoll(
  * @returns {Promise<Array<boolean>>}
  */
 async function deleteMessage(
-    chat_id: Array<number> | Array<string>, 
+    chat_id: Array<number> | Array<string>,
     message_id: Array<number>
 ): Promise<Array<boolean>> {
     return await get('deleteMessage', {
-        chat_id, 
+        chat_id,
         message_id
     })
 }
@@ -5560,25 +5560,25 @@ async function deleteMessage(
  * @returns {Promise<Array<Message>>}
  */
 async function sendSticker(
-    chat_id: Array<number> | Array<string>, 
-    sticker: Array<InputFile> | Array<string>, 
-    message_thread_id?: Array<number>, 
-    emoji?: Array<string>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    sticker: Array<InputFile> | Array<string>,
+    message_thread_id?: Array<number>,
+    emoji?: Array<string>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup> | Array<ReplyKeyboardMarkup> | Array<ReplyKeyboardRemove> | Array<ForceReply>
 ): Promise<Array<Message>> {
     return await get('sendSticker', {
-        chat_id, 
-        sticker, 
-        message_thread_id, 
-        emoji, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        sticker,
+        message_thread_id,
+        emoji,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -5626,13 +5626,13 @@ async function getCustomEmojiStickers(
  * @returns {Promise<Array<File>>}
  */
 async function uploadStickerFile(
-    user_id: Array<number>, 
-    sticker: Array<InputFile>, 
+    user_id: Array<number>,
+    sticker: Array<InputFile>,
     sticker_format: Array<string>
 ): Promise<Array<File>> {
     return await get('uploadStickerFile', {
-        user_id, 
-        sticker, 
+        user_id,
+        sticker,
         sticker_format
     })
 }
@@ -5652,21 +5652,21 @@ async function uploadStickerFile(
  * @returns {Promise<Array<boolean>>}
  */
 async function createNewStickerSet(
-    user_id: Array<number>, 
-    name: Array<string>, 
-    title: Array<string>, 
-    stickers: Array<Array<InputSticker>>, 
-    sticker_format: Array<string>, 
-    sticker_type?: Array<string>, 
+    user_id: Array<number>,
+    name: Array<string>,
+    title: Array<string>,
+    stickers: Array<Array<InputSticker>>,
+    sticker_format: Array<string>,
+    sticker_type?: Array<string>,
     needs_repainting?: Array<boolean>
 ): Promise<Array<boolean>> {
     return await get('createNewStickerSet', {
-        user_id, 
-        name, 
-        title, 
-        stickers, 
-        sticker_format, 
-        sticker_type, 
+        user_id,
+        name,
+        title,
+        stickers,
+        sticker_format,
+        sticker_type,
         needs_repainting
     })
 }
@@ -5682,13 +5682,13 @@ async function createNewStickerSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function addStickerToSet(
-    user_id: Array<number>, 
-    name: Array<string>, 
+    user_id: Array<number>,
+    name: Array<string>,
     sticker: Array<InputSticker>
 ): Promise<Array<boolean>> {
     return await get('addStickerToSet', {
-        user_id, 
-        name, 
+        user_id,
+        name,
         sticker
     })
 }
@@ -5703,11 +5703,11 @@ async function addStickerToSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerPositionInSet(
-    sticker: Array<string>, 
+    sticker: Array<string>,
     position: Array<number>
 ): Promise<Array<boolean>> {
     return await get('setStickerPositionInSet', {
-        sticker, 
+        sticker,
         position
     })
 }
@@ -5738,11 +5738,11 @@ async function deleteStickerFromSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerEmojiList(
-    sticker: Array<string>, 
+    sticker: Array<string>,
     emoji_list: Array<Array<string>>
 ): Promise<Array<boolean>> {
     return await get('setStickerEmojiList', {
-        sticker, 
+        sticker,
         emoji_list
     })
 }
@@ -5757,11 +5757,11 @@ async function setStickerEmojiList(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerKeywords(
-    sticker: Array<string>, 
+    sticker: Array<string>,
     keywords?: Array<Array<string>>
 ): Promise<Array<boolean>> {
     return await get('setStickerKeywords', {
-        sticker, 
+        sticker,
         keywords
     })
 }
@@ -5776,11 +5776,11 @@ async function setStickerKeywords(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerMaskPosition(
-    sticker: Array<string>, 
+    sticker: Array<string>,
     mask_position?: Array<MaskPosition>
 ): Promise<Array<boolean>> {
     return await get('setStickerMaskPosition', {
-        sticker, 
+        sticker,
         mask_position
     })
 }
@@ -5795,11 +5795,11 @@ async function setStickerMaskPosition(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerSetTitle(
-    name: Array<string>, 
+    name: Array<string>,
     title: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setStickerSetTitle', {
-        name, 
+        name,
         title
     })
 }
@@ -5815,13 +5815,13 @@ async function setStickerSetTitle(
  * @returns {Promise<Array<boolean>>}
  */
 async function setStickerSetThumbnail(
-    name: Array<string>, 
-    user_id: Array<number>, 
+    name: Array<string>,
+    user_id: Array<number>,
     thumbnail?: Array<InputFile> | Array<string>
 ): Promise<Array<boolean>> {
     return await get('setStickerSetThumbnail', {
-        name, 
-        user_id, 
+        name,
+        user_id,
         thumbnail
     })
 }
@@ -5836,11 +5836,11 @@ async function setStickerSetThumbnail(
  * @returns {Promise<Array<boolean>>}
  */
 async function setCustomEmojiStickerSetThumbnail(
-    name: Array<string>, 
+    name: Array<string>,
     custom_emoji_id?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('setCustomEmojiStickerSetThumbnail', {
-        name, 
+        name,
         custom_emoji_id
     })
 }
@@ -5876,19 +5876,19 @@ async function deleteStickerSet(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerInlineQuery(
-    inline_query_id: Array<string>, 
-    results: Array<Array<InlineQueryResult>>, 
-    cache_time?: Array<number>, 
-    is_personal?: Array<boolean>, 
-    next_offset?: Array<string>, 
+    inline_query_id: Array<string>,
+    results: Array<Array<InlineQueryResult>>,
+    cache_time?: Array<number>,
+    is_personal?: Array<boolean>,
+    next_offset?: Array<string>,
     button?: Array<InlineQueryResultsButton>
 ): Promise<Array<boolean>> {
     return await get('answerInlineQuery', {
-        inline_query_id, 
-        results, 
-        cache_time, 
-        is_personal, 
-        next_offset, 
+        inline_query_id,
+        results,
+        cache_time,
+        is_personal,
+        next_offset,
         button
     })
 }
@@ -5903,11 +5903,11 @@ async function answerInlineQuery(
  * @returns {Promise<Array<SentWebAppMessage>>}
  */
 async function answerWebAppQuery(
-    web_app_query_id: Array<string>, 
+    web_app_query_id: Array<string>,
     result: Array<InlineQueryResult>
 ): Promise<Array<SentWebAppMessage>> {
     return await get('answerWebAppQuery', {
-        web_app_query_id, 
+        web_app_query_id,
         result
     })
 }
@@ -5948,63 +5948,63 @@ async function answerWebAppQuery(
  * @returns {Promise<Array<Message>>}
  */
 async function sendInvoice(
-    chat_id: Array<number> | Array<string>, 
-    title: Array<string>, 
-    description: Array<string>, 
-    payload: Array<string>, 
-    provider_token: Array<string>, 
-    currency: Array<string>, 
-    prices: Array<Array<LabeledPrice>>, 
-    message_thread_id?: Array<number>, 
-    max_tip_amount?: Array<number>, 
-    suggested_tip_amounts?: Array<Array<number>>, 
-    start_parameter?: Array<string>, 
-    provider_data?: Array<string>, 
-    photo_url?: Array<string>, 
-    photo_size?: Array<number>, 
-    photo_width?: Array<number>, 
-    photo_height?: Array<number>, 
-    need_name?: Array<boolean>, 
-    need_phone_number?: Array<boolean>, 
-    need_email?: Array<boolean>, 
-    need_shipping_address?: Array<boolean>, 
-    send_phone_number_to_provider?: Array<boolean>, 
-    send_email_to_provider?: Array<boolean>, 
-    is_flexible?: Array<boolean>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number> | Array<string>,
+    title: Array<string>,
+    description: Array<string>,
+    payload: Array<string>,
+    provider_token: Array<string>,
+    currency: Array<string>,
+    prices: Array<Array<LabeledPrice>>,
+    message_thread_id?: Array<number>,
+    max_tip_amount?: Array<number>,
+    suggested_tip_amounts?: Array<Array<number>>,
+    start_parameter?: Array<string>,
+    provider_data?: Array<string>,
+    photo_url?: Array<string>,
+    photo_size?: Array<number>,
+    photo_width?: Array<number>,
+    photo_height?: Array<number>,
+    need_name?: Array<boolean>,
+    need_phone_number?: Array<boolean>,
+    need_email?: Array<boolean>,
+    need_shipping_address?: Array<boolean>,
+    send_phone_number_to_provider?: Array<boolean>,
+    send_email_to_provider?: Array<boolean>,
+    is_flexible?: Array<boolean>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message>> {
     return await get('sendInvoice', {
-        chat_id, 
-        title, 
-        description, 
-        payload, 
-        provider_token, 
-        currency, 
-        prices, 
-        message_thread_id, 
-        max_tip_amount, 
-        suggested_tip_amounts, 
-        start_parameter, 
-        provider_data, 
-        photo_url, 
-        photo_size, 
-        photo_width, 
-        photo_height, 
-        need_name, 
-        need_phone_number, 
-        need_email, 
-        need_shipping_address, 
-        send_phone_number_to_provider, 
-        send_email_to_provider, 
-        is_flexible, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        title,
+        description,
+        payload,
+        provider_token,
+        currency,
+        prices,
+        message_thread_id,
+        max_tip_amount,
+        suggested_tip_amounts,
+        start_parameter,
+        provider_data,
+        photo_url,
+        photo_size,
+        photo_width,
+        photo_height,
+        need_name,
+        need_phone_number,
+        need_email,
+        need_shipping_address,
+        send_phone_number_to_provider,
+        send_email_to_provider,
+        is_flexible,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -6037,47 +6037,47 @@ async function sendInvoice(
  * @returns {Promise<Array<string>>}
  */
 async function createInvoiceLink(
-    title: Array<string>, 
-    description: Array<string>, 
-    payload: Array<string>, 
-    provider_token: Array<string>, 
-    currency: Array<string>, 
-    prices: Array<Array<LabeledPrice>>, 
-    max_tip_amount?: Array<number>, 
-    suggested_tip_amounts?: Array<Array<number>>, 
-    provider_data?: Array<string>, 
-    photo_url?: Array<string>, 
-    photo_size?: Array<number>, 
-    photo_width?: Array<number>, 
-    photo_height?: Array<number>, 
-    need_name?: Array<boolean>, 
-    need_phone_number?: Array<boolean>, 
-    need_email?: Array<boolean>, 
-    need_shipping_address?: Array<boolean>, 
-    send_phone_number_to_provider?: Array<boolean>, 
-    send_email_to_provider?: Array<boolean>, 
+    title: Array<string>,
+    description: Array<string>,
+    payload: Array<string>,
+    provider_token: Array<string>,
+    currency: Array<string>,
+    prices: Array<Array<LabeledPrice>>,
+    max_tip_amount?: Array<number>,
+    suggested_tip_amounts?: Array<Array<number>>,
+    provider_data?: Array<string>,
+    photo_url?: Array<string>,
+    photo_size?: Array<number>,
+    photo_width?: Array<number>,
+    photo_height?: Array<number>,
+    need_name?: Array<boolean>,
+    need_phone_number?: Array<boolean>,
+    need_email?: Array<boolean>,
+    need_shipping_address?: Array<boolean>,
+    send_phone_number_to_provider?: Array<boolean>,
+    send_email_to_provider?: Array<boolean>,
     is_flexible?: Array<boolean>
 ): Promise<Array<string>> {
     return await get('createInvoiceLink', {
-        title, 
-        description, 
-        payload, 
-        provider_token, 
-        currency, 
-        prices, 
-        max_tip_amount, 
-        suggested_tip_amounts, 
-        provider_data, 
-        photo_url, 
-        photo_size, 
-        photo_width, 
-        photo_height, 
-        need_name, 
-        need_phone_number, 
-        need_email, 
-        need_shipping_address, 
-        send_phone_number_to_provider, 
-        send_email_to_provider, 
+        title,
+        description,
+        payload,
+        provider_token,
+        currency,
+        prices,
+        max_tip_amount,
+        suggested_tip_amounts,
+        provider_data,
+        photo_url,
+        photo_size,
+        photo_width,
+        photo_height,
+        need_name,
+        need_phone_number,
+        need_email,
+        need_shipping_address,
+        send_phone_number_to_provider,
+        send_email_to_provider,
         is_flexible
     })
 }
@@ -6094,15 +6094,15 @@ async function createInvoiceLink(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerShippingQuery(
-    shipping_query_id: Array<string>, 
-    ok: Array<boolean>, 
-    shipping_options?: Array<Array<ShippingOption>>, 
+    shipping_query_id: Array<string>,
+    ok: Array<boolean>,
+    shipping_options?: Array<Array<ShippingOption>>,
     error_message?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('answerShippingQuery', {
-        shipping_query_id, 
-        ok, 
-        shipping_options, 
+        shipping_query_id,
+        ok,
+        shipping_options,
         error_message
     })
 }
@@ -6118,13 +6118,13 @@ async function answerShippingQuery(
  * @returns {Promise<Array<boolean>>}
  */
 async function answerPreCheckoutQuery(
-    pre_checkout_query_id: Array<string>, 
-    ok: Array<boolean>, 
+    pre_checkout_query_id: Array<string>,
+    ok: Array<boolean>,
     error_message?: Array<string>
 ): Promise<Array<boolean>> {
     return await get('answerPreCheckoutQuery', {
-        pre_checkout_query_id, 
-        ok, 
+        pre_checkout_query_id,
+        ok,
         error_message
     })
 }
@@ -6140,11 +6140,11 @@ async function answerPreCheckoutQuery(
  * @returns {Promise<Array<boolean>>}
  */
 async function setPassportDataErrors(
-    user_id: Array<number>, 
+    user_id: Array<number>,
     errors: Array<Array<PassportElementError>>
 ): Promise<Array<boolean>> {
     return await get('setPassportDataErrors', {
-        user_id, 
+        user_id,
         errors
     })
 }
@@ -6165,23 +6165,23 @@ async function setPassportDataErrors(
  * @returns {Promise<Array<Message>>}
  */
 async function sendGame(
-    chat_id: Array<number>, 
-    game_short_name: Array<string>, 
-    message_thread_id?: Array<number>, 
-    disable_notification?: Array<boolean>, 
-    protect_content?: Array<boolean>, 
-    reply_to_message_id?: Array<number>, 
-    allow_sending_without_reply?: Array<boolean>, 
+    chat_id: Array<number>,
+    game_short_name: Array<string>,
+    message_thread_id?: Array<number>,
+    disable_notification?: Array<boolean>,
+    protect_content?: Array<boolean>,
+    reply_to_message_id?: Array<number>,
+    allow_sending_without_reply?: Array<boolean>,
     reply_markup?: Array<InlineKeyboardMarkup>
 ): Promise<Array<Message>> {
     return await get('sendGame', {
-        chat_id, 
-        game_short_name, 
-        message_thread_id, 
-        disable_notification, 
-        protect_content, 
-        reply_to_message_id, 
-        allow_sending_without_reply, 
+        chat_id,
+        game_short_name,
+        message_thread_id,
+        disable_notification,
+        protect_content,
+        reply_to_message_id,
+        allow_sending_without_reply,
         reply_markup
     })
 }
@@ -6201,21 +6201,21 @@ async function sendGame(
  * @returns {Promise<Array<Message> | Array<boolean>>}
  */
 async function setGameScore(
-    user_id: Array<number>, 
-    score: Array<number>, 
-    force?: Array<boolean>, 
-    disable_edit_message?: Array<boolean>, 
-    chat_id?: Array<number>, 
-    message_id?: Array<number>, 
+    user_id: Array<number>,
+    score: Array<number>,
+    force?: Array<boolean>,
+    disable_edit_message?: Array<boolean>,
+    chat_id?: Array<number>,
+    message_id?: Array<number>,
     inline_message_id?: Array<string>
 ): Promise<Array<Message> | Array<boolean>> {
     return await get('setGameScore', {
-        user_id, 
-        score, 
-        force, 
-        disable_edit_message, 
-        chat_id, 
-        message_id, 
+        user_id,
+        score,
+        force,
+        disable_edit_message,
+        chat_id,
+        message_id,
         inline_message_id
     })
 }
@@ -6232,15 +6232,15 @@ async function setGameScore(
  * @returns {Promise<Array<Array<GameHighScore>>>}
  */
 async function getGameHighScores(
-    user_id: Array<number>, 
-    chat_id?: Array<number>, 
-    message_id?: Array<number>, 
+    user_id: Array<number>,
+    chat_id?: Array<number>,
+    message_id?: Array<number>,
     inline_message_id?: Array<string>
 ): Promise<Array<Array<GameHighScore>>> {
     return await get('getGameHighScores', {
-        user_id, 
-        chat_id, 
-        message_id, 
+        user_id,
+        chat_id,
+        message_id,
         inline_message_id
     })
 }
