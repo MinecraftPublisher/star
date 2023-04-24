@@ -109,7 +109,7 @@ ${types.join('\n\n')}
 
 ${methods.join('\n\n')}
 
-export default { ${Object.keys(json.methods).join(', ')} }`
+export default { login, get, ${Object.keys(json.methods).join(', ')} }`
 
 fs.writeFileSync('api.ts', output)
 
