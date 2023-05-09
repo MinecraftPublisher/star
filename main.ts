@@ -13,7 +13,7 @@ const http = `/**
 * Makes an HTTP GET request to the Telegram Bot API.
 */
 
-async function get(url: string, args: { [key: string]: any } = {}): Promise<any> {
+async function get(url: string, args: { [key: string]: any } = {}): Promise<API<any>> {
     let keys = Object.keys(args)?.filter(e => !!args[e])?.map((e) => {
         let value
 
@@ -33,8 +33,8 @@ async function login(token: string): Promise<void> {
 const parseType = ((e) => {
     const types = {
         'String': 'string',
-        'Integer': 'number',
-        'Float': 'number',
+        'Integer': 'string | number',
+        'Float': 'string | number',
         'Boolean': 'boolean'
     }
 
@@ -45,29 +45,41 @@ const parseType = ((e) => {
     return `${new Array(count).fill('Array<').join('')}${types[x] ?? x}${new Array(count).fill('>').join('')}`
 })
 
+const run = ((e, pass: boolean = true) => (pass ? e.types : e.returns).map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | '))
+
 console.log('init passed')
 
 let methods = Object.keys(json.methods).map(j => {
     let name = j
-    let data = json.methods[name]
+    let data: {
+        returns: Array<string>,
+        fields: Array<{
+            required: boolean,
+            name: string,
+            types: Array<string>,
+            description: string
+        }>,
+        description: Array<string>,
+        href: string
+    } = json.methods[name]
     if(!data.fields) data.fields = []
 
-    let returns = data.returns.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')
-    let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required)).map(e => `    ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')}`)
+    let returns = [...new Set(run(data, false).split(' | '))].join(' | ')
+    let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required)).map(e => `    ${e.name}${e.required ? '' : '?'}: ${[...new Set(run(e).split(' | '))].join(' | ')}`)
 
     return `/**
 ${data.description.map(e => ` * ${e}`).join('\n')}
  * 
  * Read more: ${data.href}
-${data.fields.map(e => ` * @param {${e.types.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')}} ${e.name} ${e.description}`).join('\n')}
+${data.fields.map(e => ` * @param {${run(e)}} ${e.name} ${e.description}`).join('\n')}
  * @returns {Promise<${returns}>}
  */
 async function ${name}(
 ${fields.join(',\n')}
 ): Promise<${returns}> {
-    return await get('${name}', {
-${data.fields.map(e => `        ${e.name}`).join(',\n')}
-    })
+    return await Test(await get('${name}', {
+        ${data.fields.map(e => `        ${e.name}`).join(',\n')}
+    }))
 }`.replaceAll('\n\n', '').replaceAll(', {    }', '')
 })
 
@@ -80,7 +92,7 @@ let types = Object.keys(json.types).map((j, i) => {
 
     let fields = data.fields.sort((x, y) => Number(y.required) - Number(x.required))
         .map(e => `    /* ${e.description} */
-    ${e.name}${e.required ? '' : '?'}: ${e.types.map(e => parseType(e).substring(6, parseType(e).length - 1)).join(' | ')}`)
+    ${e.name}${e.required ? '' : '?'}: ${run(e)}`)
 
     return `/**
  * Interface: ${name}
@@ -100,16 +112,27 @@ let output = `/* Telegram API wrapper for Javascript
  * Auto-Scraped from https://core.telegram.org/bots/api
  */
 
+${types.join('\n\n')}
+
+interface API<T> {
+    ok: boolean,
+    error?: string,
+    data?: T
+}
+
+async function Test<T>(res: API<T>): Promise<T> {
+    if(res.ok) return res.data
+    else throw res.error
+}
+
 const build = ((token: string) => {
     let BASE = \`https://api.telegram.org/bot\${token}/\`
 
     ${http}
 
-    ${types.join('\n\n')}
+    ${methods.join('\n\n').split('\n').map(e => `    ${e}`).map(e => e.match(/^                    [^ ]+/g) ? e.substring('                    '.length - 12) : e).join('\n')}
 
-    ${methods.join('\n\n')}
-
-    return { login, get, ${Object.keys(json.methods).join(', ')} }
+    return { Test, login, get, ${Object.keys(json.methods).join(', ')} }
 })
 
 export const newBot = build`
