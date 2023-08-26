@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import tsfmt from 'typescript-formatter'
 
 const json = fs.existsSync('api.json') ? JSON.parse(
     fs.readFileSync('api.json', 'utf8')) :
@@ -13,7 +14,7 @@ const http = `/**
 * Makes an HTTP GET request to the Telegram Bot API.
 */
 
-async function get(url: string, args: { [key: string]: any } = {}): Promise<API<any>> {
+let get = async function(url: string, args: { [key: string]: any } = {}): Promise<API<any>> {
     let keys = Object.keys(args)?.filter(e => !!args[e])?.map((e) => {
         let value
 
@@ -77,7 +78,7 @@ ${data.fields.map(e => ` * @param {${run(e)}} ${e.name} ${e.description}`).join(
 async function ${name}(
 ${fields.join(',\n')}
 ): Promise<${returns}> {
-    return await Test(await get('${name}', {
+    return await Test('${name}', await get('${name}', {
         ${data.fields.map(e => `        ${e.name}`).join(',\n')}
     }))
 }`.replaceAll('\n\n', '').replaceAll(', {    }', '')
@@ -108,21 +109,17 @@ ${fields.join('\n')}
 console.log('types passed')
 
 let output = `/* Telegram API wrapper for Javascript
- * By MinecraftPublisher
- * Auto-Scraped from https://core.telegram.org/bots/api
- */
+  By MinecraftPublisher
+  Auto-Scraped from https://core.telegram.org/bots/api
+  */
 
-${types.join('\n\n')}
+import './star.types.ts'
 
-interface API<T> {
-    ok: boolean,
-    error?: string,
-    data?: T
-}
-
-async function Test<T>(res: API<T>): Promise<T> {
+async function Test<T>(method: string, res: API<T>): Promise<T> {
     if(res.ok) return res.data
-    else throw res.error
+    else {
+        throw ('[ERROR] Critical eror at method ' + method + ' error: ' + res.error)
+    }
 }
 
 const build = ((token: string) => {
@@ -130,13 +127,49 @@ const build = ((token: string) => {
 
     ${http}
 
+    const setGet = ((func: typeof get) => {
+        get = func
+    })
+
     ${methods.join('\n\n').split('\n').map(e => `    ${e}`).map(e => e.match(/^                    [^ ]+/g) ? e.substring('                    '.length - 12) : e).join('\n')}
 
-    return { Test, login, get, ${Object.keys(json.methods).join(', ')} }
+    return { Test, login, get,\n ${Object.keys(json.methods).join(', ')} }
 })
 
-export const newBot = build`
+export const newBot = build
+export default { newBot: build }`
 
-fs.writeFileSync('api.ts', output)
+let interfaces = `/* Telegram API wrapper for Javascript
+  By MinecraftPublisher
+  Auto-Scraped from https://core.telegram.org/bots/api
+  */
+
+interface API<T> {
+    ok: boolean,
+    error?: string,
+    data?: T
+}
+
+${types.join('\n\n')}`
+
+const CONFIG = {
+    'editorconfig': false,
+    'replace': true,
+    'tsconfig': true,
+    'tsconfigFile': 'tsconfig.json',
+    'tsfmt': false,
+    'tsfmtFile': '',
+    'tslint': false,
+    'tslintFile': '',
+    'verify': true,
+    'vscode': false,
+    'vscodeFile': '',
+    'verbose': true
+}
+
+try { fs.mkdirSync('out') } catch(e) {}
+fs.writeFileSync('out/star.ts', (await tsfmt.processString('star.ts', output, CONFIG)).src)
+fs.writeFileSync('out/star.types.ts', (await tsfmt.processString('star.types.ts', interfaces, CONFIG)).src)
+console.log('Formatting...')
 
 export { }

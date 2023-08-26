@@ -1,8 +1,14 @@
 # star - Automated telegram bot wrapper builder
-Intrusctions: Just build it yourrself fr fr smh smh
+This program scrapes the Telegram API and builds a bot client wrapper for you. The newest version of the wrapper is always uploaded on NPM, But you can build it yourself using `main.ts`.
 
-## where docs?!?!?!?
-[here docs!!](https://core.telegram.org/bots/api)
+## Documentation
+Head over to [here](https://core.telegram.org/bots/api) for the documentation.
 
-## how doe???
-`node main.ts` and done!!!!
+```ts
+import { newBot } from '@agent_z/star'
+
+const bot = newBot('your telegram bot token!')
+const owner = 10000000 // Your telegram user id!
+
+await bot.sendMessage(owner, 'Hello world!')
+```

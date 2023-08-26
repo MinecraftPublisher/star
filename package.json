@@ -1,8 +1,17 @@
 {
-  "devDependencies": {
-    "@types/node": "^18.16.0"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.12"
-  }
+	"name": "@agent_z/star",
+	"description": "Intrusctions: Just build it yourrself fr fr smh smh",
+	"version": "1.0.1-0",
+	"main": "out/star.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "MinecraftPublisher",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^18.16.0"
+	},
+	"dependencies": {
+		"typescript-formatter": "^7.2.2"
+	}
 }
